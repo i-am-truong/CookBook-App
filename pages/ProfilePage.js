@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import { Ionicons } from "@expo/vector-icons";
 
 const ProfilePage = () => {
   const navigation = useNavigation();
@@ -54,8 +54,10 @@ const ProfilePage = () => {
       </View>
 
       <View style={styles.menuContainer}>
-        <TouchableOpacity style={styles.menuItem}
-          onPress={() => navigation.navigate("CreateRecipe")}>
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => navigation.navigate("CreateRecipe")}
+        >
           <Ionicons
             name="add-circle-outline"
             size={24}
@@ -64,7 +66,10 @@ const ProfilePage = () => {
           />
           <Text style={styles.menuText}>Create New Recipe</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => navigation.navigate("Cookbook")}
+        >
           <Ionicons
             name="book-outline"
             size={24}
@@ -73,7 +78,10 @@ const ProfilePage = () => {
           />
           <Text style={styles.menuText}>My Recipes</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => navigation.navigate("Explore")}
+        >
           <Ionicons
             name="search-outline"
             size={24}

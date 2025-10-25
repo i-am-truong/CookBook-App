@@ -1,10 +1,18 @@
-import { StyleSheet, Text, View, FlatList, ImageBackground, TouchableOpacity, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  ImageBackground,
+  TouchableOpacity,
+  Dimensions,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
 import { useState, useEffect } from "react";
-import database from "../database.json"; 
-import { useNavigation } from "@react-navigation/native";
-
+import database from "../database.json";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import { useCallback } from "react";
 
 const numColumns = 2;
 const screenWidth = Dimensions.get("window").width;
@@ -16,21 +24,64 @@ const CookbookPage = () => {
   const [savedRecipes, setSavedRecipes] = useState([]);
   const navigation = useNavigation();
 
+  const API_URL = __DEV__
+    ? "http://192.168.1.21:5001"
+    : "http://localhost:5001";
+
   useEffect(() => {
     loadData();
   }, []);
 
-  const loadData = () => {
-    setMyRecipes(database.myRecipes);
-    setSavedRecipes(database.savedRecipes);
+  // Reload data khi quay lại trang này
+  useFocusEffect(
+    useCallback(() => {
+      loadData();
+    }, [])
+  );
+
+  const loadData = async () => {
+    try {
+      // Load từ API để có dữ liệu mới nhất
+      const [myRecipesResponse, savedRecipesResponse] = await Promise.all([
+        fetch(`${API_URL}/myRecipes`),
+        fetch(`${API_URL}/savedRecipes`),
+      ]);
+
+      if (myRecipesResponse.ok && savedRecipesResponse.ok) {
+        const myRecipesData = await myRecipesResponse.json();
+        const savedRecipesData = await savedRecipesResponse.json();
+
+        setMyRecipes(myRecipesData);
+        setSavedRecipes(savedRecipesData);
+      } else {
+        // Fallback to local data
+        setMyRecipes(database.myRecipes);
+        setSavedRecipes(database.savedRecipes);
+      }
+    } catch (error) {
+      console.error("Error loading recipes:", error);
+      // Fallback to local data
+      setMyRecipes(database.myRecipes);
+      setSavedRecipes(database.savedRecipes);
+    }
   };
 
   const data = activeTab === "My Recipe" ? myRecipes : savedRecipes;
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity style={styles.card} onPress={() => navigation.navigate("RecipeDetail", { recipe: item })}>
-      <ImageBackground source={{ uri: item.image }} style={styles.image} imageStyle={{ borderRadius: 16 }}>
-        <LinearGradient colors={["rgba(0,0,0,0.1)", "rgba(0,0,0,1)"]} style={styles.textContainer}>
+    <TouchableOpacity
+      style={styles.card}
+      onPress={() => navigation.navigate("RecipeDetail", { recipe: item })}
+    >
+      <ImageBackground
+        source={{ uri: item.image }}
+        style={styles.image}
+        imageStyle={{ borderRadius: 16 }}
+      >
+        <LinearGradient
+          colors={["rgba(0,0,0,0.1)", "rgba(0,0,0,1)"]}
+          style={styles.textContainer}
+        >
           <Text style={styles.title}>{item.name}</Text>
         </LinearGradient>
       </ImageBackground>
@@ -41,17 +92,35 @@ const CookbookPage = () => {
     <View style={styles.container}>
       <Text style={styles.header}>Cookbook</Text>
       <View style={styles.tabContainer}>
-        <TouchableOpacity onPress={() => setActiveTab("My Recipe")} style={[styles.tabButton, activeTab === "My Recipe" && styles.activeTabButton]}>
-          <Text style={[styles.tab, activeTab === "My Recipe" && styles.activeTab]}>✨ My Recipe</Text>
+        <TouchableOpacity
+          onPress={() => setActiveTab("My Recipe")}
+          style={[
+            styles.tabButton,
+            activeTab === "My Recipe" && styles.activeTabButton,
+          ]}
+        >
+          <Text
+            style={[styles.tab, activeTab === "My Recipe" && styles.activeTab]}
+          >
+            ✨ My Recipe
+          </Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => setActiveTab("Saved")} style={[styles.tabButton, activeTab === "Saved" && styles.activeTabButton]}>
-          <Text style={[styles.tab, activeTab === "Saved" && styles.activeTab]}>🔖 Saved</Text>
+        <TouchableOpacity
+          onPress={() => setActiveTab("Saved")}
+          style={[
+            styles.tabButton,
+            activeTab === "Saved" && styles.activeTabButton,
+          ]}
+        >
+          <Text style={[styles.tab, activeTab === "Saved" && styles.activeTab]}>
+            🔖 Saved
+          </Text>
         </TouchableOpacity>
       </View>
       <FlatList
         data={data}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => `${activeTab}-${item.id}`}
         numColumns={numColumns}
         contentContainerStyle={styles.list}
       />

@@ -1,21 +1,39 @@
-import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
-import React from 'react';
-import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { recipes } from '../data';
+import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
+import React from "react";
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import database from "../database.json";
+
+const recipes = database.recipes; // Lấy recipes từ database.json
 
 const RecipeByCategory = ({ route, navigation }) => {
   const { category } = route.params;
 
-  const filteredRecipes = recipes.filter(recipe => recipe.category === category);
+  const filteredRecipes = recipes.filter(
+    (recipe) => recipe.category === category
+  );
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity style={styles.itemContainer}
-     onPress={() => navigation.navigate('RecipeDetail', { recipe: item })}>
+    <TouchableOpacity
+      style={styles.itemContainer}
+      onPress={() => navigation.navigate("RecipeDetail", { recipe: item })}
+    >
       <View style={styles.imageContainer}>
         <Image source={{ uri: item.image }} style={styles.itemImage} />
         <LinearGradient
-          colors={['transparent', 'rgba(0, 0, 0, 0.5)', 'rgba(0, 0, 0, 0.8)', 'rgba(0, 0, 0, 0.8)']}
+          colors={[
+            "transparent",
+            "rgba(0, 0, 0, 0.5)",
+            "rgba(0, 0, 0, 0.8)",
+            "rgba(0, 0, 0, 0.8)",
+          ]}
           style={styles.itemTextContainer}
         >
           <View>
@@ -30,7 +48,7 @@ const RecipeByCategory = ({ route, navigation }) => {
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.backButton}
-        onPress={() => navigation.goBack()} 
+        onPress={() => navigation.goBack()}
       >
         <Ionicons name="arrow-back" size={24} color="black" />
         <Text style={styles.backText}></Text>
@@ -50,11 +68,11 @@ const RecipeByCategory = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   backButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     padding: 20,
   },
   backText: {
@@ -63,7 +81,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     paddingHorizontal: 20,
     paddingBottom: 20,
   },
@@ -77,20 +95,20 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   itemImage: {
-    width: '100%',
+    width: "100%",
     height: 250,
     borderRadius: 10,
   },
   itemTextContainer: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     padding: 10,
-    width: '100%',
+    width: "100%",
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
   },
   itemText: {
-    color: 'white',
+    color: "white",
   },
 });
 

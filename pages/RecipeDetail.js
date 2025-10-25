@@ -1,5 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
-import React,{useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
   Alert,
   FlatList,
@@ -9,8 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import database from "../database.json"; 
-
+import database from "../database.json";
 
 const RecipeDetail = ({ route, navigation }) => {
   const { recipe } = route.params; // Get the recipe data from route params
@@ -22,27 +21,88 @@ const RecipeDetail = ({ route, navigation }) => {
     { label: "Servings", value: `${recipe.servings} People`, icon: "people" },
   ];
 
-  useEffect(() => {
-    // Kiểm tra xem recipe có trong savedRecipes không
-    const exists = database.savedRecipes.some((item) => item.id === recipe.id);
-    setIsSaved(exists);
-  }, [database.savedRecipes, recipe.id]);
+  const API_URL = __DEV__
+    ? "http://192.168.1.21:5001" // Thay đổi IP này thành IP máy tính của bạn
+    : "http://localhost:5001";
 
-  const handleSave = async () => {
+  useEffect(() => {
+    checkIfSaved();
+  }, []);
+
+  const checkIfSaved = async () => {
     try {
-      const response = await fetch("http://10.0.2.2:5001/savedRecipes", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(recipe),
-      });
-      const data = await response.json();
-      console.log("Recipe saved!", data);
-      Alert.alert("Success", "Recipe has been saved to your saved recipes!");
+      const response = await fetch(`${API_URL}/savedRecipes`);
+      if (response.ok) {
+        const savedRecipes = await response.json();
+        const exists = savedRecipes.some((item) => item.id === recipe.id);
+        setIsSaved(exists);
+      }
     } catch (error) {
-      console.error("Error saving recipe:", error);
-      Alert.alert("Error", "Failed to save recipe. Please try again later.");
+      console.error("Error checking saved status:", error);
+      // Fallback to local check
+      const exists = database.savedRecipes.some(
+        (item) => item.id === recipe.id
+      );
+      setIsSaved(exists);
+    }
+  };
+
+  const handleToggleSave = async () => {
+    try {
+      if (isSaved) {
+        // Unsave: Xóa recipe khỏi savedRecipes
+        // Tìm recipe trong savedRecipes để lấy database ID (có thể khác với recipe.id)
+        const response = await fetch(`${API_URL}/savedRecipes`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const savedRecipes = await response.json();
+        const savedRecipe = savedRecipes.find((item) => item.id === recipe.id);
+
+        if (savedRecipe) {
+          // Xóa recipe bằng database ID của nó
+          const deleteResponse = await fetch(
+            `${API_URL}/savedRecipes/${savedRecipe.id}`,
+            {
+              method: "DELETE",
+            }
+          );
+
+          if (!deleteResponse.ok) {
+            throw new Error(`HTTP error! status: ${deleteResponse.status}`);
+          }
+
+          console.log("Recipe removed from saved!");
+          setIsSaved(false);
+          Alert.alert("Removed", "Recipe has been removed from saved recipes!");
+        }
+      } else {
+        // Save: Thêm recipe vào savedRecipes
+        const response = await fetch(`${API_URL}/savedRecipes`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(recipe),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Recipe saved!", data);
+        setIsSaved(true);
+        Alert.alert("Success", "Recipe has been saved to your saved recipes!");
+      }
+    } catch (error) {
+      console.error("Error toggling save:", error);
+      Alert.alert(
+        "Error",
+        "Failed to save/unsave recipe. Please make sure JSON server is running on port 5001.\n\n" +
+          "Run: npm run server"
+      );
     }
   };
 
@@ -77,13 +137,13 @@ const RecipeDetail = ({ route, navigation }) => {
               {/* Recipe Title and Save Icon */}
               <View style={styles.recipeHeader}>
                 <Text style={styles.recipeName}>{recipe.name}</Text>
-                <TouchableOpacity onPress={handleSave}>
+                <TouchableOpacity onPress={handleToggleSave}>
                   <Ionicons
                     name={isSaved ? "heart" : "heart-outline"} // Nếu đã lưu thì dùng icon đầy, chưa thì outline
                     size={24}
-                    color={isSaved ? "#4CAF50" : "#4CAF50"} // Màu đỏ nếu đã lưu, màu xanh nếu chưa
+                    color={isSaved ? "#FF6B6B" : "#4CAF50"} // Màu đỏ nếu đã lưu, màu xanh nếu chưa
                     style={{
-                      borderWidth: 1, // Nếu chưa lưu thì thêm viền
+                      borderWidth: isSaved ? 0 : 1, // Nếu đã lưu thì bỏ viền, chưa thì thêm viền
                       borderColor: "#4CAF50",
                       borderRadius: 12,
                       padding: 4,

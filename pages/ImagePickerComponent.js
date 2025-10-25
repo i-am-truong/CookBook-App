@@ -1,71 +1,84 @@
-import * as ImagePicker from 'expo-image-picker';
-import React, { useState } from 'react';
-import { Button, Image, StyleSheet, TextInput, View } from 'react-native';
+import * as ImagePicker from "expo-image-picker";
+import React from "react";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
-const ImagePickerComponent = ({ setImageUri, setNote, imageUri, note }) => {
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  // Request camera and media library permissions
+const ImagePickerComponent = ({ setImageUri, imageUri }) => {
+  // Request permissions
   const requestPermissions = async () => {
-    const { status } = await ImagePicker.requestCameraPermissionsAsync();
-    return status === 'granted';
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    return status === "granted";
   };
 
-  // Handle image selection from camera
+  // Pick image from gallery
   const pickImageFromGallery = async () => {
     const hasPermission = await requestPermissions();
     if (!hasPermission) {
-      alert('Permission to access camera is required!');
+      alert("Permission to access media library is required!");
       return;
     }
 
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      quality: 1,
+      aspect: [16, 9],
+      quality: 0.8,
     });
 
     if (!result.canceled) {
-      const uri = result.assets[0].uri; // Get URI of the selected image
-      setSelectedImage(uri); // Set selected image URI
-      setImageUri(uri); // Pass the URI to the parent component (CreateRecipeScreen)
+      setImageUri(result.assets[0].uri);
     }
   };
 
-  // Handle image capture using camera
+  // Take photo with camera
   const takePhotoWithCamera = async () => {
-    const hasPermission = await requestPermissions();
-    if (!hasPermission) {
-      alert('Permission to access camera is required!');
+    const { status } = await ImagePicker.requestCameraPermissionsAsync();
+    if (status !== "granted") {
+      alert("Permission to access camera is required!");
       return;
     }
 
     let result = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
-      quality: 1,
+      aspect: [16, 9],
+      quality: 0.8,
     });
 
     if (!result.canceled) {
-      const uri = result.assets[0].uri; // Get URI of the captured image
-      setSelectedImage(uri); // Set selected image URI
-      setImageUri(uri); // Pass the URI to the parent component (CreateRecipeScreen)
+      setImageUri(result.assets[0].uri);
     }
   };
 
   return (
     <View style={styles.container}>
-      <Button title="Pick an image from gallery" onPress={pickImageFromGallery} />
-      <Button title="Take a photo" onPress={takePhotoWithCamera} />
+      {imageUri ? (
+        <View style={styles.imagePreview}>
+          <Image source={{ uri: imageUri }} style={styles.image} />
+          <TouchableOpacity
+            style={styles.changeButton}
+            onPress={pickImageFromGallery}
+          >
+            <Ionicons name="camera" size={20} color="#fff" />
+            <Text style={styles.changeButtonText}>Change Image</Text>
+          </TouchableOpacity>
+        </View>
+      ) : (
+        <View style={styles.pickerContainer}>
+          <TouchableOpacity
+            style={styles.pickerButton}
+            onPress={pickImageFromGallery}
+          >
+            <Ionicons name="images" size={32} color="#4CAF50" />
+            <Text style={styles.pickerButtonText}>Choose from Gallery</Text>
+          </TouchableOpacity>
 
-      {selectedImage && (
-        <View style={styles.imageContainer}>
-          <Image source={{ uri: selectedImage }} style={styles.preview} />
-          <TextInput
-            style={styles.input}
-            placeholder="Enter a note..."
-            value={note}
-            onChangeText={setNote} // Set note for the selected image
-          />
+          <TouchableOpacity
+            style={styles.pickerButton}
+            onPress={takePhotoWithCamera}
+          >
+            <Ionicons name="camera" size={32} color="#4CAF50" />
+            <Text style={styles.pickerButtonText}>Take Photo</Text>
+          </TouchableOpacity>
         </View>
       )}
     </View>
@@ -74,28 +87,55 @@ const ImagePickerComponent = ({ setImageUri, setNote, imageUri, note }) => {
 
 const styles = StyleSheet.create({
   container: {
+    width: "100%",
+  },
+  pickerContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    gap: 12,
+  },
+  pickerButton: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 20,
+    backgroundColor: "#f0f0f0",
+    padding: 20,
+    borderRadius: 12,
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 2,
+    borderColor: "#e0e0e0",
+    borderStyle: "dashed",
   },
-  imageContainer: {
-    marginTop: 20,
-    alignItems: 'center',
+  pickerButtonText: {
+    marginTop: 8,
+    fontSize: 14,
+    color: "#666",
+    fontWeight: "500",
+    textAlign: "center",
   },
-  preview: {
-    width: 200,
+  imagePreview: {
+    width: "100%",
+    alignItems: "center",
+  },
+  image: {
+    width: "100%",
     height: 200,
-    borderRadius: 10,
-    marginBottom: 10,
+    borderRadius: 12,
+    marginBottom: 12,
   },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 8,
-    width: '80%',
-    marginTop: 10,
-    borderRadius: 5,
+  changeButton: {
+    flexDirection: "row",
+    backgroundColor: "#4CAF50",
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  changeButtonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "600",
+    marginLeft: 8,
   },
 });
 

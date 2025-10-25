@@ -125,7 +125,7 @@
       "calories": 400,
       "cookingTime": "25 phút",
       "servings": 3,
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Phat_Thai_kung_Chang_Khien_street_stall.jpg/800px-Phat_Thai_kung_Chang_Khien_street_stall.jpg",
+      "image": "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/one_pan_pad_thai_with_07570_16x9.jpg",
       "ingredients": [
         {
           "name": "Mì gạo",
@@ -280,7 +280,7 @@
       "calories": 400,
       "cookingTime": "45 phút",
       "servings": 4,
-      "image": "https://khaihoanphuquoc.com.vn/wp-content/uploads/2023/08/cach-lam-nuoc-mam-bun-cha-02.jpg",
+      "image": "https://acnoshotel.com/grand/wp-content/uploads/2024/08/Acnos-bun-cha-ha-noi_02.jpg",
       "ingredients": [
         {
           "name": "Thịt heo xay",
@@ -319,7 +319,7 @@
       "calories": 200,
       "cookingTime": "30 phút",
       "servings": 4,
-      "image": "https://upload.wikimedia.org/wikipedia/commons/0/03/Summer_roll.jpg",
+      "image": "https://khaihoanphuquoc.com.vn/wp-content/uploads/2023/11/nu%CC%9Bo%CC%9B%CC%81c-ma%CC%86%CC%81m-cha%CC%82%CC%81m-go%CC%89i-cuo%CC%82%CC%81n.png",
       "ingredients": [
         {
           "name": "Bánh tráng",
@@ -396,7 +396,7 @@
       "calories": 300,
       "cookingTime": "15 phút",
       "servings": 2,
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/B%C3%A1nh_m%C3%AC_th%E1%BB%8Bt_n%C6%B0%E1%BB%9Bng.png/800px-B%C3%A1nh_m%C3%AC_th%E1%BB%8Bt_n%C6%B0%E1%BB%9Bng.png",
+      "image": "https://cdn-i2.congthuong.vn/stores/news_dataimages/2024/032024/16/09/top-1-mon-sandwich-ngon-nhat-the-gioi-goi-ten-banh-my-viet-nam1710498007-182420240316092132.jpg?rt=20240316092204",
       "ingredients": [
         {
           "name": "Bánh mì",
@@ -542,39 +542,6 @@
     },
     {
       "id": "15",
-      "name": "Bún Chả",
-      "category": "Lunch",
-      "description": "Bún chả Hà Nội với thịt nướng, bún tươi và nước mắm chua ngọt.",
-      "calories": 450,
-      "cookingTime": "1 giờ",
-      "servings": 4,
-      "image": "https://cdn.tgdd.vn/Files/2021/10/22/1394946/cach-lam-bun-cha-ha-noi-ngon-dam-da-chuan-vi-tai-nha-202110220953045842.jpg",
-      "ingredients": [
-        {
-          "name": "Thịt ba chỉ",
-          "amount": "500g"
-        },
-        {
-          "name": "Bún tươi",
-          "amount": "500g"
-        },
-        {
-          "name": "Nước mắm",
-          "amount": "5 muỗng canh"
-        },
-        {
-          "name": "Tỏi, ớt",
-          "amount": "Tùy khẩu vị"
-        }
-      ],
-      "instructions": [
-        "Ướp thịt với gia vị, nướng chín.",
-        "Pha nước mắm chua ngọt.",
-        "Ăn kèm bún, rau sống và nước mắm."
-      ]
-    },
-    {
-      "id": "16",
       "name": "Chocolate Cake",
       "category": "Dessert",
       "description": "Bánh chocolate mềm mịn, ngọt ngào.",
@@ -610,7 +577,7 @@
       ]
     },
     {
-      "id": "17",
+      "id": "16",
       "name": "Paneer Curry",
       "category": "Dinner",
       "description": "Paneer nấu với nước sốt cay đặc trưng của Ấn Độ.",
@@ -642,7 +609,7 @@
       ]
     },
     {
-      "id": "18",
+      "id": "17",
       "name": "Mango Mojito",
       "category": "Beverage",
       "description": "Thức uống mát lạnh từ xoài và bạc hà.",
@@ -674,137 +641,7 @@
       ]
     },
     {
-      "id": "19",
-      "name": "Quinoa Bowl",
-      "category": "Healthy",
-      "description": "Bữa ăn nhẹ nhàng với quinoa và rau củ.",
-      "calories": 350,
-      "cookingTime": "20 phút",
-      "servings": 2,
-      "image": "https://images.themodernproper.com/production/posts/2020/QuinoaBowl_4.jpg?w=1200&h=1200&q=60&fm=jpg&fit=crop&dm=1737605526&s=b91b6baac05eb76bd048a76d12f4a9cd",
-      "ingredients": [
-        {
-          "name": "Quinoa",
-          "amount": "100g"
-        },
-        {
-          "name": "Rau củ",
-          "amount": "200g"
-        },
-        {
-          "name": "Dầu olive",
-          "amount": "1 muỗng canh"
-        }
-      ],
-      "instructions": [
-        "Luộc quinoa cho chín.",
-        "Xào rau củ và trộn với quinoa."
-      ]
-    }
-  ],
-  "myRecipes": [
-    {
-      "id": "16",
-      "name": "Chocolate Cake",
-      "category": "Dessert",
-      "description": "Bánh chocolate mềm mịn, ngọt ngào.",
-      "calories": 450,
-      "cookingTime": "45 phút",
-      "servings": 8,
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP7mYb2zvY2IGO9_EocEptv0k-JTabTeh58g&s",
-      "ingredients": [
-        {
-          "name": "Bột mì",
-          "amount": "200g"
-        },
-        {
-          "name": "Đường",
-          "amount": "150g"
-        },
-        {
-          "name": "Trứng",
-          "amount": "3 quả"
-        },
-        {
-          "name": "Bơ",
-          "amount": "100g"
-        },
-        {
-          "name": "Bột cacao",
-          "amount": "50g"
-        }
-      ],
-      "instructions": [
-        "Trộn tất cả nguyên liệu.",
-        "Nướng trong lò ở 180°C trong 30 phút."
-      ]
-    },
-    {
-      "id": "17",
-      "name": "Paneer Curry",
-      "category": "Dinner",
-      "description": "Paneer nấu với nước sốt cay đặc trưng của Ấn Độ.",
-      "calories": 400,
-      "cookingTime": "40 phút",
-      "servings": 4,
-      "image": "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/butter_paneer_curry_98394_16x9.jpg",
-      "ingredients": [
-        {
-          "name": "Paneer",
-          "amount": "250g"
-        },
-        {
-          "name": "Cà chua",
-          "amount": "2 quả"
-        },
-        {
-          "name": "Hành tây",
-          "amount": "1 củ"
-        },
-        {
-          "name": "Gia vị",
-          "amount": "tuỳ chỉnh"
-        }
-      ],
-      "instructions": [
-        "Xào hành và cà chua.",
-        "Thêm paneer và gia vị, nấu thêm 15 phút."
-      ]
-    },
-    {
       "id": "18",
-      "name": "Mango Mojito",
-      "category": "Beverage",
-      "description": "Thức uống mát lạnh từ xoài và bạc hà.",
-      "calories": 120,
-      "cookingTime": "10 phút",
-      "servings": 2,
-      "image": "https://www.chilitochoc.com/wp-content/uploads/2023/07/mango-mojito-non-alcoholic.jpg",
-      "ingredients": [
-        {
-          "name": "Xoài",
-          "amount": "1 quả"
-        },
-        {
-          "name": "Lá bạc hà",
-          "amount": "vài lá"
-        },
-        {
-          "name": "Đường",
-          "amount": "2 muỗng"
-        },
-        {
-          "name": "Nước soda",
-          "amount": "200ml"
-        }
-      ],
-      "instructions": [
-        "Xay nhuyễn xoài với đường.",
-        "Thêm soda và bạc hà, khuấy đều."
-      ]
-    },
-    {
-      "id": "19",
       "name": "Quinoa Bowl",
       "category": "Healthy",
       "description": "Bữa ăn nhẹ nhàng với quinoa và rau củ.",
@@ -830,173 +667,8 @@
         "Luộc quinoa cho chín.",
         "Xào rau củ và trộn với quinoa."
       ]
-    },
-    {
-      "id": "0.7091585965127142",
-      "name": "pakistan ",
-      "category": "dinner",
-      "description": "sdssdsd",
-      "calories": "33",
-      "cookingTime": "45p",
-      "servings": 4,
-      "ingredients": [
-        {
-          "name": "onion",
-          "amount": "1"
-        }
-      ],
-      "instructions": [
-        "luoov"
-      ],
-      "image": "https://tse4.mm.bing.net/th?id=OIP.MiAGrYafshORM2n_HLu4swHaHa&pid=Api&P=0&h=220"
     }
   ],
-  "savedRecipes": [
-    {
-      "id": "4",
-      "name": "Pad Thai",
-      "category": "Fastfood",
-      "description": "Món mì xào nổi tiếng của Thái với tôm, đậu hũ, đậu phộng và sốt chua ngọt.",
-      "calories": 400,
-      "cookingTime": "25 phút",
-      "servings": 3,
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Phat_Thai_kung_Chang_Khien_street_stall.jpg/800px-Phat_Thai_kung_Chang_Khien_street_stall.jpg",
-      "ingredients": [
-        {
-          "name": "Mì gạo",
-          "amount": "200g"
-        },
-        {
-          "name": "Tôm",
-          "amount": "150g, bóc vỏ"
-        },
-        {
-          "name": "Đậu hũ",
-          "amount": "100g, cắt khối"
-        },
-        {
-          "name": "Đậu phộng",
-          "amount": "2 muỗng canh, giã nhỏ"
-        },
-        {
-          "name": "Trứng",
-          "amount": "1 quả, đánh tan"
-        }
-      ],
-      "instructions": [
-        "Ngâm mì gạo trong nước ấm cho mềm, sau đó để ráo.",
-        "Xào tôm và đậu hũ đến khi vàng giòn.",
-        "Đẩy chúng sang một bên chảo, cho trứng vào đảo đều.",
-        "Thêm mì và nước sốt Pad Thai, trộn đều.",
-        "Trang trí với đậu phộng giã nhỏ, ăn nóng."
-      ]
-    },
-    {
-      "id": "9",
-      "name": "Gỏi Cuốn",
-      "category": "Appetizer",
-      "description": "Gỏi cuốn tươi mát với tôm, thịt heo, bún và rau sống, cuốn trong bánh tráng.",
-      "calories": 200,
-      "cookingTime": "30 phút",
-      "servings": 4,
-      "image": "https://upload.wikimedia.org/wikipedia/commons/0/03/Summer_roll.jpg",
-      "ingredients": [
-        {
-          "name": "Bánh tráng",
-          "amount": "10 cái"
-        },
-        {
-          "name": "Tôm",
-          "amount": "200g, luộc chín"
-        },
-        {
-          "name": "Thịt heo",
-          "amount": "150g, luộc chín"
-        },
-        {
-          "name": "Bún tươi",
-          "amount": "200g"
-        },
-        {
-          "name": "Rau sống",
-          "amount": "100g"
-        }
-      ],
-      "instructions": [
-        "Luộc tôm và thịt heo, sau đó thái lát mỏng.",
-        "Ngâm bánh tráng trong nước ấm cho mềm.",
-        "Xếp tôm, thịt, bún và rau sống lên bánh tráng.",
-        "Cuộn chặt lại và cắt đôi.",
-        "Ăn kèm với nước mắm chua ngọt."
-      ]
-    },
-    {
-      "id": "16",
-      "name": "Chocolate Cake",
-      "category": "Dessert",
-      "description": "Bánh chocolate mềm mịn, ngọt ngào.",
-      "calories": 450,
-      "cookingTime": "45 phút",
-      "servings": 8,
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP7mYb2zvY2IGO9_EocEptv0k-JTabTeh58g&s",
-      "ingredients": [
-        {
-          "name": "Bột mì",
-          "amount": "200g"
-        },
-        {
-          "name": "Đường",
-          "amount": "150g"
-        },
-        {
-          "name": "Trứng",
-          "amount": "3 quả"
-        },
-        {
-          "name": "Bơ",
-          "amount": "100g"
-        },
-        {
-          "name": "Bột cacao",
-          "amount": "50g"
-        }
-      ],
-      "instructions": [
-        "Trộn tất cả nguyên liệu.",
-        "Nướng trong lò ở 180°C trong 30 phút."
-      ]
-    },
-    {
-      "id": "17",
-      "name": "Paneer Curry",
-      "category": "Dinner",
-      "description": "Paneer nấu với nước sốt cay đặc trưng của Ấn Độ.",
-      "calories": 400,
-      "cookingTime": "40 phút",
-      "servings": 4,
-      "image": "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/butter_paneer_curry_98394_16x9.jpg",
-      "ingredients": [
-        {
-          "name": "Paneer",
-          "amount": "250g"
-        },
-        {
-          "name": "Cà chua",
-          "amount": "2 quả"
-        },
-        {
-          "name": "Hành tây",
-          "amount": "1 củ"
-        },
-        {
-          "name": "Gia vị",
-          "amount": "tuỳ chỉnh"
-        }
-      ],
-      "instructions": [
-        "Xào hành và cà chua.",
-        "Thêm paneer và gia vị, nấu thêm 15 phút."
-      ]
-    }
-  ]
+  "myRecipes": [],
+  "savedRecipes": []
 }

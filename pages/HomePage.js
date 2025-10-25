@@ -13,11 +13,12 @@ import {
   TextInput,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  View
+  View,
 } from "react-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import { recipes } from "../data";
+import { Ionicons } from "@expo/vector-icons";
+import database from "../database.json";
 
+const recipes = database.recipes; // Lấy recipes từ database.json
 const numColumns = 2;
 const screenWidth = Dimensions.get("window").width;
 const itemWidth = screenWidth / numColumns - 16;
@@ -88,16 +89,30 @@ export default function HomePage() {
     navigation.replace("Login");
   };
 
-  const renderCategoryItem = (category) => (
-    <TouchableOpacity
-      key={category}
-      style={styles.categoryItem}
-      onPress={() => navigation.navigate("RecipeByCategory", { category })}
-    >
-      <Ionicons name="fast-food-outline" size={30} color="orange" />
-      <Text>{category}</Text>
-    </TouchableOpacity>
-  );
+  const getCategoryIcon = (category) => {
+    const iconMap = {
+      Dinner: { name: "restaurant", color: "#FF6B6B" },
+      Lunch: { name: "sunny", color: "#FFD93D" },
+      Fastfood: { name: "fast-food", color: "#FF8C42" },
+      Breakfast: { name: "cafe", color: "#6BCB77" },
+      Appetizer: { name: "nutrition", color: "#4D96FF" },
+    };
+    return iconMap[category] || { name: "fast-food", color: "orange" };
+  };
+
+  const renderCategoryItem = (category) => {
+    const icon = getCategoryIcon(category);
+    return (
+      <TouchableOpacity
+        key={category}
+        style={styles.categoryItem}
+        onPress={() => navigation.navigate("RecipeByCategory", { category })}
+      >
+        <Ionicons name={icon.name} size={30} color={icon.color} />
+        <Text>{category}</Text>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <TouchableWithoutFeedback
@@ -112,7 +127,9 @@ export default function HomePage() {
       >
         {/* Header */}
         <View style={styles.header}>
-          <Ionicons name="person-circle-outline" size={40} color="green" />
+          <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+            <Ionicons name="person-circle-outline" size={40} color="green" />
+          </TouchableOpacity>
           <Text style={styles.greeting}>Hello, {nameUser}</Text>
         </View>
 
@@ -142,12 +159,12 @@ export default function HomePage() {
               <View style={styles.suggestionsContainer}>
                 <FlatList
                   data={filteredRecipes}
-                  keyExtractor={(item) => item.id}
+                  keyExtractor={(item) => `suggestion-${item.id}`}
                   renderItem={({ item }) => (
                     <TouchableOpacity
                       style={styles.suggestionItem}
                       onPress={() => {
-                        navigation.navigate("Detail", { recipe: item });
+                        navigation.navigate("RecipeDetail", { recipe: item });
                         setSearch(item.name); // Cập nhật ô input với món ăn đã chọn
                         setShowSuggestions(false); // Ẩn danh sách khi chọn
                       }}
@@ -176,7 +193,7 @@ export default function HomePage() {
         {/* Danh sách công thức ngẫu nhiên */}
         <FlatList
           data={randomRecipes}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => `random-${item.id}`}
           showsVerticalScrollIndicator={false}
           numColumns={numColumns}
           getItemLayout={(data, index) => ({
@@ -187,7 +204,9 @@ export default function HomePage() {
           renderItem={({ item }) => (
             <TouchableOpacity
               style={styles.card}
-              onPress={() => navigation.navigate("RecipeDetail", { recipe: item })}
+              onPress={() =>
+                navigation.navigate("RecipeDetail", { recipe: item })
+              }
             >
               <ImageBackground
                 source={{ uri: item.image }}
