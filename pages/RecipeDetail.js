@@ -10,6 +10,7 @@ import {
   View,
 } from "react-native";
 import database from "../database.json";
+import { API_URL } from "@env";
 
 const RecipeDetail = ({ route, navigation }) => {
   const { recipe } = route.params; // Get the recipe data from route params
@@ -20,10 +21,6 @@ const RecipeDetail = ({ route, navigation }) => {
     { label: "Time", value: recipe.cookingTime, icon: "time" },
     { label: "Servings", value: `${recipe.servings} People`, icon: "people" },
   ];
-
-  const API_URL = __DEV__
-    ? "http://192.168.1.21:5001" // Thay đổi IP này thành IP máy tính của bạn
-    : "http://localhost:5001";
 
   useEffect(() => {
     checkIfSaved();

@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 import database from "../database.json";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { useCallback } from "react";
+import { API_URL } from "@env";
 
 const numColumns = 2;
 const screenWidth = Dimensions.get("window").width;
@@ -23,10 +24,6 @@ const CookbookPage = () => {
   const [myRecipes, setMyRecipes] = useState([]);
   const [savedRecipes, setSavedRecipes] = useState([]);
   const navigation = useNavigation();
-
-  const API_URL = __DEV__
-    ? "http://192.168.1.21:5001"
-    : "http://localhost:5001";
 
   useEffect(() => {
     loadData();

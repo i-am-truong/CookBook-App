@@ -14,6 +14,7 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import ImagePickerComponent from "./ImagePickerComponent";
+import { API_URL } from "@env";
 
 const CreateRecipeScreen = ({ navigation }) => {
   const [name, setName] = useState("");
@@ -37,10 +38,6 @@ const CreateRecipeScreen = ({ navigation }) => {
     "Beverage",
     "Healthy",
   ];
-
-  const API_URL = __DEV__
-    ? "http://192.168.1.21:5001"
-    : "http://localhost:5001";
 
   // Validate form before submitting
   const validate = () => {
