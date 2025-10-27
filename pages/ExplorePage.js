@@ -10,13 +10,28 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import database from "../database.json";
-
-const recipes = database.recipes; // Lấy recipes từ database.json
+import { API_URL } from "../services/api";
 
 const ExplorePage = () => {
   const navigation = useNavigation();
-  const latestRecipes = recipes.slice(0, 7);
+  const [recipes, setRecipes] = React.useState([]);
+
+  React.useEffect(() => {
+    const fetchRecipes = async () => {
+      try {
+        const response = await fetch(`${API_URL}/recipes`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setRecipes(data);
+      } catch (error) {
+        console.error("Error fetching recipes:", error);
+      }
+    };
+
+    fetchRecipes();
+  }, []);
 
   const renderItem = ({ item }) => (
     <TouchableOpacity

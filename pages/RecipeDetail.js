@@ -9,8 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import database from "../database.json";
-import { API_URL } from "@env";
+import { API_URL } from "../services/api";
 
 const RecipeDetail = ({ route, navigation }) => {
   const { recipe } = route.params; // Get the recipe data from route params
@@ -29,18 +28,15 @@ const RecipeDetail = ({ route, navigation }) => {
   const checkIfSaved = async () => {
     try {
       const response = await fetch(`${API_URL}/savedRecipes`);
-      if (response.ok) {
-        const savedRecipes = await response.json();
-        const exists = savedRecipes.some((item) => item.id === recipe.id);
-        setIsSaved(exists);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
+      const savedRecipes = await response.json();
+      const exists = savedRecipes.some((item) => item.id === recipe.id);
+      setIsSaved(exists);
     } catch (error) {
       console.error("Error checking saved status:", error);
-      // Fallback to local check
-      const exists = database.savedRecipes.some(
-        (item) => item.id === recipe.id
-      );
-      setIsSaved(exists);
+      setIsSaved(false);
     }
   };
 

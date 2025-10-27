@@ -14,7 +14,7 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import ImagePickerComponent from "./ImagePickerComponent";
-import { API_URL } from "@env";
+import { API_URL } from "../services/api";
 
 const CreateRecipeScreen = ({ navigation }) => {
   const [name, setName] = useState("");

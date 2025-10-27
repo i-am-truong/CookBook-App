@@ -10,10 +10,9 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
 import { useState, useEffect } from "react";
-import database from "../database.json";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { useCallback } from "react";
-import { API_URL } from "@env";
+import { API_URL } from "../services/api";
 
 const numColumns = 2;
 const screenWidth = Dimensions.get("window").width;
@@ -44,22 +43,20 @@ const CookbookPage = () => {
         fetch(`${API_URL}/savedRecipes`),
       ]);
 
-      if (myRecipesResponse.ok && savedRecipesResponse.ok) {
-        const myRecipesData = await myRecipesResponse.json();
-        const savedRecipesData = await savedRecipesResponse.json();
-
-        setMyRecipes(myRecipesData);
-        setSavedRecipes(savedRecipesData);
-      } else {
-        // Fallback to local data
-        setMyRecipes(database.myRecipes);
-        setSavedRecipes(database.savedRecipes);
+      if (!myRecipesResponse.ok || !savedRecipesResponse.ok) {
+        throw new Error("Failed to fetch recipes from API");
       }
+
+      const myRecipesData = await myRecipesResponse.json();
+      const savedRecipesData = await savedRecipesResponse.json();
+
+      setMyRecipes(myRecipesData);
+      setSavedRecipes(savedRecipesData);
     } catch (error) {
       console.error("Error loading recipes:", error);
-      // Fallback to local data
-      setMyRecipes(database.myRecipes);
-      setSavedRecipes(database.savedRecipes);
+      // Set empty arrays if API fails
+      setMyRecipes([]);
+      setSavedRecipes([]);
     }
   };
 

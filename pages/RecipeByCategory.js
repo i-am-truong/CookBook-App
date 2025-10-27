@@ -9,16 +9,33 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import database from "../database.json";
-
-const recipes = database.recipes; // Lấy recipes từ database.json
+import { API_URL } from "../services/api";
 
 const RecipeByCategory = ({ route, navigation }) => {
   const { category } = route.params;
+  const [recipes, setRecipes] = React.useState([]);
+  const [filteredRecipes, setFilteredRecipes] = React.useState([]);
 
-  const filteredRecipes = recipes.filter(
-    (recipe) => recipe.category === category
-  );
+  React.useEffect(() => {
+    const fetchRecipes = async () => {
+      try {
+        const response = await fetch(`${API_URL}/recipes`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setRecipes(data);
+        setFilteredRecipes(
+          data.filter((recipe) => recipe.category === category)
+        );
+      } catch (error) {
+        console.error("Error fetching recipes:", error);
+        setFilteredRecipes([]);
+      }
+    };
+
+    fetchRecipes();
+  }, [category]);
 
   const renderItem = ({ item }) => (
     <TouchableOpacity

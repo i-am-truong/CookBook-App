@@ -16,9 +16,8 @@ import {
   View,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import database from "../database.json";
+import { API_URL } from "../services/api";
 
-const recipes = database.recipes; // Lấy recipes từ database.json
 const numColumns = 2;
 const screenWidth = Dimensions.get("window").width;
 const itemWidth = screenWidth / numColumns - 16;
@@ -29,6 +28,7 @@ export default function HomePage() {
   const [nameUser, setNameUser] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [randomRecipes, setRandomRecipes] = useState([]);
+  const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
     const fetchUserName = async () => {
@@ -40,19 +40,37 @@ export default function HomePage() {
       }
     };
 
-    const updateRandomRecipes = () => {
-      const shuffled = [...recipes].sort(() => 0.5 - Math.random());
-      setRandomRecipes(shuffled.slice(0, 8));
+    const fetchRecipes = async () => {
+      try {
+        const response = await fetch(`${API_URL}/recipes`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setRecipes(data);
+
+        // Update random recipes
+        const shuffled = [...data].sort(() => 0.5 - Math.random());
+        setRandomRecipes(shuffled.slice(0, 8));
+      } catch (error) {
+        console.error("Error fetching recipes:", error);
+      }
     };
 
-    updateRandomRecipes(); // Load dữ liệu ban đầu
+    const updateRandomRecipes = () => {
+      if (recipes.length > 0) {
+        const shuffled = [...recipes].sort(() => 0.5 - Math.random());
+        setRandomRecipes(shuffled.slice(0, 8));
+      }
+    };
+
+    fetchRecipes(); // Load dữ liệu từ API
+    fetchUserName(); // Lấy tên người dùng
 
     const interval = setInterval(updateRandomRecipes, 300000); // Cập nhật sau mỗi 5 phút
 
-    fetchUserName(); // Lấy tên người dùng
-
     return () => clearInterval(interval); // Cleanup khi component unmount
-  }, []); // ✅ Không cần truyền `[recipes]` vì `recipes` không thay đổi
+  }, []);
 
   const categories = useMemo(
     () => [...new Set(recipes.map((recipe) => recipe.category))],
