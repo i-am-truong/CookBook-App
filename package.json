@@ -12,6 +12,7 @@
     "lt": "lt --port 9999 --subdomain cookbook-app"
   },
   "dependencies": {
+    "@google/genai": "^1.27.0",
     "@react-native-async-storage/async-storage": "2.2.0",
     "@react-native-picker/picker": "2.11.1",
     "@react-navigation/bottom-tabs": "^7.2.1",
