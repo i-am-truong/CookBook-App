@@ -1,6 +1,9 @@
 ﻿import { GoogleGenAI } from "@google/genai";
+import { GEMINI_API_KEY as ENV_GEMINI_KEY } from "@env";
 
-const GEMINI_API_KEY = "AIzaSyAIj82sRMfVJPkNSWfkyh1AWiOd4kt91PI";
+// Use environment variable if available, otherwise fallback to hardcoded key
+const GEMINI_API_KEY =
+  ENV_GEMINI_KEY || "AIzaSyAIj82sRMfVJPkNSWfkyh1AWiOd4kt91PI";
 
 class GeminiService {
   constructor() {

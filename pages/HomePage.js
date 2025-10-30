@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useCallback } from "react";
 import {
   Dimensions,
   FlatList,
@@ -16,6 +16,7 @@ import {
   View,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useFocusEffect } from "@react-navigation/native";
 import { API_URL } from "../services/api";
 
 const numColumns = 2;
@@ -30,6 +31,34 @@ export default function HomePage() {
   const [randomRecipes, setRandomRecipes] = useState([]);
   const [recipes, setRecipes] = useState([]);
 
+  const fetchRecipes = useCallback(async () => {
+    try {
+      const response = await fetch(`${API_URL}/recipes`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+
+      // Filter only public recipes (for backward compatibility, treat recipes without isPublic field as public)
+      const publicRecipes = data.filter((recipe) => recipe.isPublic !== false);
+
+      setRecipes(publicRecipes);
+
+      // Update random recipes from public recipes only
+      const shuffled = [...publicRecipes].sort(() => 0.5 - Math.random());
+      setRandomRecipes(shuffled.slice(0, 8));
+    } catch (error) {
+      console.error("Error fetching recipes:", error);
+    }
+  }, []);
+
+  // Reload recipes when screen is focused
+  useFocusEffect(
+    useCallback(() => {
+      fetchRecipes();
+    }, [fetchRecipes])
+  );
+
   useEffect(() => {
     const fetchUserName = async () => {
       try {
@@ -40,23 +69,6 @@ export default function HomePage() {
       }
     };
 
-    const fetchRecipes = async () => {
-      try {
-        const response = await fetch(`${API_URL}/recipes`);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        setRecipes(data);
-
-        // Update random recipes
-        const shuffled = [...data].sort(() => 0.5 - Math.random());
-        setRandomRecipes(shuffled.slice(0, 8));
-      } catch (error) {
-        console.error("Error fetching recipes:", error);
-      }
-    };
-
     const updateRandomRecipes = () => {
       if (recipes.length > 0) {
         const shuffled = [...recipes].sort(() => 0.5 - Math.random());
@@ -64,13 +76,12 @@ export default function HomePage() {
       }
     };
 
-    fetchRecipes(); // Load dữ liệu từ API
     fetchUserName(); // Lấy tên người dùng
 
     const interval = setInterval(updateRandomRecipes, 300000); // Cập nhật sau mỗi 5 phút
 
     return () => clearInterval(interval); // Cleanup khi component unmount
-  }, []);
+  }, [recipes]);
 
   const categories = useMemo(
     () => [...new Set(recipes.map((recipe) => recipe.category))],

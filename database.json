@@ -669,323 +669,113 @@
       ]
     },
     {
-      "id": "1761646433969",
-      "name": "Thịt Gà, Cá Hồi & Rau Củ Xào Trứng Thơm Lừng",
-      "category": "Dinner",
-      "description": "Món ăn tối đầy đủ dinh dưỡng với sự kết hợp hoàn hảo giữa thịt gà áp chảo mềm, cá hồi béo ngậy, rau củ tươi giòn và trứng xào thơm lừng, tất cả được hòa quyện trong nước sốt gừng tỏi đậm đà. Món ăn nhanh gọn, lý tưởng cho bữa tối bận rộn.",
-      "calories": 660,
-      "cookingTime": "30 phút",
-      "servings": 4,
+      "id": "1761843471323",
+      "name": "Bánh Mì Nóng Xúc Xích Thơm Cay",
+      "category": "Breakfast",
+      "description": "Món ăn sáng nhanh chóng, tiện lợi và thơm ngon, kết hợp vị béo của xúc xích, giòn của bánh mì và cay nồng từ tương ớt, cùng chút rau thơm thanh mát. Hoàn hảo cho những buổi sáng bận rộn.",
+      "calories": 380,
+      "cookingTime": "5 phút",
+      "servings": 1,
       "ingredients": [
         {
-          "name": "Ức gà phi lê",
-          "amount": "300g"
+          "name": "Bánh mì sandwich",
+          "amount": "2 lát"
         },
         {
-          "name": "Cá hồi phi lê",
-          "amount": "300g"
+          "name": "Xúc xích",
+          "amount": "1 cây (loại ăn liền hoặc hot dog nhỏ)"
         },
         {
-          "name": "Trứng gà",
-          "amount": "2 quả"
+          "name": "Rau thơm",
+          "amount": "5g (ví dụ: ngò rí, húng quế, hoặc xà lách)"
         },
         {
-          "name": "Bông cải xanh (broccoli)",
-          "amount": "200g"
+          "name": "Tương ớt",
+          "amount": "1-2 muỗng cà phê (tùy khẩu vị)"
         },
         {
-          "name": "Ớt chuông đỏ",
-          "amount": "1 quả"
-        },
-        {
-          "name": "Cà rốt",
-          "amount": "1 củ"
-        },
-        {
-          "name": "Rau cải bó xôi (spinach)",
-          "amount": "100g"
-        },
-        {
-          "name": "Tỏi",
-          "amount": "3 tép"
-        },
-        {
-          "name": "Gừng tươi",
-          "amount": "20g"
-        },
-        {
-          "name": "Hành lá",
-          "amount": "2 nhánh"
-        },
-        {
-          "name": "Nước tương (xì dầu)",
-          "amount": "4 muỗng canh"
-        },
-        {
-          "name": "Dầu hào",
-          "amount": "2 muỗng canh"
-        },
-        {
-          "name": "Dầu mè",
-          "amount": "1 muỗng canh"
-        },
-        {
-          "name": "Mật ong (hoặc đường)",
-          "amount": "1 muỗng cà phê"
-        },
-        {
-          "name": "Bột bắp (bột năng)",
-          "amount": "1 muỗng cà phê"
-        },
-        {
-          "name": "Nước",
-          "amount": "3 muỗng canh"
-        },
-        {
-          "name": "Dầu ăn",
-          "amount": "2 muỗng canh"
-        },
-        {
-          "name": "Hạt mè rang",
-          "amount": "Để rắc"
-        },
-        {
-          "name": "Cơm trắng",
-          "amount": "4 bát nhỏ (tùy chọn)"
+          "name": "Dầu ăn (tùy chọn để áp chảo xúc xích)",
+          "amount": "1/2 muỗng cà phê"
         }
       ],
       "instructions": [
-        "Sơ chế nguyên liệu: Ức gà và cá hồi rửa sạch, thấm khô, thái miếng vuông vừa ăn. Bông cải xanh tách nhánh nhỏ. Ớt chuông thái sợi. Cà rốt gọt vỏ, thái sợi hoặc thái lát mỏng. Cải bó xôi rửa sạch. Tỏi băm nhỏ, gừng gọt vỏ băm nhỏ. Hành lá thái nhỏ.",
-        "Làm sốt: Trong một bát nhỏ, trộn đều nước tương, dầu hào, dầu mè, mật ong (hoặc đường), bột bắp và 3 muỗng canh nước. Khuấy đều cho đến khi bột bắp tan hoàn toàn.",
-        "Áp chảo thịt và cá: Đun nóng 1 muỗng canh dầu ăn trong chảo lớn ở lửa vừa cao. Cho thịt gà vào áp chảo cho đến khi vàng đều các mặt và chín tới, sau đó cho ra đĩa. Tiếp tục cho cá hồi vào áp chảo tương tự cho đến khi chín và vàng đẹp, cho ra đĩa cùng thịt gà.",
-        "Xào rau củ và trứng: Trong cùng chảo, thêm 1 muỗng canh dầu ăn nếu cần. Cho tỏi và gừng băm vào phi thơm. Sau đó, cho bông cải xanh, ớt chuông và cà rốt vào xào khoảng 3-4 phút cho rau củ hơi mềm nhưng vẫn giữ độ giòn.",
-        "Tạo một khoảng trống ở giữa chảo, đập 2 quả trứng vào và khuấy nhanh tay để làm trứng scrambles. Khi trứng vừa chín tới, trộn đều với rau củ.",
-        "Thêm thịt gà và cá hồi đã áp chảo cùng cải bó xôi vào chảo. Đổ hỗn hợp sốt đã pha vào, đảo nhanh tay khoảng 1-2 phút cho sốt sánh lại và bám đều vào các nguyên liệu.",
-        "Tắt bếp, rắc hành lá thái nhỏ và hạt mè rang lên trên. Dùng nóng kèm cơm trắng (tùy chọn)."
+        "Bật bếp làm nóng chảo chống dính hoặc máy nướng bánh mì.",
+        "Nếu dùng chảo, cho 1/2 muỗng cà phê dầu ăn vào chảo, áp chảo xúc xích khoảng 2-3 phút cho đến khi vàng đều và nóng. Nếu dùng lò vi sóng, cho xúc xích vào đĩa, quay khoảng 30-60 giây cho nóng.",
+        "Trong lúc đó, nướng bánh mì sandwich bằng máy nướng hoặc áp chảo khô khoảng 1-2 phút mỗi mặt cho đến khi vàng giòn.",
+        "Lấy bánh mì ra, đặt xúc xích đã nóng lên một lát bánh mì. Thêm rau thơm đã rửa sạch lên trên.",
+        "Rưới tương ớt lên xúc xích và rau thơm theo khẩu vị. Úp lát bánh mì còn lại lên trên để làm thành bánh mì kẹp hoặc thưởng thức bánh mì xúc xích mở.",
+        "Thưởng thức ngay khi còn nóng."
       ],
-      "tips": "Để tiết kiệm thời gian, bạn có thể sơ chế rau củ trước. Đảm bảo chảo đủ nóng khi áp chảo thịt và cá để chúng có lớp vỏ ngoài giòn đẹp. Điều chỉnh lượng ớt nếu thích ăn cay. Bạn cũng có thể thay thế một số loại rau củ khác tùy theo sở thích và sẵn có.",
+      "tips": "Để món ăn nhanh hơn, bạn có thể dùng xúc xích đã nấu chín sẵn và chỉ cần hâm nóng nhanh trong lò vi sóng. Có thể thay thế rau thơm bằng dưa chuột hoặc cà chua thái lát mỏng để tăng thêm vị tươi mát và thêm chất xơ. Để giảm calo, hãy chọn bánh mì nguyên cám và xúc xích ít béo.",
       "nutritionInfo": {
-        "protein": "40g",
-        "carbs": "55g",
-        "fat": "29g"
+        "protein": "18g",
+        "carbs": "28g",
+        "fat": "15g"
       },
-      "image": "https://images.pexels.com/photos/28618639/pexels-photo-28618639.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "image": "https://images.pexels.com/photos/32961655/pexels-photo-32961655.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
       "aiGenerated": true,
-      "createdAt": "2025-10-28T10:13:53.969Z"
+      "createdAt": "2025-10-30T16:57:51.323Z",
+      "isPublic": true,
+      "status": "public",
+      "createdBy": "1761836941763",
+      "publishedAt": "2025-10-30T16:58:40.273Z",
+      "publishedBy": "1761836941763"
     }
   ],
   "myRecipes": [
     {
-      "id": "1761646433969",
-      "name": "Thịt Gà, Cá Hồi & Rau Củ Xào Trứng Thơm Lừng",
-      "category": "Dinner",
-      "description": "Món ăn tối đầy đủ dinh dưỡng với sự kết hợp hoàn hảo giữa thịt gà áp chảo mềm, cá hồi béo ngậy, rau củ tươi giòn và trứng xào thơm lừng, tất cả được hòa quyện trong nước sốt gừng tỏi đậm đà. Món ăn nhanh gọn, lý tưởng cho bữa tối bận rộn.",
-      "calories": 660,
-      "cookingTime": "30 phút",
-      "servings": 4,
+      "id": "1761843471323",
+      "name": "Bánh Mì Nóng Xúc Xích Thơm Cay",
+      "category": "Breakfast",
+      "description": "Món ăn sáng nhanh chóng, tiện lợi và thơm ngon, kết hợp vị béo của xúc xích, giòn của bánh mì và cay nồng từ tương ớt, cùng chút rau thơm thanh mát. Hoàn hảo cho những buổi sáng bận rộn.",
+      "calories": 380,
+      "cookingTime": "5 phút",
+      "servings": 1,
       "ingredients": [
         {
-          "name": "Ức gà phi lê",
-          "amount": "300g"
+          "name": "Bánh mì sandwich",
+          "amount": "2 lát"
         },
         {
-          "name": "Cá hồi phi lê",
-          "amount": "300g"
+          "name": "Xúc xích",
+          "amount": "1 cây (loại ăn liền hoặc hot dog nhỏ)"
         },
         {
-          "name": "Trứng gà",
-          "amount": "2 quả"
+          "name": "Rau thơm",
+          "amount": "5g (ví dụ: ngò rí, húng quế, hoặc xà lách)"
         },
         {
-          "name": "Bông cải xanh (broccoli)",
-          "amount": "200g"
+          "name": "Tương ớt",
+          "amount": "1-2 muỗng cà phê (tùy khẩu vị)"
         },
         {
-          "name": "Ớt chuông đỏ",
-          "amount": "1 quả"
-        },
-        {
-          "name": "Cà rốt",
-          "amount": "1 củ"
-        },
-        {
-          "name": "Rau cải bó xôi (spinach)",
-          "amount": "100g"
-        },
-        {
-          "name": "Tỏi",
-          "amount": "3 tép"
-        },
-        {
-          "name": "Gừng tươi",
-          "amount": "20g"
-        },
-        {
-          "name": "Hành lá",
-          "amount": "2 nhánh"
-        },
-        {
-          "name": "Nước tương (xì dầu)",
-          "amount": "4 muỗng canh"
-        },
-        {
-          "name": "Dầu hào",
-          "amount": "2 muỗng canh"
-        },
-        {
-          "name": "Dầu mè",
-          "amount": "1 muỗng canh"
-        },
-        {
-          "name": "Mật ong (hoặc đường)",
-          "amount": "1 muỗng cà phê"
-        },
-        {
-          "name": "Bột bắp (bột năng)",
-          "amount": "1 muỗng cà phê"
-        },
-        {
-          "name": "Nước",
-          "amount": "3 muỗng canh"
-        },
-        {
-          "name": "Dầu ăn",
-          "amount": "2 muỗng canh"
-        },
-        {
-          "name": "Hạt mè rang",
-          "amount": "Để rắc"
-        },
-        {
-          "name": "Cơm trắng",
-          "amount": "4 bát nhỏ (tùy chọn)"
+          "name": "Dầu ăn (tùy chọn để áp chảo xúc xích)",
+          "amount": "1/2 muỗng cà phê"
         }
       ],
       "instructions": [
-        "Sơ chế nguyên liệu: Ức gà và cá hồi rửa sạch, thấm khô, thái miếng vuông vừa ăn. Bông cải xanh tách nhánh nhỏ. Ớt chuông thái sợi. Cà rốt gọt vỏ, thái sợi hoặc thái lát mỏng. Cải bó xôi rửa sạch. Tỏi băm nhỏ, gừng gọt vỏ băm nhỏ. Hành lá thái nhỏ.",
-        "Làm sốt: Trong một bát nhỏ, trộn đều nước tương, dầu hào, dầu mè, mật ong (hoặc đường), bột bắp và 3 muỗng canh nước. Khuấy đều cho đến khi bột bắp tan hoàn toàn.",
-        "Áp chảo thịt và cá: Đun nóng 1 muỗng canh dầu ăn trong chảo lớn ở lửa vừa cao. Cho thịt gà vào áp chảo cho đến khi vàng đều các mặt và chín tới, sau đó cho ra đĩa. Tiếp tục cho cá hồi vào áp chảo tương tự cho đến khi chín và vàng đẹp, cho ra đĩa cùng thịt gà.",
-        "Xào rau củ và trứng: Trong cùng chảo, thêm 1 muỗng canh dầu ăn nếu cần. Cho tỏi và gừng băm vào phi thơm. Sau đó, cho bông cải xanh, ớt chuông và cà rốt vào xào khoảng 3-4 phút cho rau củ hơi mềm nhưng vẫn giữ độ giòn.",
-        "Tạo một khoảng trống ở giữa chảo, đập 2 quả trứng vào và khuấy nhanh tay để làm trứng scrambles. Khi trứng vừa chín tới, trộn đều với rau củ.",
-        "Thêm thịt gà và cá hồi đã áp chảo cùng cải bó xôi vào chảo. Đổ hỗn hợp sốt đã pha vào, đảo nhanh tay khoảng 1-2 phút cho sốt sánh lại và bám đều vào các nguyên liệu.",
-        "Tắt bếp, rắc hành lá thái nhỏ và hạt mè rang lên trên. Dùng nóng kèm cơm trắng (tùy chọn)."
+        "Bật bếp làm nóng chảo chống dính hoặc máy nướng bánh mì.",
+        "Nếu dùng chảo, cho 1/2 muỗng cà phê dầu ăn vào chảo, áp chảo xúc xích khoảng 2-3 phút cho đến khi vàng đều và nóng. Nếu dùng lò vi sóng, cho xúc xích vào đĩa, quay khoảng 30-60 giây cho nóng.",
+        "Trong lúc đó, nướng bánh mì sandwich bằng máy nướng hoặc áp chảo khô khoảng 1-2 phút mỗi mặt cho đến khi vàng giòn.",
+        "Lấy bánh mì ra, đặt xúc xích đã nóng lên một lát bánh mì. Thêm rau thơm đã rửa sạch lên trên.",
+        "Rưới tương ớt lên xúc xích và rau thơm theo khẩu vị. Úp lát bánh mì còn lại lên trên để làm thành bánh mì kẹp hoặc thưởng thức bánh mì xúc xích mở.",
+        "Thưởng thức ngay khi còn nóng."
       ],
-      "tips": "Để tiết kiệm thời gian, bạn có thể sơ chế rau củ trước. Đảm bảo chảo đủ nóng khi áp chảo thịt và cá để chúng có lớp vỏ ngoài giòn đẹp. Điều chỉnh lượng ớt nếu thích ăn cay. Bạn cũng có thể thay thế một số loại rau củ khác tùy theo sở thích và sẵn có.",
+      "tips": "Để món ăn nhanh hơn, bạn có thể dùng xúc xích đã nấu chín sẵn và chỉ cần hâm nóng nhanh trong lò vi sóng. Có thể thay thế rau thơm bằng dưa chuột hoặc cà chua thái lát mỏng để tăng thêm vị tươi mát và thêm chất xơ. Để giảm calo, hãy chọn bánh mì nguyên cám và xúc xích ít béo.",
       "nutritionInfo": {
-        "protein": "40g",
-        "carbs": "55g",
-        "fat": "29g"
+        "protein": "18g",
+        "carbs": "28g",
+        "fat": "15g"
       },
-      "image": "https://images.pexels.com/photos/28618639/pexels-photo-28618639.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "image": "https://images.pexels.com/photos/32961655/pexels-photo-32961655.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
       "aiGenerated": true,
-      "createdAt": "2025-10-28T10:13:53.969Z"
+      "createdAt": "2025-10-30T16:57:51.323Z",
+      "isPublic": true,
+      "status": "public",
+      "createdBy": "1761836941763",
+      "publishedAt": "2025-10-30T16:58:40.273Z",
+      "publishedBy": "1761836941763"
     }
   ],
-  "savedRecipes": [
-    {
-      "id": "1761646433969",
-      "name": "Thịt Gà, Cá Hồi & Rau Củ Xào Trứng Thơm Lừng",
-      "category": "Dinner",
-      "description": "Món ăn tối đầy đủ dinh dưỡng với sự kết hợp hoàn hảo giữa thịt gà áp chảo mềm, cá hồi béo ngậy, rau củ tươi giòn và trứng xào thơm lừng, tất cả được hòa quyện trong nước sốt gừng tỏi đậm đà. Món ăn nhanh gọn, lý tưởng cho bữa tối bận rộn.",
-      "calories": 660,
-      "cookingTime": "30 phút",
-      "servings": 4,
-      "ingredients": [
-        {
-          "name": "Ức gà phi lê",
-          "amount": "300g"
-        },
-        {
-          "name": "Cá hồi phi lê",
-          "amount": "300g"
-        },
-        {
-          "name": "Trứng gà",
-          "amount": "2 quả"
-        },
-        {
-          "name": "Bông cải xanh (broccoli)",
-          "amount": "200g"
-        },
-        {
-          "name": "Ớt chuông đỏ",
-          "amount": "1 quả"
-        },
-        {
-          "name": "Cà rốt",
-          "amount": "1 củ"
-        },
-        {
-          "name": "Rau cải bó xôi (spinach)",
-          "amount": "100g"
-        },
-        {
-          "name": "Tỏi",
-          "amount": "3 tép"
-        },
-        {
-          "name": "Gừng tươi",
-          "amount": "20g"
-        },
-        {
-          "name": "Hành lá",
-          "amount": "2 nhánh"
-        },
-        {
-          "name": "Nước tương (xì dầu)",
-          "amount": "4 muỗng canh"
-        },
-        {
-          "name": "Dầu hào",
-          "amount": "2 muỗng canh"
-        },
-        {
-          "name": "Dầu mè",
-          "amount": "1 muỗng canh"
-        },
-        {
-          "name": "Mật ong (hoặc đường)",
-          "amount": "1 muỗng cà phê"
-        },
-        {
-          "name": "Bột bắp (bột năng)",
-          "amount": "1 muỗng cà phê"
-        },
-        {
-          "name": "Nước",
-          "amount": "3 muỗng canh"
-        },
-        {
-          "name": "Dầu ăn",
-          "amount": "2 muỗng canh"
-        },
-        {
-          "name": "Hạt mè rang",
-          "amount": "Để rắc"
-        },
-        {
-          "name": "Cơm trắng",
-          "amount": "4 bát nhỏ (tùy chọn)"
-        }
-      ],
-      "instructions": [
-        "Sơ chế nguyên liệu: Ức gà và cá hồi rửa sạch, thấm khô, thái miếng vuông vừa ăn. Bông cải xanh tách nhánh nhỏ. Ớt chuông thái sợi. Cà rốt gọt vỏ, thái sợi hoặc thái lát mỏng. Cải bó xôi rửa sạch. Tỏi băm nhỏ, gừng gọt vỏ băm nhỏ. Hành lá thái nhỏ.",
-        "Làm sốt: Trong một bát nhỏ, trộn đều nước tương, dầu hào, dầu mè, mật ong (hoặc đường), bột bắp và 3 muỗng canh nước. Khuấy đều cho đến khi bột bắp tan hoàn toàn.",
-        "Áp chảo thịt và cá: Đun nóng 1 muỗng canh dầu ăn trong chảo lớn ở lửa vừa cao. Cho thịt gà vào áp chảo cho đến khi vàng đều các mặt và chín tới, sau đó cho ra đĩa. Tiếp tục cho cá hồi vào áp chảo tương tự cho đến khi chín và vàng đẹp, cho ra đĩa cùng thịt gà.",
-        "Xào rau củ và trứng: Trong cùng chảo, thêm 1 muỗng canh dầu ăn nếu cần. Cho tỏi và gừng băm vào phi thơm. Sau đó, cho bông cải xanh, ớt chuông và cà rốt vào xào khoảng 3-4 phút cho rau củ hơi mềm nhưng vẫn giữ độ giòn.",
-        "Tạo một khoảng trống ở giữa chảo, đập 2 quả trứng vào và khuấy nhanh tay để làm trứng scrambles. Khi trứng vừa chín tới, trộn đều với rau củ.",
-        "Thêm thịt gà và cá hồi đã áp chảo cùng cải bó xôi vào chảo. Đổ hỗn hợp sốt đã pha vào, đảo nhanh tay khoảng 1-2 phút cho sốt sánh lại và bám đều vào các nguyên liệu.",
-        "Tắt bếp, rắc hành lá thái nhỏ và hạt mè rang lên trên. Dùng nóng kèm cơm trắng (tùy chọn)."
-      ],
-      "tips": "Để tiết kiệm thời gian, bạn có thể sơ chế rau củ trước. Đảm bảo chảo đủ nóng khi áp chảo thịt và cá để chúng có lớp vỏ ngoài giòn đẹp. Điều chỉnh lượng ớt nếu thích ăn cay. Bạn cũng có thể thay thế một số loại rau củ khác tùy theo sở thích và sẵn có.",
-      "nutritionInfo": {
-        "protein": "40g",
-        "carbs": "55g",
-        "fat": "29g"
-      },
-      "image": "https://images.pexels.com/photos/28618639/pexels-photo-28618639.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-      "aiGenerated": true,
-      "createdAt": "2025-10-28T10:13:53.969Z"
-    }
-  ]
+  "savedRecipes": []
 }
