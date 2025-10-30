@@ -1,6 +1,9 @@
 // Pexels API Service
+import { PEXELS_API_KEY as ENV_PEXELS_KEY } from "@env";
+
+// Use environment variable if available, otherwise fallback to hardcoded key
 const PEXELS_API_KEY =
-  "IFUz9ISXGsOzmfc5TPd4tBEtN3KROkSbXPmHkNqcgJKdwkCwH80FgTWk";
+  ENV_PEXELS_KEY || "IFUz9ISXGsOzmfc5TPd4tBEtN3KROkSbXPmHkNqcgJKdwkCwH80FgTWk";
 
 class PexelsService {
   constructor() {

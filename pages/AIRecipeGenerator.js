@@ -14,6 +14,7 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import GeminiService from "../services/geminiService";
 import PexelsService from "../services/pexelsService";
 import { API_URL } from "../services/api";
@@ -105,42 +106,44 @@ const AIRecipeGenerator = ({ navigation }) => {
     if (!generatedRecipe) return;
 
     try {
-      // Save to BOTH recipes and myRecipes
-      const saveToRecipes = fetch(`${API_URL}/recipes`, {
+      // Get current user ID
+      const userId = await AsyncStorage.getItem("userId");
+      const userEmail = await AsyncStorage.getItem("emailUser");
+
+      // Add metadata for private recipe
+      const recipeWithMetadata = {
+        ...generatedRecipe,
+        isPublic: false, // Default to private
+        status: "private",
+        createdBy: userId || userEmail || "unknown",
+        publishedAt: null,
+      };
+
+      // Save ONLY to myRecipes (private by default)
+      const response = await fetch(`${API_URL}/myRecipes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(generatedRecipe),
+        body: JSON.stringify(recipeWithMetadata),
       });
 
-      const saveToMyRecipes = fetch(`${API_URL}/myRecipes`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(generatedRecipe),
-      });
-
-      // Wait for both requests to complete
-      const [recipesResponse, myRecipesResponse] = await Promise.all([
-        saveToRecipes,
-        saveToMyRecipes,
-      ]);
-
-      if (recipesResponse.ok && myRecipesResponse.ok) {
+      if (response.ok) {
         Alert.alert(
-          "Thành công!",
-          "Công thức đã được lưu vào cả 2 danh sách!",
+          "Đã lưu! 🎉",
+          "Công thức đã được lưu dưới dạng PRIVATE.\nBạn có thể review và publish sau.",
           [
             {
               text: "Xem chi tiết",
               onPress: () =>
                 navigation.navigate("RecipeDetail", {
-                  recipe: generatedRecipe,
+                  recipe: recipeWithMetadata,
+                  source: "My Recipe",
                 }),
             },
             { text: "Tạo món mới", onPress: () => setGeneratedRecipe(null) },
           ]
         );
       } else {
-        throw new Error("Failed to save to one or both lists");
+        throw new Error("Failed to save recipe");
       }
     } catch (error) {
       console.error("Save Error:", error);
@@ -323,12 +326,17 @@ const AIRecipeGenerator = ({ navigation }) => {
                 <Text style={styles.sectionTitle}>Nguyên liệu</Text>
               </View>
               {generatedRecipe.ingredients.map((ing, index) => (
-                <View key={index} style={styles.ingredientItem}>
-                  <Ionicons name="checkmark-circle" size={20} color="#27AE60" />
-                  <Text style={styles.ingredientText}>
-                    {ing.name}:{" "}
-                    <Text style={styles.ingredientAmount}>{ing.amount}</Text>
-                  </Text>
+                <View key={index} style={styles.ingredientCard}>
+                  <View style={styles.ingredientHeader}>
+                    <Ionicons
+                      name="nutrition"
+                      size={18}
+                      color="#27AE60"
+                      style={styles.ingredientIcon}
+                    />
+                    <Text style={styles.ingredientText}>{ing.name}</Text>
+                  </View>
+                  <Text style={styles.ingredientAmount}>{ing.amount}</Text>
                 </View>
               ))}
             </View>
@@ -550,13 +558,41 @@ const styles = StyleSheet.create({
     color: "#2C3E50",
     marginLeft: 10,
   },
-  ingredientItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: 8,
+  ingredientCard: {
+    backgroundColor: "#F0F8F5",
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 8,
+    borderLeftWidth: 3,
+    borderLeftColor: "#27AE60",
   },
-  ingredientText: { fontSize: 16, color: "#34495E", marginLeft: 10, flex: 1 },
-  ingredientAmount: { fontWeight: "600", color: "#27AE60" },
+  ingredientHeader: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    marginBottom: 4,
+  },
+  ingredientIcon: {
+    marginRight: 6,
+    marginTop: 1,
+  },
+  ingredientText: {
+    fontSize: 15,
+    color: "#34495E",
+    fontWeight: "600",
+    flex: 1,
+    lineHeight: 20,
+  },
+  ingredientAmount: {
+    fontSize: 13,
+    fontWeight: "500",
+    color: "#27AE60",
+    backgroundColor: "#D5F4E6",
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 5,
+    marginLeft: 24, // Align with text
+    alignSelf: "flex-start",
+  },
   instructionItem: { flexDirection: "row", marginBottom: 15 },
   stepNumber: {
     width: 32,
