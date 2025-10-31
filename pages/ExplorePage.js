@@ -50,7 +50,13 @@ const ExplorePage = () => {
           style={styles.itemTextContainer}
         >
           <View>
-            <Text style={styles.itemText}>{item.name}</Text>
+            <Text
+              style={styles.itemText}
+              numberOfLines={1}
+              ellipsizeMode="tail"
+            >
+              {item.name}
+            </Text>
           </View>
         </LinearGradient>
       </View>
