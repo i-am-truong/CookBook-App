@@ -4,12 +4,12 @@
   "main": "index.js",
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "web": "expo start --web",
-    "server": "json-server --watch database.json --port 9999",
+    "server": "json-server --watch database.json --port 9999 --host 0.0.0.0",
     "dev": "concurrently \"npm run server\" \"npm run lt\"",
-    "lt": "lt --port 9999 --subdomain cookbook-app"
+    "lt": "lt --port 9999 --subdomain cookbook-app-gbaoo"
   },
   "dependencies": {
     "@google/genai": "^1.27.0",
@@ -25,6 +25,7 @@
     "expo": "54.0.13",
     "expo-image-picker": "~17.0.8",
     "expo-linear-gradient": "~15.0.7",
+    "expo-notifications": "~0.32.12",
     "expo-status-bar": "~3.0.8",
     "json-server": "^1.0.0-beta.3",
     "react": "19.1.0",

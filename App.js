@@ -11,6 +11,7 @@ import RecipeByCategory from "./pages/RecipeByCategory";
 import RecipeDetail from "./pages/RecipeDetail";
 import Signup from "./pages/Signup";
 import Start from "./pages/Start";
+import MealPlannerPage from "./pages/MealPlannerPage";
 import ForgotPassword from "./pages/ForgotPassword";
 import EditProfile from "./pages/EditProfile";
 import ChangePassword from "./pages/ChangePassword";
@@ -30,6 +31,7 @@ export default function App() {
           <Stack.Screen name="Main" component={MainTabNavigator} />
           <Stack.Screen name="RecipeDetail" component={RecipeDetail} />
           <Stack.Screen name="CreateRecipe" component={CreateRecipeScreen} />
+            <Stack.Screen name="MealPlanner" component={MealPlannerPage} /> 
           <Stack.Screen name="EditRecipe" component={EditRecipeScreen} />
           <Stack.Screen name="EditProfile" component={EditProfile} />
           <Stack.Screen name="ChangePassword" component={ChangePassword} />
