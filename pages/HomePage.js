@@ -243,7 +243,13 @@ export default function HomePage() {
                 imageStyle={{ borderRadius: 10 }}
               >
                 <View style={styles.overlay}>
-                  <Text style={styles.text}>{item.name}</Text>
+                  <Text
+                    style={styles.text}
+                    numberOfLines={1}
+                    ellipsizeMode="tail"
+                  >
+                    {item.name}
+                  </Text>
                 </View>
               </ImageBackground>
             </TouchableOpacity>

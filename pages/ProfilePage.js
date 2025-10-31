@@ -117,7 +117,7 @@ const ProfilePage = () => {
 
         <TouchableOpacity
           style={styles.menuItem}
-          onPress={() => navigation.navigate("Cookbook")}
+          onPress={() => navigation.jumpTo("Cookbook")}
         >
           <View style={styles.menuIconContainer}>
             <Ionicons name="book-outline" size={24} color="#4CAF50" />
@@ -128,7 +128,7 @@ const ProfilePage = () => {
 
         <TouchableOpacity
           style={styles.menuItem}
-          onPress={() => navigation.navigate("Explore")}
+          onPress={() => navigation.jumpTo("Explore")}
         >
           <View style={styles.menuIconContainer}>
             <Ionicons name="search-outline" size={24} color="#4CAF50" />

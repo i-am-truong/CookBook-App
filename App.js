@@ -4,7 +4,6 @@ import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import MainTabNavigator from "./navigation/MainTabNavigator"; // Import đúng
-import AIRecipeGenerator from "./pages/AIRecipeGenerator";
 import CreateRecipeScreen from "./pages/CreateRecipe";
 import EditRecipeScreen from "./pages/EditRecipe";
 import Login from "./pages/Login";
@@ -32,10 +31,6 @@ export default function App() {
           <Stack.Screen name="RecipeDetail" component={RecipeDetail} />
           <Stack.Screen name="CreateRecipe" component={CreateRecipeScreen} />
           <Stack.Screen name="EditRecipe" component={EditRecipeScreen} />
-          <Stack.Screen
-            name="AIRecipeGenerator"
-            component={AIRecipeGenerator}
-          />
           <Stack.Screen name="EditProfile" component={EditProfile} />
           <Stack.Screen name="ChangePassword" component={ChangePassword} />
         </Stack.Navigator>

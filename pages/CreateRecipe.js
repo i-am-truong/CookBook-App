@@ -154,7 +154,7 @@ const CreateRecipeScreen = ({ navigation }) => {
             setImageUri(null);
 
             // Navigate to Cookbook page
-            navigation.navigate("Cookbook");
+            navigation.navigate("Main", { screen: "Cookbook" });
           },
         },
       ]);
