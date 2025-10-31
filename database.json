@@ -670,5 +670,72 @@
     }
   ],
   "myRecipes": [],
-  "savedRecipes": []
+  "savedRecipes": [
+    {
+      "id": "18",
+      "name": "Quinoa Bowl",
+      "category": "Healthy",
+      "description": "Bữa ăn nhẹ nhàng với quinoa và rau củ.",
+      "calories": 350,
+      "cookingTime": "20 phút",
+      "servings": 2,
+      "image": "https://images.themodernproper.com/production/posts/2020/QuinoaBowl_4.jpg?w=1200&h=1200&q=60&fm=jpg&fit=crop&dm=1737605526&s=b91b6baac05eb76bd048a76d12f4a9cd",
+      "ingredients": [
+        {
+          "name": "Quinoa",
+          "amount": "100g"
+        },
+        {
+          "name": "Rau củ",
+          "amount": "200g"
+        },
+        {
+          "name": "Dầu olive",
+          "amount": "1 muỗng canh"
+        }
+      ],
+      "instructions": [
+        "Luộc quinoa cho chín.",
+        "Xào rau củ và trộn với quinoa."
+      ]
+    },
+    {
+      "id": "12",
+      "name": "Chả Giò",
+      "category": "Appetizer",
+      "description": "Chả giò giòn rụm với nhân thịt heo, tôm và rau củ, thường ăn kèm với nước mắm chua ngọt.",
+      "calories": 250,
+      "cookingTime": "40 phút",
+      "servings": 4,
+      "image": "https://assets.unileversolutions.com/recipes-v2/157768.jpg",
+      "ingredients": [
+        {
+          "name": "Bánh tráng",
+          "amount": "10 cái"
+        },
+        {
+          "name": "Thịt heo xay",
+          "amount": "200g"
+        },
+        {
+          "name": "Tôm",
+          "amount": "100g, bóc vỏ"
+        },
+        {
+          "name": "Cà rốt",
+          "amount": "1 củ, bào sợi"
+        },
+        {
+          "name": "Mộc nhĩ",
+          "amount": "50g, ngâm nở"
+        }
+      ],
+      "instructions": [
+        "Trộn thịt heo, tôm, cà rốt và mộc nhĩ làm nhân.",
+        "Cuộn nhân trong bánh tráng.",
+        "Chiên chả giò trong dầu nóng đến khi vàng giòn.",
+        "Ăn kèm với nước mắm chua ngọt và rau sống."
+      ]
+    }
+  ]
 }

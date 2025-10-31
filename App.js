@@ -9,7 +9,7 @@ import RecipeByCategory from "./pages/RecipeByCategory";
 import RecipeDetail from "./pages/RecipeDetail";
 import Signup from "./pages/Signup";
 import Start from "./pages/Start";
-
+import MealPlannerPage from "./pages/MealPlannerPage";
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -23,6 +23,7 @@ export default function App() {
         <Stack.Screen name="Main" component={MainTabNavigator} />
         <Stack.Screen name="RecipeDetail" component={RecipeDetail} />
         <Stack.Screen name="CreateRecipe" component={CreateRecipeScreen} />
+        <Stack.Screen name="MealPlanner" component={MealPlannerPage} /> 
       </Stack.Navigator>
     </NavigationContainer>
   );
