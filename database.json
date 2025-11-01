@@ -670,5 +670,63 @@
     }
   ],
   "myRecipes": [],
-  "savedRecipes": []
+  "savedRecipes": [],
+  "communityPosts": [
+    {
+      "id": "post-1",
+      "userId": "user-a",
+      "username": "FoodieMaster",
+      "avatar": "https://i.pravatar.cc/150?img=1",
+      "recipeId": "16",
+      "title": "Bữa tối Paneer Curry tuyệt vời!",
+      "description": "Thử làm món Paneer Curry, nước sốt sánh mịn và cay nhẹ. Cực kỳ hợp với cơm nóng. Mọi người thử làm theo công thức ID 16 nhé!",
+      "imageUrl": "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/butter_paneer_curry_98394_16x9.jpg",
+      "createdAt": "2024-10-27T10:00:00Z",
+      "likesCount": 15,
+      "commentsCount": 3
+    },
+    {
+      "id": "post-2",
+      "userId": "user-b",
+      "username": "ChefAnna",
+      "avatar": "https://i.pravatar.cc/150?img=2",
+      "recipeId": "4",
+      "title": "Gợi ý Pad Thai cho bữa trưa nhanh gọn!",
+      "description": "Hôm nay mình làm Pad Thai theo công thức 4. Thêm chút ớt bột cho cay xé lưỡi. Ai đã thử công thức này rồi comment cho mình biết ý kiến nha!",
+      "imageUrl": "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/one_pan_pad_thai_with_07570_16x9.jpg",
+      "createdAt": "2024-10-27T11:30:00Z",
+      "likesCount": 8,
+      "commentsCount": 1
+    }
+  ],
+  "likes": [
+    {
+      "id": "like-1",
+      "postId": "post-1",
+      "userId": "user-b"
+    },
+    {
+      "id": "like-2",
+      "postId": "post-1",
+      "userId": "user-a"
+    }
+  ],
+  "comments": [
+    {
+      "id": "cmt-1",
+      "postId": "post-1",
+      "userId": "user-c",
+      "username": "TruongMinh",
+      "text": "Mình rất thích món này! Công thức này có cần dùng kem tươi không?",
+      "createdAt": "2024-10-27T10:05:00Z"
+    },
+    {
+      "id": "cmt-2",
+      "postId": "post-2",
+      "userId": "user-d",
+      "username": "HienNguyen",
+      "text": "Nhìn hấp dẫn quá bạn ơi! ❤️",
+      "createdAt": "2024-10-27T11:45:00Z"
+    }
+  ]
 }

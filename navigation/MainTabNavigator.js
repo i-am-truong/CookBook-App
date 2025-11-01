@@ -8,6 +8,7 @@ import ExplorePage from "../pages/ExplorePage";
 import CookbookPage from "../pages/CookbookPage";
 import MealPlannerPage from "../pages/MealPlannerPage";
 import AIRecipeGenerator from "../pages/AIRecipeGenerator";
+import CommunityPage from "../pages/CommunityPage";
 
 const Tab = createBottomTabNavigator();
 
@@ -30,6 +31,8 @@ export default function MainTabNavigator() {
             iconName = focused ? "sparkles" : "sparkles-outline";
           if (route.name === "Cookbook")
             iconName = focused ? "book" : "book-outline";
+          if (route.name === "Community")
+            iconName = focused ? "community" : "community-outline";
           if (route.name === "Profile")
             iconName = focused ? "person" : "person-outline";
           return <Ionicons name={iconName} size={size} color={color} />;
@@ -40,6 +43,7 @@ export default function MainTabNavigator() {
       })}
     >
       <Tab.Screen name="Home" component={HomePage} />
+      <Tab.Screen name="Community" component={CommunityPage} />
       <Tab.Screen name="Explore" component={ExplorePage} />
       <Tab.Screen name="Planner" component={MealPlannerPage} />
       <Tab.Screen name="AI Chef" component={AIRecipeGenerator} />
