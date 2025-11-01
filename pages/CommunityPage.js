@@ -10,53 +10,121 @@ import {
   Alert,
   RefreshControl,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SafeAreaView } from "react-native-safe-area-context";
-// CẬP NHẬT CÚ PHÁP IMPORT ICON CHUẨN CỦA EXPO
 import { Ionicons } from "@expo/vector-icons";
 
 import RecipeCard from "../components/RecipeCard";
 import CommentModal from "../components/CommentModal";
 
-// SỬA LỖI IMPORT: Nhập trực tiếp file database.json từ thư mục gốc.
-import MOCK_DATABASE from "../database.json";
+import INITIAL_DATABASE from "../database.json"; // Dữ liệu mặc định
 
-// --- DỮ LIỆU NGƯỜI DÙNG HIỆN TẠI (GIẢ ĐỊNH) ---
+const STORAGE_KEY = "COOKBOOK_COMMUNITY_DATA"; // Khóa lưu trữ
 const CURRENT_USER_ID = "user-a";
 
+// Hàm xử lý việc lưu data vào AsyncStorage
+const saveAppData = async (data) => {
+  try {
+    const jsonValue = JSON.stringify(data);
+    await AsyncStorage.setItem(STORAGE_KEY, jsonValue);
+  } catch (e) {
+    console.error("Lỗi khi lưu dữ liệu:", e);
+  }
+};
+
+// Hàm tìm tên người dùng từ database (Giả lập)
+const getCurrentUsername = (data, userId) => {
+  const userPost = data.communityPosts.find((post) => post.userId === userId);
+  return userPost ? userPost.username : "Người dùng ẩn danh";
+};
+
 const CommunityPage = () => {
-  // State khởi tạo bằng dữ liệu từ MOCK_DATABASE
-  const [posts, setPosts] = useState([]);
+  // 1. TẠO STATE CHUNG CÓ THỂ THAY ĐỔI
+  const [mockDatabase, setMockDatabase] = useState(INITIAL_DATABASE);
+
+  // State con khởi tạo từ mockDatabase (sẽ được thay thế khi load)
+  const [posts, setPosts] = useState(
+    mockDatabase.communityPosts.sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    )
+  );
+  const [comments, setComments] = useState(mockDatabase.comments);
+  const [currentLikes, setCurrentLikes] = useState(mockDatabase.likes);
+  const [currentUsername, setCurrentUsername] = useState(
+    getCurrentUsername(INITIAL_DATABASE, CURRENT_USER_ID)
+  ); // Khởi tạo tên người dùng
+
   const [searchText, setSearchText] = useState("");
   const [isPostModalVisible, setPostModalVisible] = useState(false);
   const [isCommentModalVisible, setCommentModalVisible] = useState(false);
   const [selectedPostId, setSelectedPostId] = useState(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
-  // Dữ liệu tạm cho bài đăng mới
   const [newRecipeTitle, setNewRecipeTitle] = useState("");
   const [newRecipeDescription, setNewRecipeDescription] = useState("");
 
-  // Quản lý trạng thái like (sử dụng dữ liệu likes từ MOCK_DATABASE)
-  const [currentLikes, setCurrentLikes] = useState(MOCK_DATABASE.likes);
-
-  // --- 1. Lấy dữ liệu Community Feed ---
-  const loadPosts = useCallback(async () => {
-    setIsRefreshing(true);
-    try {
-      const sortedPosts = MOCK_DATABASE.communityPosts.sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-      );
-      setPosts(sortedPosts);
-    } catch (error) {
-      console.error("Lỗi khi tải bài đăng cộng đồng:", error);
-    } finally {
-      setIsRefreshing(false);
-    }
-  }, []);
-
+  // --- 🚨 XỬ LÝ TẢI DỮ LIỆU KHI KHỞI ĐỘNG (LOAD) ---
   useEffect(() => {
-    loadPosts();
-  }, [loadPosts]);
+    const loadAppData = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem(STORAGE_KEY);
+        const loadedData =
+          jsonValue != null ? JSON.parse(jsonValue) : INITIAL_DATABASE;
+
+        setMockDatabase(loadedData);
+
+        // Cập nhật các state con từ dữ liệu đã load
+        setCurrentUsername(getCurrentUsername(loadedData, CURRENT_USER_ID));
+        setPosts(
+          loadedData.communityPosts.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+          )
+        );
+        setComments(loadedData.comments);
+        setCurrentLikes(loadedData.likes);
+      } catch (e) {
+        console.error("Lỗi khi tải dữ liệu:", e);
+      }
+    };
+    loadAppData();
+  }, []); // Chỉ chạy một lần khi mount
+
+  // --- 💾 XỬ LÝ LƯU DỮ LIỆU KHI STATE THAY ĐỔI (SAVE) ---
+  useEffect(() => {
+    const appData = {
+      ...mockDatabase,
+      communityPosts: posts,
+      comments: comments,
+      likes: currentLikes,
+    };
+    // 1. Đồng bộ posts, comments, likes về mockDatabase trong state
+    setMockDatabase(appData);
+    // 2. Lưu mockDatabase đã cập nhật vào AsyncStorage
+    saveAppData(appData);
+  }, [posts, comments, currentLikes]); // Chạy mỗi khi posts, comments hoặc likes thay đổi
+
+  // --- 4. Xử lý Thêm Comment vào Database Giả lập ---
+  const handleAddComment = (postId, newCommentText) => {
+    const newComment = {
+      id: `cmt-${Date.now()}`,
+      postId: postId,
+      userId: CURRENT_USER_ID,
+      // Dùng TÊN NGƯỜI DÙNG HIỆN TẠI ĐÃ ĐƯỢC LOAD
+      username: currentUsername,
+      text: newCommentText,
+      createdAt: new Date().toISOString(),
+    };
+
+    setComments((prev) => [newComment, ...prev]);
+
+    setPosts((prev) =>
+      prev.map((p) =>
+        p.id === postId ? { ...p, commentsCount: p.commentsCount + 1 } : p
+      )
+    );
+
+    return newComment;
+  };
 
   // --- 2. Xử lý Thao tác Tương tác (Like, Comment, Follow) ---
   const handleInteraction = (type, postId, extraData) => {
@@ -115,7 +183,7 @@ const CommunityPage = () => {
     const newPost = {
       id: `post-${Date.now()}`,
       userId: CURRENT_USER_ID,
-      username: "Người dùng hiện tại",
+      username: currentUsername, // Dùng tên người dùng hiện tại
       avatar: "https://i.pravatar.cc/150?img=7",
       recipeId: null,
       title: newRecipeTitle.trim(),
@@ -134,15 +202,18 @@ const CommunityPage = () => {
     setNewRecipeDescription("");
   };
 
-  // --- Render Bài Đăng ---
+  // --- Render Bài Đăng (Giữ nguyên) ---
   const renderItem = ({ item }) => {
     const isLikedByUser = currentLikes.some(
       (like) => like.postId === item.id && like.userId === CURRENT_USER_ID
     );
+    const currentCommentsCount = comments.filter(
+      (c) => c.postId === item.id
+    ).length;
 
     return (
       <RecipeCard
-        post={item}
+        post={{ ...item, commentsCount: currentCommentsCount }}
         isLiked={isLikedByUser}
         onLike={handleInteraction.bind(null, "like")}
         onComment={handleInteraction.bind(null, "comment")}
@@ -151,12 +222,23 @@ const CommunityPage = () => {
     );
   };
 
+  // Hàm giả lập Refresh
+  const onRefresh = useCallback(() => {
+    setIsRefreshing(true);
+    // Khi refresh, tải lại dữ liệu từ state mockDatabase hiện tại
+    setPosts(
+      mockDatabase.communityPosts.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      )
+    );
+    setTimeout(() => setIsRefreshing(false), 1000);
+  }, [mockDatabase]);
+
   return (
     <SafeAreaView style={styles.container}>
-      {/* --- Thanh Tìm kiếm (Search Bar) & Nút Đăng bài --- */}
+      {/* --- Thanh Tìm kiếm (Header) --- */}
       <View style={styles.header}>
         <View style={styles.searchBar}>
-          {/* ICON KÍNH LÚP (Bên trái, màu xám) */}
           <Ionicons
             name="search"
             size={20}
@@ -174,18 +256,15 @@ const CommunityPage = () => {
             }
             returnKeyType="search"
           />
-          {/* ICON XÓA (Bên phải, màu đỏ như trong hình) */}
           {searchText.length > 0 && (
             <TouchableOpacity
               onPress={() => setSearchText("")}
               style={styles.clearButton}
             >
-              {/* Dùng icon 'close-circle' hoặc 'close' và đặt màu đỏ #FF6347 */}
               <Ionicons name="close-circle" size={20} color="#FF6347" />
             </TouchableOpacity>
           )}
         </View>
-        {/* NÚT ĐĂNG BÀI */}
         <TouchableOpacity
           onPress={() => setPostModalVisible(true)}
           style={styles.postButton}
@@ -194,7 +273,7 @@ const CommunityPage = () => {
         </TouchableOpacity>
       </View>
 
-      {/* --- Feed Chính (Giữ nguyên) --- */}
+      {/* --- Feed Chính --- */}
       <FlatList
         data={posts}
         renderItem={renderItem}
@@ -204,7 +283,7 @@ const CommunityPage = () => {
         refreshControl={
           <RefreshControl
             refreshing={isRefreshing}
-            onRefresh={loadPosts}
+            onRefresh={onRefresh}
             tintColor="#FF6347"
           />
         }
@@ -266,9 +345,10 @@ const CommunityPage = () => {
         <CommentModal
           postId={selectedPostId}
           onClose={() => setCommentModalVisible(false)}
-          MOCK_DATABASE={MOCK_DATABASE}
+          allComments={comments}
+          onCommentSubmit={handleAddComment}
           currentUserId={CURRENT_USER_ID}
-          currentUsername="Người dùng hiện tại"
+          currentUsername={currentUsername} // <- TRUYỀN TÊN ĐÃ ĐƯỢC LOAD
         />
       </Modal>
     </SafeAreaView>
@@ -305,10 +385,10 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     color: "#333",
-    paddingVertical: 10, // Quan trọng để TextInput nằm giữa
+    paddingVertical: 10,
   },
   clearButton: {
-    marginLeft: 8, // Khoảng cách nhỏ với TextInput
+    marginLeft: 8,
     padding: 5,
   },
   postButton: {

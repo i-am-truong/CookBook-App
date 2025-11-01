@@ -11,13 +11,13 @@ import {
   Platform,
   Alert,
 } from "react-native";
-// CẬP NHẬT CÚ PHÁP IMPORT ICON CHUẨN CỦA EXPO
 import { Ionicons } from "@expo/vector-icons";
 
 // CommentItem: Component con để hiển thị từng bình luận
 const CommentItem = ({ comment }) => (
   <View style={styles.commentItem}>
     <View style={styles.commentHeader}>
+      {/* SỬ DỤNG TÊN NGƯỜI DÙNG ĐỘNG */}
       <Text style={styles.commentUsername}>{comment.username}</Text>
     </View>
     <Text style={styles.commentText}>{comment.text}</Text>
@@ -27,52 +27,47 @@ const CommentItem = ({ comment }) => (
   </View>
 );
 
+// Đã cập nhật props: nhận allComments (dữ liệu comments chung) và onCommentSubmit (hàm lưu)
 const CommentModal = ({
   postId,
   onClose,
-  MOCK_DATABASE,
+  allComments,
+  onCommentSubmit,
   currentUserId,
   currentUsername,
 }) => {
-  // Lưu ý: Thay đổi tên prop từ recipeId thành postId
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  // Lọc Comments dựa trên postId
+  // Lọc Comments dựa trên postId từ prop allComments
   useEffect(() => {
-    if (postId && MOCK_DATABASE) {
+    if (postId && allComments) {
       setIsLoading(true);
-      const postComments = MOCK_DATABASE.comments
+      const postComments = allComments
         .filter((cmt) => cmt.postId === postId)
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Sắp xếp mới nhất lên đầu
 
       setComments(postComments);
       setIsLoading(false);
     }
-  }, [postId, MOCK_DATABASE]);
+    // Dependency bao gồm allComments để khi comment mới được thêm, modal sẽ tự động cập nhật
+  }, [postId, allComments]);
 
-  // Xử lý Đăng Bình luận Mới (Giả lập)
+  // Xử lý Đăng Bình luận Mới (Gọi hàm từ parent để lưu)
   const handlePostComment = () => {
     if (!newComment.trim()) {
       Alert.alert("Lỗi", "Bình luận không được để trống.");
       return;
     }
 
-    const commentToAdd = {
-      id: `cmt-${Date.now()}`,
-      postId: postId,
-      userId: currentUserId,
-      username: currentUsername,
-      text: newComment.trim(),
-      createdAt: new Date().toISOString(),
-    };
+    // 1. GỌI HÀM TỪ PARENT ĐỂ LƯU VÀO DATABASE GIẢ LẬP (Cập nhật state chung)
+    // Hàm này trả về đối tượng comment đã được tạo (có ID và timestamp)
+    const savedComment = onCommentSubmit(postId, newComment.trim());
 
-    // Cập nhật state cục bộ để hiển thị ngay lập tức
-    setComments((prev) => [commentToAdd, ...prev]);
+    // 2. Cập nhật state cục bộ (UI) bằng dữ liệu đã lưu
+    setComments((prev) => [savedComment, ...prev]);
     setNewComment("");
-
-    // Trong ứng dụng thực tế: postComment(postId, newComment)
   };
 
   return (
@@ -98,6 +93,7 @@ const CommentModal = ({
             renderItem={({ item }) => <CommentItem comment={item} />}
             keyExtractor={(item) => item.id.toString()}
             contentContainerStyle={styles.listContent}
+            // Đảm bảo comment mới nhất nằm ở đầu (không cần inverted)
           />
         )}
 

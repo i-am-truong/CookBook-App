@@ -1,11 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-// CẬP NHẬT CÚ PHÁP IMPORT ICON CHUẨN CỦA EXPO
 import { Ionicons } from "@expo/vector-icons";
 
 // Thẻ hiển thị một bài đăng trong Community Feed
 const RecipeCard = ({ post, onLike, onComment, onFollow, isLiked }) => {
-  // Sử dụng post (một item trong communityPosts) thay vì recipe
   const {
     id,
     username,
@@ -72,10 +70,13 @@ const RecipeCard = ({ post, onLike, onComment, onFollow, isLiked }) => {
       <View style={styles.details}>
         {/* Số Like */}
         <Text style={styles.likesText}>
-          <Text style={{ fontWeight: "bold" }}>{likesCount}</Text> likes
+          <Text style={{ fontWeight: "bold" }}>{post.likesCount}</Text> likes
         </Text>
-        {/* TIÊU ĐỀ và MÔ TẢ ĐÃ LỌC */}
-        <Text style={styles.postTitle}>{title}</Text> {/* Title ở đây */}
+
+        {/* TIÊU ĐỀ và MÔ TẢ */}
+        <Text style={styles.postTitle}>{title}</Text>
+
+        {/* Bọc toàn bộ nội dung trong một Text component để tránh lỗi */}
         <Text style={styles.descriptionText}>
           <Text style={styles.username}>{username}</Text>
           <Text style={{ fontWeight: "normal", color: "#555" }}>
@@ -83,6 +84,7 @@ const RecipeCard = ({ post, onLike, onComment, onFollow, isLiked }) => {
             {cleanDescription(description)}
           </Text>
         </Text>
+
         {commentsCount > 0 && (
           <TouchableOpacity onPress={() => onComment(id)}>
             <Text style={styles.viewCommentsText}>
@@ -139,7 +141,6 @@ const styles = StyleSheet.create({
     height: 350, // Kích thước cố định cho hình ảnh feed
   },
   postTitle: {
-    // Đã sửa lại để Title nằm trong body, không phải trên cùng
     fontSize: 18,
     fontWeight: "bold",
     paddingHorizontal: 10,
@@ -150,7 +151,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingHorizontal: 10,
     paddingVertical: 8,
-    // Dời Title xuống dưới Interaction Bar để giống Instagram hơn
   },
   iconButton: {
     marginRight: 15,
