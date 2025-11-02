@@ -1,32 +1,60 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import MainTabNavigator from "./navigation/MainTabNavigator"; // Import đúng
 import CreateRecipeScreen from "./pages/CreateRecipe";
+import EditRecipeScreen from "./pages/EditRecipe";
 import Login from "./pages/Login";
 import RecipeByCategory from "./pages/RecipeByCategory";
 import RecipeDetail from "./pages/RecipeDetail";
 import Signup from "./pages/Signup";
 import Start from "./pages/Start";
+<<<<<<< HEAD
 import { ShoppingListProvider } from "./context/ShoppingListContext";
+=======
+import MealPlannerPage from "./pages/MealPlannerPage";
+import ForgotPassword from "./pages/ForgotPassword";
+import EditProfile from "./pages/EditProfile";
+import ChangePassword from "./pages/ChangePassword";
+
+>>>>>>> 1c008a3d273546b09cac02b16626cdc005f18b46
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
+<<<<<<< HEAD
     <ShoppingListProvider>
+=======
+    <SafeAreaProvider>
+>>>>>>> 1c008a3d273546b09cac02b16626cdc005f18b46
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Start" component={Start} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Signup" component={Signup} />
+<<<<<<< HEAD
+=======
+          <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+>>>>>>> 1c008a3d273546b09cac02b16626cdc005f18b46
           <Stack.Screen name="RecipeByCategory" component={RecipeByCategory} />
           <Stack.Screen name="Main" component={MainTabNavigator} />
           <Stack.Screen name="RecipeDetail" component={RecipeDetail} />
           <Stack.Screen name="CreateRecipe" component={CreateRecipeScreen} />
+<<<<<<< HEAD
         </Stack.Navigator>
       </NavigationContainer>
     </ShoppingListProvider>
 
+=======
+            <Stack.Screen name="MealPlanner" component={MealPlannerPage} /> 
+          <Stack.Screen name="EditRecipe" component={EditRecipeScreen} />
+          <Stack.Screen name="EditProfile" component={EditProfile} />
+          <Stack.Screen name="ChangePassword" component={ChangePassword} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
+>>>>>>> 1c008a3d273546b09cac02b16626cdc005f18b46
   );
 }

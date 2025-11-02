@@ -13,6 +13,7 @@ import {
   StatusBar,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import ImagePickerComponent from "./ImagePickerComponent";
 import { API_URL } from "../services/api";
 
@@ -99,8 +100,12 @@ const CreateRecipeScreen = ({ navigation }) => {
     );
     const validInstructions = instructions.filter((step) => step.trim());
 
+    // Get current user info
+    const userId = await AsyncStorage.getItem("userId");
+    const userEmail = await AsyncStorage.getItem("emailUser");
+
     const newRecipe = {
-      id: Math.random().toString(),
+      id: Date.now().toString(),
       name: name.trim(),
       category,
       description: description.trim(),
@@ -110,6 +115,11 @@ const CreateRecipeScreen = ({ navigation }) => {
       ingredients: validIngredients,
       instructions: validInstructions,
       image: imageUri,
+      isPublic: false, // Default to private
+      status: "private",
+      createdBy: userId || userEmail || "unknown",
+      createdAt: new Date().toISOString(),
+      publishedAt: null,
     };
 
     try {
@@ -144,7 +154,7 @@ const CreateRecipeScreen = ({ navigation }) => {
             setImageUri(null);
 
             // Navigate to Cookbook page
-            navigation.navigate("Cookbook");
+            navigation.navigate("Main", { screen: "Cookbook" });
           },
         },
       ]);

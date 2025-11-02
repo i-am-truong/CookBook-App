@@ -8,27 +8,33 @@
       "calories": 350,
       "cookingTime": "30 phút",
       "servings": 4,
-      "image": "https://healthynibblesandbits.com/wp-content/uploads/2020/01/Saag-Paneer-FF.jpg",
+      "image": "https://www.indianhealthyrecipes.com/wp-content/uploads/2020/06/palak-paneer-recipe.jpg",
+      "estimated_cost": 18000,
       "ingredients": [
         {
           "name": "Rau chân vịt",
-          "amount": "2 bó (500g)"
+          "amount": "2 bó (500g)",
+          "price": 13500
         },
         {
           "name": "Paneer",
-          "amount": "250g, cắt khối"
+          "amount": "250g, cắt khối",
+          "price": 45000
         },
         {
           "name": "Hành tây",
-          "amount": "1 củ lớn, băm nhỏ"
+          "amount": "1 củ lớn, băm nhỏ",
+          "price": 4500
         },
         {
           "name": "Tỏi",
-          "amount": "4-5 tép, băm nhuyễn"
+          "amount": "4-5 tép, băm nhuyễn",
+          "price": 18000
         },
         {
           "name": "Gừng",
-          "amount": "1 miếng 2cm, bào nhỏ"
+          "amount": "1 miếng 2cm, bào nhỏ",
+          "price": 9000
         }
       ],
       "instructions": [
@@ -48,26 +54,32 @@
       "cookingTime": "40 phút",
       "servings": 4,
       "image": "https://mia.vn/media/uploads/blog-du-lich/tikka-masala-1-1725207163.jpg",
+      "estimated_cost": 25000,
       "ingredients": [
         {
           "name": "Thịt gà",
-          "amount": "500g, không xương"
+          "amount": "500g, không xương",
+          "price": 72000
         },
         {
           "name": "Sữa chua",
-          "amount": "1 cốc"
+          "amount": "1 cốc",
+          "price": 8000
         },
         {
           "name": "Cà chua",
-          "amount": "2 quả lớn, xay nhuyễn"
+          "amount": "2 quả lớn, xay nhuyễn",
+          "price": 9000
         },
         {
           "name": "Tỏi",
-          "amount": "3 tép, băm nhuyễn"
+          "amount": "3 tép, băm nhuyễn",
+          "price": 18000
         },
         {
           "name": "Gia vị",
-          "amount": "Theo khẩu vị (garam masala, thì là, nghệ...)"
+          "amount": "Theo khẩu vị (garam masala, thì là, nghệ...)",
+          "price": 5000
         }
       ],
       "instructions": [
@@ -87,26 +99,32 @@
       "cookingTime": "35 phút",
       "servings": 2,
       "image": "https://cdn.tgdd.vn/Files/2021/07/31/1372009/2-cach-lam-mon-risotto-thom-ngon-tu-nuoc-y-202107311137097170.jpg",
+      "estimated_cost": 22000,
       "ingredients": [
         {
           "name": "Gạo Arborio",
-          "amount": "1 cốc"
+          "amount": "1 cốc",
+          "price": 25000
         },
         {
           "name": "Nấm",
-          "amount": "200g, cắt lát"
+          "amount": "200g, cắt lát",
+          "price": 30000
         },
         {
           "name": "Nước dùng rau củ",
-          "amount": "4 cốc"
+          "amount": "4 cốc",
+          "price": 5000
         },
         {
           "name": "Phô mai Parmesan",
-          "amount": "50g, bào nhỏ"
+          "amount": "50g, bào nhỏ",
+          "price": 20000
         },
         {
           "name": "Rượu vang trắng",
-          "amount": "1/2 cốc"
+          "amount": "1/2 cốc",
+          "price": 15000
         }
       ],
       "instructions": [
@@ -126,26 +144,32 @@
       "cookingTime": "25 phút",
       "servings": 3,
       "image": "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/one_pan_pad_thai_with_07570_16x9.jpg",
+      "estimated_cost": 18000,
       "ingredients": [
         {
           "name": "Mì gạo",
-          "amount": "200g"
+          "amount": "200g",
+          "price": 10000
         },
         {
           "name": "Tôm",
-          "amount": "150g, bóc vỏ"
+          "amount": "150g, bóc vỏ",
+          "price": 20000
         },
         {
           "name": "Đậu hũ",
-          "amount": "100g, cắt khối"
+          "amount": "100g, cắt khối",
+          "price": 8000
         },
         {
           "name": "Đậu phộng",
-          "amount": "2 muỗng canh, giã nhỏ"
+          "amount": "2 muỗng canh, giã nhỏ",
+          "price": 5000
         },
         {
           "name": "Trứng",
-          "amount": "1 quả, đánh tan"
+          "amount": "1 quả, đánh tan",
+          "price": 5000
         }
       ],
       "instructions": [
@@ -165,26 +189,32 @@
       "cookingTime": "20 phút",
       "servings": 2,
       "image": "https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/5802fab5-fdce-468a-a830-43e8001f5a72/Derivates/c00dc34a-e73d-42f0-a86e-e2fd967d33fe.jpg",
+      "estimated_cost": 25000,
       "ingredients": [
         {
           "name": "Đế bánh pizza",
-          "amount": "1 cái, 30cm"
+          "amount": "1 cái, 30cm",
+          "price": 20000
         },
         {
           "name": "Sốt cà chua",
-          "amount": "1/2 cốc"
+          "amount": "1/2 cốc",
+          "price": 5000
         },
         {
           "name": "Phô mai Mozzarella",
-          "amount": "150g, cắt lát"
+          "amount": "150g, cắt lát",
+          "price": 25000
         },
         {
           "name": "Lá húng quế tươi",
-          "amount": "Vài lá"
+          "amount": "Vài lá",
+          "price": 3000
         },
         {
           "name": "Dầu ô liu",
-          "amount": "1 muỗng canh"
+          "amount": "1 muỗng canh",
+          "price": 4500
         }
       ],
       "instructions": [
@@ -204,26 +234,32 @@
       "cookingTime": "2 giờ",
       "servings": 4,
       "image": "https://fohlafood.vn/cdn/shop/articles/bi-quyet-nau-phi-bo-ngon-tuyet-dinh.jpg?v=1712213789",
+      "estimated_cost": 30000,
       "ingredients": [
         {
           "name": "Bánh phở",
-          "amount": "500g"
+          "amount": "500g",
+          "price": 15000
         },
         {
           "name": "Thịt bò",
-          "amount": "300g, thái lát mỏng"
+          "amount": "300g, thái lát mỏng",
+          "price": 80000
         },
         {
           "name": "Xương bò",
-          "amount": "1kg"
+          "amount": "1kg",
+          "price": 50000
         },
         {
           "name": "Hành tây",
-          "amount": "1 củ"
+          "amount": "1 củ",
+          "price": 4500
         },
         {
           "name": "Gừng",
-          "amount": "1 củ nhỏ"
+          "amount": "1 củ nhỏ",
+          "price": 9000
         }
       ],
       "instructions": [
@@ -242,26 +278,32 @@
       "cookingTime": "30 phút",
       "servings": 4,
       "image": "https://i-giadinh.vnecdn.net/2023/09/19/Bc10Thnhphm11-1695107510-2493-1695107555.jpg",
+      "estimated_cost": 15000,
       "ingredients": [
         {
           "name": "Bột gạo",
-          "amount": "200g"
+          "amount": "200g",
+          "price": 5000
         },
         {
           "name": "Nước cốt dừa",
-          "amount": "100ml"
+          "amount": "100ml",
+          "price": 5000
         },
         {
           "name": "Tôm",
-          "amount": "200g, bóc vỏ"
+          "amount": "200g, bóc vỏ",
+          "price": 20000
         },
         {
           "name": "Thịt heo",
-          "amount": "150g, thái lát mỏng"
+          "amount": "150g, thái lát mỏng",
+          "price": 30000
         },
         {
           "name": "Giá đỗ",
-          "amount": "100g"
+          "amount": "100g",
+          "price": 4000
         }
       ],
       "instructions": [
@@ -281,26 +323,32 @@
       "cookingTime": "45 phút",
       "servings": 4,
       "image": "https://acnoshotel.com/grand/wp-content/uploads/2024/08/Acnos-bun-cha-ha-noi_02.jpg",
+      "estimated_cost": 20000,
       "ingredients": [
         {
           "name": "Thịt heo xay",
-          "amount": "300g"
+          "amount": "300g",
+          "price": 30000
         },
         {
           "name": "Bún tươi",
-          "amount": "500g"
+          "amount": "500g",
+          "price": 15000
         },
         {
           "name": "Nước mắm",
-          "amount": "3 muỗng canh"
+          "amount": "3 muỗng canh",
+          "price": 5000
         },
         {
           "name": "Đường",
-          "amount": "2 muỗng canh"
+          "amount": "2 muỗng canh",
+          "price": 2000
         },
         {
           "name": "Tỏi",
-          "amount": "3 tép, băm nhuyễn"
+          "amount": "3 tép, băm nhuyễn",
+          "price": 18000
         }
       ],
       "instructions": [
@@ -319,27 +367,33 @@
       "calories": 200,
       "cookingTime": "30 phút",
       "servings": 4,
-      "image": "https://khaihoanphuquoc.com.vn/wp-content/uploads/2023/11/nu%CC%9Bo%CC%9B%CC%81c-ma%CC%86%CC%81m-cha%CC%82%CC%81m-go%CC%89i-cuo%CC%82%CC%81n.png",
+      "image": "https://i.ytimg.com/vi/gVdNuAmGQK0/maxresdefault.jpg",
+      "estimated_cost": 12000,
       "ingredients": [
         {
           "name": "Bánh tráng",
-          "amount": "10 cái"
+          "amount": "10 cái",
+          "price": 10000
         },
         {
           "name": "Tôm",
-          "amount": "200g, luộc chín"
+          "amount": "200g, luộc chín",
+          "price": 20000
         },
         {
           "name": "Thịt heo",
-          "amount": "150g, luộc chín"
+          "amount": "150g, luộc chín",
+          "price": 30000
         },
         {
           "name": "Bún tươi",
-          "amount": "200g"
+          "amount": "200g",
+          "price": 8000
         },
         {
           "name": "Rau sống",
-          "amount": "100g"
+          "amount": "100g",
+          "price": 4000
         }
       ],
       "instructions": [
@@ -359,26 +413,32 @@
       "cookingTime": "1 giờ",
       "servings": 4,
       "image": "https://beptruong.edu.vn/wp-content/uploads/2021/01/ca-kho-to.jpg",
+      "estimated_cost": 28000,
       "ingredients": [
         {
           "name": "Cá lóc",
-          "amount": "1 con (khoảng 500g)"
+          "amount": "1 con (khoảng 500g)",
+          "price": 80000
         },
         {
           "name": "Nước màu caramel",
-          "amount": "2 muỗng canh"
+          "amount": "2 muỗng canh",
+          "price": 2000
         },
         {
           "name": "Nước mắm",
-          "amount": "3 muỗng canh"
+          "amount": "3 muỗng canh",
+          "price": 5000
         },
         {
           "name": "Đường",
-          "amount": "1 muỗng canh"
+          "amount": "1 muỗng canh",
+          "price": 2000
         },
         {
           "name": "Ớt",
-          "amount": "2 quả, thái lát"
+          "amount": "2 quả, thái lát",
+          "price": 3000
         }
       ],
       "instructions": [
@@ -397,26 +457,32 @@
       "cookingTime": "15 phút",
       "servings": 2,
       "image": "https://cdn-i2.congthuong.vn/stores/news_dataimages/2024/032024/16/09/top-1-mon-sandwich-ngon-nhat-the-gioi-goi-ten-banh-my-viet-nam1710498007-182420240316092132.jpg?rt=20240316092204",
+      "estimated_cost": 15000,
       "ingredients": [
         {
           "name": "Bánh mì",
-          "amount": "2 ổ"
+          "amount": "2 ổ",
+          "price": 10000
         },
         {
           "name": "Thịt nguội",
-          "amount": "100g"
+          "amount": "100g",
+          "price": 20000
         },
         {
           "name": "Chả lụa",
-          "amount": "100g"
+          "amount": "100g",
+          "price": 15000
         },
         {
           "name": "Rau sống",
-          "amount": "50g"
+          "amount": "50g",
+          "price": 2000
         },
         {
           "name": "Pate",
-          "amount": "2 muỗng canh"
+          "amount": "2 muỗng canh",
+          "price": 5000
         }
       ],
       "instructions": [
@@ -435,26 +501,32 @@
       "cookingTime": "40 phút",
       "servings": 4,
       "image": "https://assets.unileversolutions.com/recipes-v2/157768.jpg",
+      "estimated_cost": 16000,
       "ingredients": [
         {
           "name": "Bánh tráng",
-          "amount": "10 cái"
+          "amount": "10 cái",
+          "price": 10000
         },
         {
           "name": "Thịt heo xay",
-          "amount": "200g"
+          "amount": "200g",
+          "price": 20000
         },
         {
           "name": "Tôm",
-          "amount": "100g, bóc vỏ"
+          "amount": "100g, bóc vỏ",
+          "price": 10000
         },
         {
           "name": "Cà rốt",
-          "amount": "1 củ, bào sợi"
+          "amount": "1 củ, bào sợi",
+          "price": 5000
         },
         {
           "name": "Mộc nhĩ",
-          "amount": "50g, ngâm nở"
+          "amount": "50g, ngâm nở",
+          "price": 8000
         }
       ],
       "instructions": [
@@ -473,26 +545,32 @@
       "cookingTime": "45 phút",
       "servings": 4,
       "image": "https://i-giadinh.vnecdn.net/2021/03/19/ca2-1616122035-2163-1616122469.jpg",
+      "estimated_cost": 22000,
       "ingredients": [
         {
           "name": "Cá lóc",
-          "amount": "1 con (khoảng 500g)"
+          "amount": "1 con (khoảng 500g)",
+          "price": 80000
         },
         {
           "name": "Me",
-          "amount": "50g"
+          "amount": "50g",
+          "price": 5000
         },
         {
           "name": "Cà chua",
-          "amount": "2 quả"
+          "amount": "2 quả",
+          "price": 9000
         },
         {
           "name": "Dọc mùng",
-          "amount": "100g"
+          "amount": "100g",
+          "price": 4000
         },
         {
           "name": "Rau om",
-          "amount": "1 nắm"
+          "amount": "1 nắm",
+          "price": 3000
         }
       ],
       "instructions": [
@@ -511,26 +589,32 @@
       "cookingTime": "1 giờ",
       "servings": 4,
       "image": "https://cdn.tgdd.vn/Files/2021/09/11/1381810/cach-nau-xoi-ga-xe-nuoc-cot-dua-thom-beo-sieu-nhanh-tai-nha-202109110925505443.jpg",
+      "estimated_cost": 25000,
       "ingredients": [
         {
           "name": "Gạo nếp",
-          "amount": "500g"
+          "amount": "500g",
+          "price": 20000
         },
         {
           "name": "Gà ta",
-          "amount": "1 con (khoảng 1kg)"
+          "amount": "1 con (khoảng 1kg)",
+          "price": 120000
         },
         {
           "name": "Hành phi",
-          "amount": "2 muỗng canh"
+          "amount": "2 muỗng canh",
+          "price": 3000
         },
         {
           "name": "Nước mắm",
-          "amount": "3 muỗng canh"
+          "amount": "3 muỗng canh",
+          "price": 5000
         },
         {
           "name": "Dưa leo",
-          "amount": "1 quả, thái lát"
+          "amount": "1 quả, thái lát",
+          "price": 5000
         }
       ],
       "instructions": [
@@ -549,26 +633,32 @@
       "cookingTime": "45 phút",
       "servings": 8,
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP7mYb2zvY2IGO9_EocEptv0k-JTabTeh58g&s",
+      "estimated_cost": 15000,
       "ingredients": [
         {
           "name": "Bột mì",
-          "amount": "200g"
+          "amount": "200g",
+          "price": 5000
         },
         {
           "name": "Đường",
-          "amount": "150g"
+          "amount": "150g",
+          "price": 3000
         },
         {
           "name": "Trứng",
-          "amount": "3 quả"
+          "amount": "3 quả",
+          "price": 15000
         },
         {
           "name": "Bơ",
-          "amount": "100g"
+          "amount": "100g",
+          "price": 20000
         },
         {
           "name": "Bột cacao",
-          "amount": "50g"
+          "amount": "50g",
+          "price": 10000
         }
       ],
       "instructions": [
@@ -585,22 +675,27 @@
       "cookingTime": "40 phút",
       "servings": 4,
       "image": "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/butter_paneer_curry_98394_16x9.jpg",
+      "estimated_cost": 20000,
       "ingredients": [
         {
           "name": "Paneer",
-          "amount": "250g"
+          "amount": "250g",
+          "price": 45000
         },
         {
           "name": "Cà chua",
-          "amount": "2 quả"
+          "amount": "2 quả",
+          "price": 9000
         },
         {
           "name": "Hành tây",
-          "amount": "1 củ"
+          "amount": "1 củ",
+          "price": 4500
         },
         {
           "name": "Gia vị",
-          "amount": "tuỳ chỉnh"
+          "amount": "tuỳ chỉnh",
+          "price": 5000
         }
       ],
       "instructions": [
@@ -617,22 +712,27 @@
       "cookingTime": "10 phút",
       "servings": 2,
       "image": "https://www.chilitochoc.com/wp-content/uploads/2023/07/mango-mojito-non-alcoholic.jpg",
+      "estimated_cost": 8000,
       "ingredients": [
         {
           "name": "Xoài",
-          "amount": "1 quả"
+          "amount": "1 quả",
+          "price": 20000
         },
         {
           "name": "Lá bạc hà",
-          "amount": "vài lá"
+          "amount": "vài lá",
+          "price": 5000
         },
         {
           "name": "Đường",
-          "amount": "2 muỗng"
+          "amount": "2 muỗng",
+          "price": 2000
         },
         {
           "name": "Nước soda",
-          "amount": "200ml"
+          "amount": "200ml",
+          "price": 3000
         }
       ],
       "instructions": [
@@ -649,18 +749,22 @@
       "cookingTime": "20 phút",
       "servings": 2,
       "image": "https://images.themodernproper.com/production/posts/2020/QuinoaBowl_4.jpg?w=1200&h=1200&q=60&fm=jpg&fit=crop&dm=1737605526&s=b91b6baac05eb76bd048a76d12f4a9cd",
+      "estimated_cost": 18000,
       "ingredients": [
         {
           "name": "Quinoa",
-          "amount": "100g"
+          "amount": "100g",
+          "price": 27000
         },
         {
           "name": "Rau củ",
-          "amount": "200g"
+          "amount": "200g",
+          "price": 9000
         },
         {
           "name": "Dầu olive",
-          "amount": "1 muỗng canh"
+          "amount": "1 muỗng canh",
+          "price": 4500
         }
       ],
       "instructions": [
@@ -669,6 +773,7 @@
       ]
     }
   ],
+<<<<<<< HEAD
   "myRecipes": [],
   "savedRecipes": [
     {
@@ -855,6 +960,353 @@
         "Xếp tôm, thịt, bún và rau sống lên bánh tráng.",
         "Cuộn chặt lại và cắt đôi.",
         "Ăn kèm với nước mắm chua ngọt."
+=======
+  "myRecipes": [
+    {
+      "id": "1761991180076",
+      "name": "Cơm Gà Xào Sả Ớt Chuông",
+      "category": "Lunch",
+      "description": "Món ăn trưa nhanh gọn, đầy đủ dinh dưỡng với thịt gà mềm thấm vị sả ớt thơm lừng, kết hợp cùng ớt chuông và hành tây giòn ngọt, ăn kèm cơm nóng. Hương vị đậm đà, kích thích vị giác và dễ dàng thực hiện trong 30 phút.",
+      "calories": 480,
+      "cookingTime": "30 phút",
+      "servings": 1,
+      "estimated_cost": 25000,
+      "ingredients": [
+        {
+          "name": "Thịt ức gà hoặc đùi gà lọc xương",
+          "amount": "120g",
+          "price": 15000
+        },
+        {
+          "name": "Gạo",
+          "amount": "60g (khoảng 1/3 chén đong gạo)",
+          "price": 2000
+        },
+        {
+          "name": "Ớt chuông (màu tùy thích)",
+          "amount": "1/2 quả (khoảng 70g)",
+          "price": 5000
+        },
+        {
+          "name": "Hành tây",
+          "amount": "1/4 củ nhỏ (khoảng 30g)",
+          "price": 2000
+        },
+        {
+          "name": "Sả tươi",
+          "amount": "1 nhánh lớn",
+          "price": 3000
+        },
+        {
+          "name": "Tỏi",
+          "amount": "1 tép",
+          "price": 2000
+        },
+        {
+          "name": "Ớt tươi (tùy chọn)",
+          "amount": "1/2 - 1 quả",
+          "price": 1000
+        },
+        {
+          "name": "Dầu ăn",
+          "amount": "1 muỗng canh",
+          "price": 2000
+        },
+        {
+          "name": "Nước mắm",
+          "amount": "2 muỗng canh (chia làm 2 lần ướp và xào)",
+          "price": 1000
+        },
+        {
+          "name": "Đường",
+          "amount": "1 muỗng cà phê (chia làm 2 lần ướp và xào)",
+          "price": 500
+        },
+        {
+          "name": "Hạt nêm",
+          "amount": "1/4 muỗng cà phê",
+          "price": 500
+        },
+        {
+          "name": "Tiêu xay",
+          "amount": "Một ít",
+          "price": 500
+        },
+        {
+          "name": "Nước lọc",
+          "amount": "1 muỗng canh (tùy chọn)",
+          "price": 0
+        }
+      ],
+      "instructions": [
+        "1. **Nấu cơm:** Vo sạch 60g gạo và cho vào nồi cơm điện nấu chín. Thời gian nấu khoảng 15-20 phút.",
+        "2. **Sơ chế nguyên liệu:**\n   - Thịt gà: Rửa sạch, thái miếng vuông vừa ăn (khoảng 2x2cm). Ướp gà với 1 muỗng canh nước mắm, 1/2 muỗng cà phê đường, 1/4 muỗng cà phê hạt nêm và một ít tiêu. Trộn đều, để thấm 10 phút.",
+        "   - Sả: Bỏ bớt lá già, đập dập phần gốc và băm nhỏ.",
+        "   - Tỏi và ớt tươi: Bóc vỏ, băm nhỏ.",
+        "   - Ớt chuông: Bỏ hạt, thái miếng vuông tương đương thịt gà.",
+        "   - Hành tây: Bóc vỏ, thái múi cau hoặc thái vuông.",
+        "3. **Xào gà:** Đặt chảo lên bếp, cho 1 muỗng canh dầu ăn vào. Khi dầu nóng, cho sả băm, tỏi băm và ớt băm (nếu dùng) vào phi thơm cho đến khi vàng nhẹ và dậy mùi.",
+        "4. **Thêm gà và rau củ:** Cho thịt gà đã ướp vào chảo, xào nhanh tay trên lửa lớn cho đến khi thịt gà săn lại và chuyển màu. Sau đó, thêm ớt chuông và hành tây vào xào cùng.",
+        "5. **Hoàn thành món xào:** Nêm nếm lại với 1 muỗng canh nước mắm và 1/2 muỗng cà phê đường (hoặc điều chỉnh theo khẩu vị), có thể thêm 1 muỗng canh nước lọc để món xào có chút sốt và không bị khô. Đảo đều cho rau củ vừa chín tới, giữ độ giòn.",
+        "6. **Trình bày:** Múc cơm ra đĩa, sau đó cho phần gà xào sả ớt chuông lên trên. Dùng nóng.",
+        "7. **Thưởng thức:** Bạn có thể rắc thêm một chút tiêu xay hoặc rau mùi tươi (nếu có) để tăng hương vị và màu sắc."
+      ],
+      "tips": "Để tiết kiệm thời gian, bạn có thể sơ chế và ướp thịt gà trước đó. Điều chỉnh lượng ớt tươi theo khẩu vị cay mong muốn. Món ăn sẽ ngon hơn khi dùng kèm dưa chuột hoặc cà chua thái lát.",
+      "nutritionInfo": {
+        "protein": "35g",
+        "carbs": "50g",
+        "fat": "20g"
+      },
+      "image": "https://images.pexels.com/photos/34475745/pexels-photo-34475745.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "aiGenerated": true,
+      "createdAt": "2025-11-01T09:59:40.076Z",
+      "isPublic": false,
+      "status": "private",
+      "createdBy": "1761990444902",
+      "publishedAt": null
+    },
+    {
+      "id": "1761992748190",
+      "name": "Vịt Xào Sả Ớt Tương",
+      "category": "Dinner",
+      "description": "Món vịt xào đậm đà hương sả ớt, hòa quyện vị ngọt mặn của tương đen, mang đến bữa tối nhanh gọn và hấp dẫn. Thịt vịt mềm thơm, thấm vị, rất đưa cơm.",
+      "calories": 400,
+      "cookingTime": "30 phút",
+      "servings": 4,
+      "estimated_cost": 35000,
+      "ingredients": [
+        {
+          "name": "Thịt ức vịt",
+          "amount": "500g",
+          "price": 60000
+        },
+        {
+          "name": "Sả",
+          "amount": "3 cây",
+          "price": 9000
+        },
+        {
+          "name": "Hành tím",
+          "amount": "2 củ",
+          "price": 4000
+        },
+        {
+          "name": "Tỏi",
+          "amount": "3 tép",
+          "price": 6000
+        },
+        {
+          "name": "Ớt tươi",
+          "amount": "1-2 quả (tùy độ cay)",
+          "price": 2000
+        },
+        {
+          "name": "Tương đen (Hoisin sauce)",
+          "amount": "3 muỗng canh",
+          "price": 8000
+        },
+        {
+          "name": "Nước mắm",
+          "amount": "2 muỗng canh",
+          "price": 2000
+        },
+        {
+          "name": "Đường",
+          "amount": "1 muỗng cà phê",
+          "price": 500
+        },
+        {
+          "name": "Dầu ăn",
+          "amount": "2-3 muỗng canh",
+          "price": 3000
+        },
+        {
+          "name": "Hạt tiêu xay",
+          "amount": "1/2 muỗng cà phê",
+          "price": 500
+        },
+        {
+          "name": "Hành lá",
+          "amount": "1 ít, để trang trí",
+          "price": 1000
+        },
+        {
+          "name": "Ngò rí",
+          "amount": "1 ít, để trang trí",
+          "price": 1000
+        }
+      ],
+      "instructions": [
+        "**Bước 1: Sơ chế và ướp thịt vịt (10 phút)** Rửa sạch ức vịt, thấm khô hoàn toàn bằng giấy ăn. Thái ức vịt thành những lát mỏng vừa ăn. Băm nhỏ 1 cây sả, 1 củ hành tím, 1 tép tỏi và ớt (nếu dùng). Ướp thịt vịt với 1 muỗng canh nước mắm, 1 muỗng canh tương đen, 1/2 lượng sả, hành tím, tỏi, ớt đã băm và 1/2 muỗng cà phê tiêu xay. Trộn đều và để thịt thấm gia vị trong khoảng 10-15 phút.",
+        "**Bước 2: Chuẩn bị gia vị và sốt (5 phút)** Băm nhỏ phần sả, hành tím, tỏi còn lại. Trong một chén nhỏ, trộn đều 2 muỗng canh tương đen còn lại, 1 muỗng canh nước mắm còn lại, 1 muỗng cà phê đường và 2 muỗng canh nước lọc. Khuấy đều cho đường tan.",
+        "**Bước 3: Xào thơm (3 phút)** Đun nóng 2-3 muỗng canh dầu ăn trong chảo lớn hoặc chảo wok trên lửa vừa-cao. Cho phần sả, hành tím, tỏi băm còn lại vào phi thơm cho đến khi vàng và dậy mùi.",
+        "**Bước 4: Xào thịt vịt (5 phút)** Cho thịt vịt đã ướp vào chảo, đảo nhanh tay trên lửa lớn. Xào khoảng 3-5 phút cho đến khi thịt vịt săn lại và chín tới. Tránh xào quá lâu làm thịt bị dai.",
+        "**Bước 5: Hoàn thành món ăn (2 phút)** Đổ chén sốt đã pha ở Bước 2 vào chảo, đảo đều cho sốt áo đều miếng thịt và sôi nhẹ. Nêm nếm lại cho vừa ăn. Tắt bếp.",
+        "**Bước 6: Trình bày** Múc vịt xào ra đĩa, rắc thêm hành lá và ngò rí thái nhỏ để trang trí. Dùng nóng với cơm trắng."
+      ],
+      "tips": "Để thịt vịt mềm và không bị dai, bạn nên chọn ức vịt tươi, thái lát mỏng và chỉ xào nhanh trên lửa lớn. Có thể thêm một chút rau củ như ớt chuông hoặc hành tây thái múi cau vào xào cùng ở bước cuối để món ăn thêm màu sắc và dinh dưỡng. Nếu không có tương đen, bạn có thể thay bằng nước tương đặc kết hợp với một chút đường và dầu hào.",
+      "nutritionInfo": {
+        "protein": "25g",
+        "carbs": "15g",
+        "fat": "25g"
+      },
+      "image": "https://images.pexels.com/photos/34475745/pexels-photo-34475745.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "aiGenerated": true,
+      "createdAt": "2025-11-01T10:25:48.190Z",
+      "isPublic": false,
+      "status": "private",
+      "createdBy": "1761990444902",
+      "publishedAt": null
+    }
+  ],
+  "savedRecipes": [
+    {
+      "id": "1761991180076",
+      "name": "Cơm Gà Xào Sả Ớt Chuông",
+      "category": "Lunch",
+      "description": "Món ăn trưa nhanh gọn, đầy đủ dinh dưỡng với thịt gà mềm thấm vị sả ớt thơm lừng, kết hợp cùng ớt chuông và hành tây giòn ngọt, ăn kèm cơm nóng. Hương vị đậm đà, kích thích vị giác và dễ dàng thực hiện trong 30 phút.",
+      "calories": 480,
+      "cookingTime": "30 phút",
+      "servings": 1,
+      "estimated_cost": 25000,
+      "ingredients": [
+        {
+          "name": "Thịt ức gà hoặc đùi gà lọc xương",
+          "amount": "120g",
+          "price": 15000
+        },
+        {
+          "name": "Gạo",
+          "amount": "60g (khoảng 1/3 chén đong gạo)",
+          "price": 2000
+        },
+        {
+          "name": "Ớt chuông (màu tùy thích)",
+          "amount": "1/2 quả (khoảng 70g)",
+          "price": 5000
+        },
+        {
+          "name": "Hành tây",
+          "amount": "1/4 củ nhỏ (khoảng 30g)",
+          "price": 2000
+        },
+        {
+          "name": "Sả tươi",
+          "amount": "1 nhánh lớn",
+          "price": 3000
+        },
+        {
+          "name": "Tỏi",
+          "amount": "1 tép",
+          "price": 2000
+        },
+        {
+          "name": "Ớt tươi (tùy chọn)",
+          "amount": "1/2 - 1 quả",
+          "price": 1000
+        },
+        {
+          "name": "Dầu ăn",
+          "amount": "1 muỗng canh",
+          "price": 2000
+        },
+        {
+          "name": "Nước mắm",
+          "amount": "2 muỗng canh (chia làm 2 lần ướp và xào)",
+          "price": 1000
+        },
+        {
+          "name": "Đường",
+          "amount": "1 muỗng cà phê (chia làm 2 lần ướp và xào)",
+          "price": 500
+        },
+        {
+          "name": "Hạt nêm",
+          "amount": "1/4 muỗng cà phê",
+          "price": 500
+        },
+        {
+          "name": "Tiêu xay",
+          "amount": "Một ít",
+          "price": 500
+        },
+        {
+          "name": "Nước lọc",
+          "amount": "1 muỗng canh (tùy chọn)",
+          "price": 0
+        }
+      ],
+      "instructions": [
+        "1. **Nấu cơm:** Vo sạch 60g gạo và cho vào nồi cơm điện nấu chín. Thời gian nấu khoảng 15-20 phút.",
+        "2. **Sơ chế nguyên liệu:**\n   - Thịt gà: Rửa sạch, thái miếng vuông vừa ăn (khoảng 2x2cm). Ướp gà với 1 muỗng canh nước mắm, 1/2 muỗng cà phê đường, 1/4 muỗng cà phê hạt nêm và một ít tiêu. Trộn đều, để thấm 10 phút.",
+        "   - Sả: Bỏ bớt lá già, đập dập phần gốc và băm nhỏ.",
+        "   - Tỏi và ớt tươi: Bóc vỏ, băm nhỏ.",
+        "   - Ớt chuông: Bỏ hạt, thái miếng vuông tương đương thịt gà.",
+        "   - Hành tây: Bóc vỏ, thái múi cau hoặc thái vuông.",
+        "3. **Xào gà:** Đặt chảo lên bếp, cho 1 muỗng canh dầu ăn vào. Khi dầu nóng, cho sả băm, tỏi băm và ớt băm (nếu dùng) vào phi thơm cho đến khi vàng nhẹ và dậy mùi.",
+        "4. **Thêm gà và rau củ:** Cho thịt gà đã ướp vào chảo, xào nhanh tay trên lửa lớn cho đến khi thịt gà săn lại và chuyển màu. Sau đó, thêm ớt chuông và hành tây vào xào cùng.",
+        "5. **Hoàn thành món xào:** Nêm nếm lại với 1 muỗng canh nước mắm và 1/2 muỗng cà phê đường (hoặc điều chỉnh theo khẩu vị), có thể thêm 1 muỗng canh nước lọc để món xào có chút sốt và không bị khô. Đảo đều cho rau củ vừa chín tới, giữ độ giòn.",
+        "6. **Trình bày:** Múc cơm ra đĩa, sau đó cho phần gà xào sả ớt chuông lên trên. Dùng nóng.",
+        "7. **Thưởng thức:** Bạn có thể rắc thêm một chút tiêu xay hoặc rau mùi tươi (nếu có) để tăng hương vị và màu sắc."
+      ],
+      "tips": "Để tiết kiệm thời gian, bạn có thể sơ chế và ướp thịt gà trước đó. Điều chỉnh lượng ớt tươi theo khẩu vị cay mong muốn. Món ăn sẽ ngon hơn khi dùng kèm dưa chuột hoặc cà chua thái lát.",
+      "nutritionInfo": {
+        "protein": "35g",
+        "carbs": "50g",
+        "fat": "20g"
+      },
+      "image": "https://images.pexels.com/photos/34475745/pexels-photo-34475745.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "aiGenerated": true,
+      "createdAt": "2025-11-01T09:59:40.076Z",
+      "isPublic": false,
+      "status": "private",
+      "createdBy": "1761990444902",
+      "publishedAt": null
+    },
+    {
+      "id": "1",
+      "name": "Palak Paneer",
+      "category": "Dinner",
+      "description": "Món ăn Ấn Độ kết hợp paneer với sốt rau chân vịt kem. Hương vị nhẹ nhàng, phù hợp với roti hoặc paratha.",
+      "calories": 350,
+      "cookingTime": "30 phút",
+      "servings": 4,
+      "image": "https://www.indianhealthyrecipes.com/wp-content/uploads/2020/06/palak-paneer-recipe.jpg",
+      "estimated_cost": 18000,
+      "ingredients": [
+        {
+          "name": "Rau chân vịt",
+          "amount": "2 bó (500g)",
+          "price": 13500
+        },
+        {
+          "name": "Paneer",
+          "amount": "250g, cắt khối",
+          "price": 45000
+        },
+        {
+          "name": "Hành tây",
+          "amount": "1 củ lớn, băm nhỏ",
+          "price": 4500
+        },
+        {
+          "name": "Tỏi",
+          "amount": "4-5 tép, băm nhuyễn",
+          "price": 18000
+        },
+        {
+          "name": "Gừng",
+          "amount": "1 miếng 2cm, bào nhỏ",
+          "price": 9000
+        }
+      ],
+      "instructions": [
+        "Trụng rau chân vịt trong nước sôi 2 phút, sau đó xay nhuyễn.",
+        "Phi hành tỏi gừng trong dầu nóng cho thơm.",
+        "Cho rau chân vịt đã xay vào xào 5 phút.",
+        "Thêm paneer vào trộn đều, nấu thêm 5 phút.",
+        "Dùng nóng với roti hoặc paratha."
+>>>>>>> 1c008a3d273546b09cac02b16626cdc005f18b46
       ]
     }
   ]
