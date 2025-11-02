@@ -17,9 +17,9 @@ import { Ionicons } from "@expo/vector-icons";
 import RecipeCard from "../components/RecipeCard";
 import CommentModal from "../components/CommentModal";
 
-import INITIAL_DATABASE from "../database.json"; // Dữ liệu mặc định
+import INITIAL_DATABASE from "../database.json";
 
-const STORAGE_KEY = "COOKBOOK_COMMUNITY_DATA"; // Khóa lưu trữ
+const STORAGE_KEY = "COOKBOOK_COMMUNITY_DATA";
 const CURRENT_USER_ID = "user-a";
 
 // Hàm xử lý việc lưu data vào AsyncStorage
@@ -52,7 +52,7 @@ const CommunityPage = () => {
   const [currentLikes, setCurrentLikes] = useState(mockDatabase.likes);
   const [currentUsername, setCurrentUsername] = useState(
     getCurrentUsername(INITIAL_DATABASE, CURRENT_USER_ID)
-  ); // Khởi tạo tên người dùng
+  );
 
   const [searchText, setSearchText] = useState("");
   const [isPostModalVisible, setPostModalVisible] = useState(false);
