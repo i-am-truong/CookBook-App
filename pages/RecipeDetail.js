@@ -12,6 +12,8 @@ import {
   StatusBar,
   ActivityIndicator,
 } from "react-native";
+import { useShoppingList } from "../context/ShoppingListContext";
+
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFocusEffect } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -21,8 +23,10 @@ const RecipeDetail = ({ route, navigation }) => {
   const { recipe: initialRecipe, source } = route.params; // Get the recipe data and source from route params
   const [recipe, setRecipe] = useState(initialRecipe); // Store recipe in state for reloading
   const [isSaved, setIsSaved] = useState(false);
+  const { addItem } = useShoppingList();
   const [isMyRecipe, setIsMyRecipe] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isSaving, setIsSaving] = useState(false); // Prevent spam clicks
 
   const infoData = [
     { label: "Calories", value: `${recipe.calories} Cal`, icon: "flame" },
@@ -114,7 +118,14 @@ const RecipeDetail = ({ route, navigation }) => {
   };
 
   const handleToggleSave = async () => {
+    // Prevent spam clicks
+    if (isSaving) {
+      return;
+    }
+
     try {
+      setIsSaving(true);
+
       if (isSaved) {
         // Unsave: Xóa recipe khỏi savedRecipes
         // Tìm recipe trong savedRecipes để lấy database ID (có thể khác với recipe.id)
@@ -166,9 +177,14 @@ const RecipeDetail = ({ route, navigation }) => {
       console.error("Error toggling save:", error);
       Alert.alert(
         "Error",
-        "Failed to save/unsave recipe. Please make sure JSON server is running.\n\n" +
-          "Run: npm run dev"
+        "Failed to save/unsave recipe. Please make sure JSON server is running on port 5001.\n\n" +
+          "Run: npm run server"
       );
+    } finally {
+      // Add a small delay before allowing another click
+      setTimeout(() => {
+        setIsSaving(false);
+      }, 500);
     }
   };
 
@@ -414,7 +430,11 @@ const RecipeDetail = ({ route, navigation }) => {
                     )}
                     <TouchableOpacity
                       onPress={handleToggleSave}
-                      style={styles.actionButton}
+                      style={[
+                        styles.actionButton,
+                        isSaving && styles.actionButtonDisabled,
+                      ]}
+                      disabled={isSaving}
                     >
                       <Ionicons
                         name={isSaved ? "heart" : "heart-outline"}
@@ -549,6 +569,39 @@ const RecipeDetail = ({ route, navigation }) => {
                     </Text>
                   </View>
                 </View>
+
+                <View style={{ marginTop: 10 }}>
+                  <TouchableOpacity
+                    style={{
+                      backgroundColor: "#4CAF50",
+                      paddingVertical: 12,
+                      borderRadius: 8,
+                      alignItems: "center",
+                    }}
+                    onPress={() => {
+                      recipe.ingredients.forEach((ingredient) => {
+                        addItem({
+                          name: `${ingredient.name}: ${ingredient.amount}`,
+                          recipeTitle: recipe.name,
+                        });
+                      });
+                      Alert.alert(
+                        "✅ Đã thêm",
+                        "Nguyên liệu đã được thêm vào Shopping List!"
+                      );
+                    }}
+                  >
+                    <Text
+                      style={{
+                        color: "white",
+                        fontWeight: "bold",
+                        fontSize: 16,
+                      }}
+                    >
+                      + Add to Shopping List
+                    </Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             );
           }
@@ -624,6 +677,9 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 8,
     backgroundColor: "#f0f0f0",
+  },
+  actionButtonDisabled: {
+    opacity: 0.5,
   },
   recipeName: {
     flex: 1,

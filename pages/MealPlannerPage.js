@@ -8,12 +8,11 @@ import {
   Modal,
   Button,
   Alert,
-  SafeAreaView,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 // --- DỮ LIỆU GIẢ ĐÃ BỊ XÓA ---
 // Dữ liệu thật sẽ được tải từ API
-
 const DAYS_OF_WEEK = [
   "Thứ Hai",
   "Thứ Ba",
@@ -24,7 +23,6 @@ const DAYS_OF_WEEK = [
   "Chủ Nhật",
 ];
 const MEAL_TYPES = ["Sáng", "Trưa", "Tối"];
-
 // Ánh xạ giữa UI (Tiếng Việt) và Database (Tiếng Anh)
 const categoryMap = {
   Sáng: "Breakfast",
@@ -45,17 +43,23 @@ const createEmptyPlan = () => {
   return plan;
 };
 
-export default function MealPlannerPage() {
+export default function MealPlannerPage({ route, navigation }) {
   const [plan, setPlan] = useState(createEmptyPlan());
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState({ day: "", meal: "" });
   const [recipes, setRecipes] = useState([]); // Danh sách công thức
+  // Budget Buddy
+  const [generatedPlan, setGeneratedPlan] = useState(null); // Generated weekly plan
+  const [totalWeeklyCost, setTotalWeeklyCost] = useState(0); // Total cost
+  const [leftoverSuggestions, setLeftoverSuggestions] = useState([]); // Leftover
+
+  const { weeklyBudget: propWeeklyBudget, recipes: propRecipes } =
+    route.params || {}; // Từ Home
 
   // *** THAY ĐỔI: Tải dữ liệu thật từ API ***
   useEffect(() => {
     const fetchRecipes = async () => {
       const API_URL = process.env.API_URL;
-
       if (!API_URL) {
         Alert.alert(
           "Lỗi cấu hình",
@@ -63,7 +67,6 @@ export default function MealPlannerPage() {
         );
         return;
       }
-
       try {
         // Dùng API_URL từ .env và endpoint /recipes từ db.json
         const response = await fetch(`${API_URL}/recipes`);
@@ -71,7 +74,15 @@ export default function MealPlannerPage() {
           throw new Error(`Lỗi mạng! Status: ${response.status}`);
         }
         const data = await response.json();
-        setRecipes(data); // Cập nhật state với dữ liệu thật
+        // Fallback estimated_cost
+        const processed = data.map((r) => ({
+          ...r,
+          estimated_cost:
+            r.estimated_cost ||
+            r.ingredients.reduce((sum, i) => sum + (i.price || 10000), 0) /
+              r.servings,
+        }));
+        setRecipes(processed); // Cập nhật state với dữ liệu thật
       } catch (error) {
         console.error("Lỗi khi tải công thức:", error);
         Alert.alert(
@@ -80,21 +91,25 @@ export default function MealPlannerPage() {
         );
       }
     };
-
     fetchRecipes();
   }, []); // Chỉ chạy 1 lần khi component mở
+
+  // Auto-generate nếu có propWeeklyBudget
+  useEffect(() => {
+    if (propWeeklyBudget && recipes.length > 0) {
+      generateWeeklyPlan(propWeeklyBudget);
+    }
+  }, [propWeeklyBudget, recipes]);
 
   // Mở Modal để chọn công thức
   const handleOpenModal = (day, meal) => {
     setSelectedSlot({ day, meal });
     setIsModalVisible(true);
   };
-
   // Đóng Modal
   const handleCloseModal = () => {
     setIsModalVisible(false);
   };
-
   // Chọn một công thức từ Modal
   const handleSelectRecipe = (recipe) => {
     const { day, meal } = selectedSlot;
@@ -107,7 +122,6 @@ export default function MealPlannerPage() {
     }));
     handleCloseModal();
   };
-
   // Xóa công thức khỏi một bữa
   const handleRemoveRecipe = (day, meal) => {
     setPlan((prevPlan) => ({
@@ -118,7 +132,6 @@ export default function MealPlannerPage() {
       },
     }));
   };
-
   // Tính tổng calo cho một ngày
   const calculateDailyCalories = (day) => {
     let total = 0;
@@ -129,14 +142,22 @@ export default function MealPlannerPage() {
     });
     return total;
   };
-
+  // THÊM: Tính tổng giá cho một ngày
+  const calculateDailyPrice = (day) => {
+    let total = 0;
+    MEAL_TYPES.forEach((meal) => {
+      if (plan[day][meal]) {
+        total += plan[day][meal].estimated_cost || 0;
+      }
+    });
+    return Math.round(total);
+  };
   // TẠO KẾ HOẠCH NGẪU NHIÊN
   const handleGenerateRandomPlan = () => {
     if (recipes.length === 0) {
       Alert.alert("Lỗi", "Không có công thức nào để tạo ngẫu nhiên");
       return;
     }
-
     let newPlan = {};
     DAYS_OF_WEEK.forEach((day) => {
       newPlan[day] = {};
@@ -146,7 +167,6 @@ export default function MealPlannerPage() {
         const recipesInCategory = recipes.filter(
           (r) => r.category === dbCategory
         );
-
         let randomRecipe = null;
         if (recipesInCategory.length > 0) {
           randomRecipe =
@@ -160,11 +180,9 @@ export default function MealPlannerPage() {
     setPlan(newPlan);
     Alert.alert("Thành công", "Đã tạo kế hoạch ngẫu nhiên cho tuần!");
   };
-
   // XUẤT SHOPPING LIST
   const handleGenerateShoppingList = () => {
     const ingredientMap = new Map();
-
     // Lặp qua toàn bộ kế hoạch
     DAYS_OF_WEEK.forEach((day) => {
       MEAL_TYPES.forEach((meal) => {
@@ -183,25 +201,94 @@ export default function MealPlannerPage() {
         }
       });
     });
-
     if (ingredientMap.size === 0) {
       Alert.alert("Shopping List", "Kế hoạch của bạn đang trống!");
       return;
     }
-
     // Chuyển Map thành chuỗi
     let listString = "Nguyên liệu cần mua:\n\n";
     ingredientMap.forEach((amount, name) => {
-      listString += `• ${name.charAt(0).toUpperCase() + name.slice(1)}\n`;
+      listString += `• ${
+        name.charAt(0).toUpperCase() + name.slice(1)
+      }: ${amount}\n`;
+    });
+    Alert.alert("Shopping List", listString);
+  };
+  // TÍNH NĂNG 1: Generate Weekly Plan (keep, with alert navigate home)
+  const generateWeeklyPlan = (budgetNum) => {
+    if (!budgetNum || budgetNum <= 0) return;
+
+    // Cảnh báo nếu quá thấp, keep navigate to home
+    if (budgetNum < 300000) {
+      Alert.alert(
+        "Ngân sách quá thấp!",
+        "Gợi ý tối thiểu 300000 VND/tuần để có kế hoạch hợp lý (~43k/ngày). Nhập lại?",
+        [
+          { text: "Hủy", style: "cancel" },
+          {
+            text: "Nhập lại",
+            onPress: () => {
+              navigation.navigate("Home"); // Navigate to Home
+              // Keep mode weekly (handled in Home toggle)
+            },
+          },
+        ]
+      );
+      return;
+    }
+
+    const dailyBudget = budgetNum / 7; // Chia đều 7 ngày
+    const vietRecipes = recipes.filter(
+      (r) => r.category === "Việt" || r.category.includes("Việt")
+    ); // Ưu tiên 70% Việt rẻ
+    const nonViet = recipes.filter((r) => !r.category.includes("Việt"));
+    const newPlan = {};
+    let totalCost = 0;
+    let allIngredients = new Set();
+
+    DAYS_OF_WEEK.forEach((day) => {
+      newPlan[day] = {};
+      MEAL_TYPES.forEach((meal) => {
+        // Filter per meal <= daily / 3
+        let candidates = [...vietRecipes, ...nonViet].filter(
+          (r) => r.estimated_cost <= dailyBudget / 3
+        );
+        if (candidates.length === 0)
+          candidates = recipes.filter(
+            (r) => r.estimated_cost <= (dailyBudget / 3) * 1.2
+          );
+        const selected =
+          candidates[Math.floor(Math.random() * candidates.length)];
+        newPlan[day][meal] = selected;
+        totalCost += selected.estimated_cost;
+        selected.ingredients.forEach((ing) => allIngredients.add(ing.name));
+      });
     });
 
-    Alert.alert("Shopping List", listString);
+    // Leftover
+    const leftover = Array.from(allIngredients).filter(
+      (ing) =>
+        recipes.filter((r) => r.ingredients.some((i) => i.name === ing))
+          .length >
+        recipes.length * 0.5
+    );
+
+    setPlan(newPlan);
+    setTotalWeeklyCost(totalCost);
+    setLeftoverSuggestions(leftover);
+    setGeneratedPlan(newPlan);
+
+    Alert.alert(
+      "Thành công",
+      `Kế hoạch tuần sẵn sàng! Tổng chi phí: ${Math.round(
+        totalCost
+      )} VND (ngân sách: ${budgetNum} VND)`
+    );
   };
 
   // Render một ô bữa ăn (Sáng, Trưa, Tối)
   const renderMealSlot = (day, meal) => {
     const recipe = plan[day][meal];
-
     if (recipe) {
       // Đã có công thức
       return (
@@ -232,12 +319,10 @@ export default function MealPlannerPage() {
       );
     }
   };
-
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <Text style={styles.headerTitle}>Kế Hoạch Bữa Ăn</Text>
-
         {/* Nút chức năng */}
         <View style={styles.buttonContainer}>
           <TouchableOpacity
@@ -253,7 +338,6 @@ export default function MealPlannerPage() {
             <Text style={styles.buttonText}>Xuất Shopping List</Text>
           </TouchableOpacity>
         </View>
-
         {/* Danh sách các ngày */}
         {DAYS_OF_WEEK.map((day) => (
           <View key={day} style={styles.dayCard}>
@@ -261,6 +345,10 @@ export default function MealPlannerPage() {
               <Text style={styles.dayTitle}>{day}</Text>
               <Text style={styles.dayCalories}>
                 Tổng: {calculateDailyCalories(day)} kcal
+              </Text>
+              {/* Keep "Giá: VNĐ" right of calories */}
+              <Text style={styles.dayPrice}>
+                Giá: {calculateDailyPrice(day)} VNĐ
               </Text>
             </View>
             <View style={styles.mealsContainer}>
@@ -272,8 +360,15 @@ export default function MealPlannerPage() {
             </View>
           </View>
         ))}
+        {/* Leftover */}
+        {leftoverSuggestions.length > 0 && (
+          <View style={styles.leftoverContainer}>
+            <Text style={styles.leftoverTitle}>
+              Gợi Ý Tái Sử Dụng: {leftoverSuggestions.join(", ")}
+            </Text>
+          </View>
+        )}
       </ScrollView>
-
       {/* Modal chọn công thức */}
       <Modal
         animationType="slide"
@@ -383,6 +478,11 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#34C759",
   },
+  dayPrice: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#4CAF50", // Green for price
+  },
   mealsContainer: {
     padding: 10,
   },
@@ -481,5 +581,17 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#888",
     marginVertical: 20,
+  },
+  // Leftover style
+  leftoverContainer: {
+    backgroundColor: "#E8F5E9",
+    padding: 16,
+    margin: 16,
+    borderRadius: 8,
+  },
+  leftoverTitle: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#2E7D32",
   },
 });

@@ -9,7 +9,7 @@
     "web": "expo start --web",
     "server": "json-server --watch database.json --port 9999 --host 0.0.0.0",
     "dev": "concurrently \"npm run server\" \"npm run lt\"",
-    "lt": "lt --port 9999 --subdomain cookbook-app"
+    "lt": "lt --port 9999 --subdomain cookbook-app-tqt"
   },
   "dependencies": {
     "@google/genai": "^1.27.0",
