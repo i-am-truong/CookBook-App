@@ -774,7 +774,53 @@
     }
   ],
   "myRecipes": [],
-  "savedRecipes": [],
+  "savedRecipes": [
+    {
+      "id": "9",
+      "name": "Gỏi Cuốn",
+      "category": "Appetizer",
+      "description": "Gỏi cuốn tươi mát với tôm, thịt heo, bún và rau sống, cuốn trong bánh tráng.",
+      "calories": 200,
+      "cookingTime": "30 phút",
+      "servings": 4,
+      "image": "https://i.ytimg.com/vi/gVdNuAmGQK0/maxresdefault.jpg",
+      "estimated_cost": 12000,
+      "ingredients": [
+        {
+          "name": "Bánh tráng",
+          "amount": "10 cái",
+          "price": 10000
+        },
+        {
+          "name": "Tôm",
+          "amount": "200g, luộc chín",
+          "price": 20000
+        },
+        {
+          "name": "Thịt heo",
+          "amount": "150g, luộc chín",
+          "price": 30000
+        },
+        {
+          "name": "Bún tươi",
+          "amount": "200g",
+          "price": 8000
+        },
+        {
+          "name": "Rau sống",
+          "amount": "100g",
+          "price": 4000
+        }
+      ],
+      "instructions": [
+        "Luộc tôm và thịt heo, sau đó thái lát mỏng.",
+        "Ngâm bánh tráng trong nước ấm cho mềm.",
+        "Xếp tôm, thịt, bún và rau sống lên bánh tráng.",
+        "Cuộn chặt lại và cắt đôi.",
+        "Ăn kèm với nước mắm chua ngọt."
+      ]
+    }
+  ],
   "communityPosts": [
     {
       "id": "post-1",
