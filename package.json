@@ -20,6 +20,7 @@
     "@react-navigation/native-stack": "^7.2.1",
     "@react-navigation/stack": "^7.1.2",
     "@types/crypto-js": "^4.2.2",
+    "axios": "^1.13.1",
     "concurrently": "^9.2.1",
     "crypto-js": "^4.2.0",
     "expo": "54.0.13",
