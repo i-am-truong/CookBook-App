@@ -9,11 +9,14 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useShoppingList } from "../context/ShoppingListContext";
+
 import { API_URL } from "../services/api";
 
 const RecipeDetail = ({ route, navigation }) => {
   const { recipe } = route.params; // Get the recipe data from route params
   const [isSaved, setIsSaved] = useState(false);
+  const { addItem } = useShoppingList();
 
   const infoData = [
     { label: "Calories", value: `${recipe.calories} Cal`, icon: "flame" },
@@ -94,7 +97,7 @@ const RecipeDetail = ({ route, navigation }) => {
       Alert.alert(
         "Error",
         "Failed to save/unsave recipe. Please make sure JSON server is running on port 5001.\n\n" +
-          "Run: npm run server"
+        "Run: npm run server"
       );
     }
   };
@@ -183,8 +186,37 @@ const RecipeDetail = ({ route, navigation }) => {
                   </Text>
                 </View>
               ))}
+
+              <View style={{ marginTop: 10 }}>
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: "#4CAF50",
+                    paddingVertical: 12,
+                    borderRadius: 8,
+                    alignItems: "center",
+                  }}
+                  onPress={() => {
+                    recipe.ingredients.forEach((ingredient) => {
+                      addItem({ name: `${ingredient.name}: ${ingredient.amount}`,
+                        recipeTitle: recipe.name,
+                       });
+
+                    });
+                    Alert.alert(
+                      "✅ Đã thêm",
+                      "Nguyên liệu đã được thêm vào Shopping List!"
+                    );
+                  }}
+                >
+                  <Text style={{ color: "white", fontWeight: "bold", fontSize: 16 }}>
+                    + Add to Shopping List
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
           );
+
+
         }
 
         if (item.type === "steps") {

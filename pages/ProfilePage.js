@@ -78,6 +78,20 @@ const ProfilePage = () => {
           />
           <Text style={styles.menuText}>My Recipes</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => navigation.navigate("ShoppingList", { from: "Profile" })}
+        >
+          <Ionicons
+            name="cart-outline"
+            size={24}
+            color="black"
+            style={styles.icon}
+          />
+          <Text style={styles.menuText}>My Shopping List</Text>
+        </TouchableOpacity>
+
         <TouchableOpacity
           style={styles.menuItem}
           onPress={() => navigation.navigate("Explore")}

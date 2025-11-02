@@ -1,13 +1,25 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 import { Ionicons } from "@expo/vector-icons";
 
 import HomePage from "../pages/HomePage";
 import ProfilePage from "../pages/ProfilePage";
 import ExplorePage from "../pages/ExplorePage";
 import CookbookPage from "../pages/CookbookPage";
+import ShoppingList from "../pages/ShoppingList";
 
 const Tab = createBottomTabNavigator();
+const ProfileStack = createStackNavigator();
+
+function ProfileStackScreen() {
+  return (
+    <ProfileStack.Navigator screenOptions={{ headerShown: false }}>
+      <ProfileStack.Screen name="ProfileMain" component={ProfilePage} />
+      <ProfileStack.Screen name="ShoppingList" component={ShoppingList} />
+    </ProfileStack.Navigator>
+  );
+}
 
 export default function MainTabNavigator() {
   return (
@@ -28,13 +40,20 @@ export default function MainTabNavigator() {
         },
         tabBarActiveTintColor: "#5550F2",
         tabBarInactiveTintColor: "gray",
-        sceneStyle: { backgroundColor: "white", paddingTop: 50 },
       })}
     >
       <Tab.Screen name="Home" component={HomePage} />
       <Tab.Screen name="Explore" component={ExplorePage} />
       <Tab.Screen name="Cookbook" component={CookbookPage} />
-      <Tab.Screen name="Profile" component={ProfilePage} />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileStackScreen}
+        listeners={({ navigation }) => ({
+          tabPress: e => {
+            navigation.navigate('Profile', { screen: 'ProfileMain' });
+          },
+        })}
+      />
     </Tab.Navigator>
   );
 }
