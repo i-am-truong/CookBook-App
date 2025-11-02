@@ -1,1 +1,1 @@
-export const API_URL = "https://cookbook-project-mma.loca.lt";
+export const API_URL = "https://cookbook-app-tqt.loca.lt";

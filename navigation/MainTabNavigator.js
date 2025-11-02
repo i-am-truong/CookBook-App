@@ -7,12 +7,9 @@ import HomePage from "../pages/HomePage";
 import ProfilePage from "../pages/ProfilePage";
 import ExplorePage from "../pages/ExplorePage";
 import CookbookPage from "../pages/CookbookPage";
-<<<<<<< HEAD
 import ShoppingList from "../pages/ShoppingList";
-=======
 import MealPlannerPage from "../pages/MealPlannerPage";
 import AIRecipeGenerator from "../pages/AIRecipeGenerator";
->>>>>>> 1c008a3d273546b09cac02b16626cdc005f18b46
 
 const Tab = createBottomTabNavigator();
 const ProfileStack = createStackNavigator();
@@ -38,7 +35,7 @@ export default function MainTabNavigator() {
           if (route.name === "Profile")
             iconName = focused ? "person" : "person-outline";
           if (route.name === "Planner")
-            iconName = focused ? "calendar" : "calendar-outline"; 
+            iconName = focused ? "calendar" : "calendar-outline";
           if (route.name === "Explore")
             iconName = focused ? "compass" : "compass-outline";
           if (route.name === "AI Chef")
@@ -62,8 +59,8 @@ export default function MainTabNavigator() {
         name="Profile"
         component={ProfileStackScreen}
         listeners={({ navigation }) => ({
-          tabPress: e => {
-            navigation.navigate('Profile', { screen: 'ProfileMain' });
+          tabPress: (e) => {
+            navigation.navigate("Profile", { screen: "ProfileMain" });
           },
         })}
       />

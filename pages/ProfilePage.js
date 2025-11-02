@@ -126,10 +126,11 @@ const ProfilePage = () => {
           <Ionicons name="chevron-forward" size={20} color="#ccc" />
         </TouchableOpacity>
 
-<<<<<<< HEAD
         <TouchableOpacity
           style={styles.menuItem}
-          onPress={() => navigation.navigate("ShoppingList", { from: "Profile" })}
+          onPress={() =>
+            navigation.navigate("ShoppingList", { from: "Profile" })
+          }
         >
           <Ionicons
             name="cart-outline"
@@ -140,8 +141,6 @@ const ProfilePage = () => {
           <Text style={styles.menuText}>My Shopping List</Text>
         </TouchableOpacity>
 
-=======
->>>>>>> 1c008a3d273546b09cac02b16626cdc005f18b46
         <TouchableOpacity
           style={styles.menuItem}
           onPress={() => navigation.jumpTo("Explore")}

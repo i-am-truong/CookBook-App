@@ -8,8 +8,8 @@ import {
   Modal,
   Button,
   Alert,
-  SafeAreaView,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 // --- DỮ LIỆU GIẢ ĐÃ BỊ XÓA ---
 // Dữ liệu thật sẽ được tải từ API
@@ -49,11 +49,12 @@ export default function MealPlannerPage({ route, navigation }) {
   const [selectedSlot, setSelectedSlot] = useState({ day: "", meal: "" });
   const [recipes, setRecipes] = useState([]); // Danh sách công thức
   // Budget Buddy
-  const [generatedPlan, setGeneratedPlan] = useState(null);  // Generated weekly plan
-  const [totalWeeklyCost, setTotalWeeklyCost] = useState(0);  // Total cost
-  const [leftoverSuggestions, setLeftoverSuggestions] = useState([]);  // Leftover
+  const [generatedPlan, setGeneratedPlan] = useState(null); // Generated weekly plan
+  const [totalWeeklyCost, setTotalWeeklyCost] = useState(0); // Total cost
+  const [leftoverSuggestions, setLeftoverSuggestions] = useState([]); // Leftover
 
-  const { weeklyBudget: propWeeklyBudget, recipes: propRecipes } = route.params || {};  // Từ Home
+  const { weeklyBudget: propWeeklyBudget, recipes: propRecipes } =
+    route.params || {}; // Từ Home
 
   // *** THAY ĐỔI: Tải dữ liệu thật từ API ***
   useEffect(() => {
@@ -74,9 +75,12 @@ export default function MealPlannerPage({ route, navigation }) {
         }
         const data = await response.json();
         // Fallback estimated_cost
-        const processed = data.map(r => ({
+        const processed = data.map((r) => ({
           ...r,
-          estimated_cost: r.estimated_cost || (r.ingredients.reduce((sum, i) => sum + (i.price || 10000), 0) / r.servings)
+          estimated_cost:
+            r.estimated_cost ||
+            r.ingredients.reduce((sum, i) => sum + (i.price || 10000), 0) /
+              r.servings,
         }));
         setRecipes(processed); // Cập nhật state với dữ liệu thật
       } catch (error) {
@@ -204,7 +208,9 @@ export default function MealPlannerPage({ route, navigation }) {
     // Chuyển Map thành chuỗi
     let listString = "Nguyên liệu cần mua:\n\n";
     ingredientMap.forEach((amount, name) => {
-      listString += `• ${name.charAt(0).toUpperCase() + name.slice(1)}: ${amount}\n`;
+      listString += `• ${
+        name.charAt(0).toUpperCase() + name.slice(1)
+      }: ${amount}\n`;
     });
     Alert.alert("Shopping List", listString);
   };
@@ -218,19 +224,24 @@ export default function MealPlannerPage({ route, navigation }) {
         "Ngân sách quá thấp!",
         "Gợi ý tối thiểu 300000 VND/tuần để có kế hoạch hợp lý (~43k/ngày). Nhập lại?",
         [
-          { text: "Hủy", style: 'cancel' },
-          { text: "Nhập lại", onPress: () => {
-            navigation.navigate('Home');  // Navigate to Home
-            // Keep mode weekly (handled in Home toggle)
-          } },
+          { text: "Hủy", style: "cancel" },
+          {
+            text: "Nhập lại",
+            onPress: () => {
+              navigation.navigate("Home"); // Navigate to Home
+              // Keep mode weekly (handled in Home toggle)
+            },
+          },
         ]
       );
       return;
     }
 
-    const dailyBudget = budgetNum / 7;  // Chia đều 7 ngày
-    const vietRecipes = recipes.filter(r => r.category === 'Việt' || r.category.includes('Việt'));  // Ưu tiên 70% Việt rẻ
-    const nonViet = recipes.filter(r => !r.category.includes('Việt'));
+    const dailyBudget = budgetNum / 7; // Chia đều 7 ngày
+    const vietRecipes = recipes.filter(
+      (r) => r.category === "Việt" || r.category.includes("Việt")
+    ); // Ưu tiên 70% Việt rẻ
+    const nonViet = recipes.filter((r) => !r.category.includes("Việt"));
     const newPlan = {};
     let totalCost = 0;
     let allIngredients = new Set();
@@ -239,18 +250,27 @@ export default function MealPlannerPage({ route, navigation }) {
       newPlan[day] = {};
       MEAL_TYPES.forEach((meal) => {
         // Filter per meal <= daily / 3
-        let candidates = [...vietRecipes, ...nonViet].filter(r => r.estimated_cost <= dailyBudget / 3);
-        if (candidates.length === 0) candidates = recipes.filter(r => r.estimated_cost <= (dailyBudget / 3) * 1.2);
-        const selected = candidates[Math.floor(Math.random() * candidates.length)];
+        let candidates = [...vietRecipes, ...nonViet].filter(
+          (r) => r.estimated_cost <= dailyBudget / 3
+        );
+        if (candidates.length === 0)
+          candidates = recipes.filter(
+            (r) => r.estimated_cost <= (dailyBudget / 3) * 1.2
+          );
+        const selected =
+          candidates[Math.floor(Math.random() * candidates.length)];
         newPlan[day][meal] = selected;
         totalCost += selected.estimated_cost;
-        selected.ingredients.forEach(ing => allIngredients.add(ing.name));
+        selected.ingredients.forEach((ing) => allIngredients.add(ing.name));
       });
     });
 
     // Leftover
-    const leftover = Array.from(allIngredients).filter(ing =>
-      recipes.filter(r => r.ingredients.some(i => i.name === ing)).length > recipes.length * 0.5
+    const leftover = Array.from(allIngredients).filter(
+      (ing) =>
+        recipes.filter((r) => r.ingredients.some((i) => i.name === ing))
+          .length >
+        recipes.length * 0.5
     );
 
     setPlan(newPlan);
@@ -258,7 +278,12 @@ export default function MealPlannerPage({ route, navigation }) {
     setLeftoverSuggestions(leftover);
     setGeneratedPlan(newPlan);
 
-    Alert.alert("Thành công", `Kế hoạch tuần sẵn sàng! Tổng chi phí: ${Math.round(totalCost)} VND (ngân sách: ${budgetNum} VND)`);
+    Alert.alert(
+      "Thành công",
+      `Kế hoạch tuần sẵn sàng! Tổng chi phí: ${Math.round(
+        totalCost
+      )} VND (ngân sách: ${budgetNum} VND)`
+    );
   };
 
   // Render một ô bữa ăn (Sáng, Trưa, Tối)
@@ -338,7 +363,9 @@ export default function MealPlannerPage({ route, navigation }) {
         {/* Leftover */}
         {leftoverSuggestions.length > 0 && (
           <View style={styles.leftoverContainer}>
-            <Text style={styles.leftoverTitle}>Gợi Ý Tái Sử Dụng: {leftoverSuggestions.join(', ')}</Text>
+            <Text style={styles.leftoverTitle}>
+              Gợi Ý Tái Sử Dụng: {leftoverSuggestions.join(", ")}
+            </Text>
           </View>
         )}
       </ScrollView>
@@ -454,7 +481,7 @@ const styles = StyleSheet.create({
   dayPrice: {
     fontSize: 14,
     fontWeight: "600",
-    color: "#4CAF50",  // Green for price
+    color: "#4CAF50", // Green for price
   },
   mealsContainer: {
     padding: 10,
