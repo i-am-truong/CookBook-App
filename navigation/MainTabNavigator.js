@@ -1,15 +1,30 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 import { Ionicons } from "@expo/vector-icons";
 
 import HomePage from "../pages/HomePage";
 import ProfilePage from "../pages/ProfilePage";
 import ExplorePage from "../pages/ExplorePage";
 import CookbookPage from "../pages/CookbookPage";
+<<<<<<< HEAD
+import ShoppingList from "../pages/ShoppingList";
+=======
 import MealPlannerPage from "../pages/MealPlannerPage";
 import AIRecipeGenerator from "../pages/AIRecipeGenerator";
+>>>>>>> 1c008a3d273546b09cac02b16626cdc005f18b46
 
 const Tab = createBottomTabNavigator();
+const ProfileStack = createStackNavigator();
+
+function ProfileStackScreen() {
+  return (
+    <ProfileStack.Navigator screenOptions={{ headerShown: false }}>
+      <ProfileStack.Screen name="ProfileMain" component={ProfilePage} />
+      <ProfileStack.Screen name="ShoppingList" component={ShoppingList} />
+    </ProfileStack.Navigator>
+  );
+}
 
 export default function MainTabNavigator() {
   return (
@@ -36,7 +51,6 @@ export default function MainTabNavigator() {
         },
         tabBarActiveTintColor: "#FF6B6B",
         tabBarInactiveTintColor: "gray",
-        sceneStyle: { backgroundColor: "white", paddingTop: 50 },
       })}
     >
       <Tab.Screen name="Home" component={HomePage} />
@@ -44,7 +58,15 @@ export default function MainTabNavigator() {
       <Tab.Screen name="Planner" component={MealPlannerPage} />
       <Tab.Screen name="AI Chef" component={AIRecipeGenerator} />
       <Tab.Screen name="Cookbook" component={CookbookPage} />
-      <Tab.Screen name="Profile" component={ProfilePage} />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileStackScreen}
+        listeners={({ navigation }) => ({
+          tabPress: e => {
+            navigation.navigate('Profile', { screen: 'ProfileMain' });
+          },
+        })}
+      />
     </Tab.Navigator>
   );
 }

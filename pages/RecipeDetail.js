@@ -12,17 +12,26 @@ import {
   StatusBar,
   ActivityIndicator,
 } from "react-native";
+<<<<<<< HEAD
+import { useShoppingList } from "../context/ShoppingListContext";
+
+=======
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFocusEffect } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+>>>>>>> 1c008a3d273546b09cac02b16626cdc005f18b46
 import { API_URL } from "../services/api";
 
 const RecipeDetail = ({ route, navigation }) => {
   const { recipe: initialRecipe, source } = route.params; // Get the recipe data and source from route params
   const [recipe, setRecipe] = useState(initialRecipe); // Store recipe in state for reloading
   const [isSaved, setIsSaved] = useState(false);
+<<<<<<< HEAD
+  const { addItem } = useShoppingList();
+=======
   const [isMyRecipe, setIsMyRecipe] = useState(false);
   const [loading, setLoading] = useState(false);
+>>>>>>> 1c008a3d273546b09cac02b16626cdc005f18b46
 
   const infoData = [
     { label: "Calories", value: `${recipe.calories} Cal`, icon: "flame" },
@@ -166,8 +175,13 @@ const RecipeDetail = ({ route, navigation }) => {
       console.error("Error toggling save:", error);
       Alert.alert(
         "Error",
+<<<<<<< HEAD
+        "Failed to save/unsave recipe. Please make sure JSON server is running on port 5001.\n\n" +
+        "Run: npm run server"
+=======
         "Failed to save/unsave recipe. Please make sure JSON server is running.\n\n" +
           "Run: npm run dev"
+>>>>>>> 1c008a3d273546b09cac02b16626cdc005f18b46
       );
     }
   };
@@ -549,9 +563,45 @@ const RecipeDetail = ({ route, navigation }) => {
                     </Text>
                   </View>
                 </View>
+<<<<<<< HEAD
+              ))}
+
+              <View style={{ marginTop: 10 }}>
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: "#4CAF50",
+                    paddingVertical: 12,
+                    borderRadius: 8,
+                    alignItems: "center",
+                  }}
+                  onPress={() => {
+                    recipe.ingredients.forEach((ingredient) => {
+                      addItem({ name: `${ingredient.name}: ${ingredient.amount}`,
+                        recipeTitle: recipe.name,
+                       });
+
+                    });
+                    Alert.alert(
+                      "✅ Đã thêm",
+                      "Nguyên liệu đã được thêm vào Shopping List!"
+                    );
+                  }}
+                >
+                  <Text style={{ color: "white", fontWeight: "bold", fontSize: 16 }}>
+                    + Add to Shopping List
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          );
+
+
+        }
+=======
               </View>
             );
           }
+>>>>>>> 1c008a3d273546b09cac02b16626cdc005f18b46
 
           // Call to Action section at the bottom
           if (item.type === "cta") {

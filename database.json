@@ -773,6 +773,194 @@
       ]
     }
   ],
+<<<<<<< HEAD
+  "myRecipes": [],
+  "savedRecipes": [
+    {
+      "id": "4",
+      "name": "Pad Thai",
+      "category": "Fastfood",
+      "description": "Món mì xào nổi tiếng của Thái với tôm, đậu hũ, đậu phộng và sốt chua ngọt.",
+      "calories": 400,
+      "cookingTime": "25 phút",
+      "servings": 3,
+      "image": "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/one_pan_pad_thai_with_07570_16x9.jpg",
+      "ingredients": [
+        {
+          "name": "Mì gạo",
+          "amount": "200g"
+        },
+        {
+          "name": "Tôm",
+          "amount": "150g, bóc vỏ"
+        },
+        {
+          "name": "Đậu hũ",
+          "amount": "100g, cắt khối"
+        },
+        {
+          "name": "Đậu phộng",
+          "amount": "2 muỗng canh, giã nhỏ"
+        },
+        {
+          "name": "Trứng",
+          "amount": "1 quả, đánh tan"
+        }
+      ],
+      "instructions": [
+        "Ngâm mì gạo trong nước ấm cho mềm, sau đó để ráo.",
+        "Xào tôm và đậu hũ đến khi vàng giòn.",
+        "Đẩy chúng sang một bên chảo, cho trứng vào đảo đều.",
+        "Thêm mì và nước sốt Pad Thai, trộn đều.",
+        "Trang trí với đậu phộng giã nhỏ, ăn nóng."
+      ]
+    },
+    {
+      "id": "16",
+      "name": "Paneer Curry",
+      "category": "Dinner",
+      "description": "Paneer nấu với nước sốt cay đặc trưng của Ấn Độ.",
+      "calories": 400,
+      "cookingTime": "40 phút",
+      "servings": 4,
+      "image": "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/butter_paneer_curry_98394_16x9.jpg",
+      "ingredients": [
+        {
+          "name": "Paneer",
+          "amount": "250g"
+        },
+        {
+          "name": "Cà chua",
+          "amount": "2 quả"
+        },
+        {
+          "name": "Hành tây",
+          "amount": "1 củ"
+        },
+        {
+          "name": "Gia vị",
+          "amount": "tuỳ chỉnh"
+        }
+      ],
+      "instructions": [
+        "Xào hành và cà chua.",
+        "Thêm paneer và gia vị, nấu thêm 15 phút."
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Phở Bò",
+      "category": "Breakfast",
+      "description": "Món phở truyền thống của Việt Nam với nước dùng thơm ngon, thịt bò mềm và bánh phở mềm.",
+      "calories": 450,
+      "cookingTime": "2 giờ",
+      "servings": 4,
+      "image": "https://fohlafood.vn/cdn/shop/articles/bi-quyet-nau-phi-bo-ngon-tuyet-dinh.jpg?v=1712213789",
+      "ingredients": [
+        {
+          "name": "Bánh phở",
+          "amount": "500g"
+        },
+        {
+          "name": "Thịt bò",
+          "amount": "300g, thái lát mỏng"
+        },
+        {
+          "name": "Xương bò",
+          "amount": "1kg"
+        },
+        {
+          "name": "Hành tây",
+          "amount": "1 củ"
+        },
+        {
+          "name": "Gừng",
+          "amount": "1 củ nhỏ"
+        }
+      ],
+      "instructions": [
+        "Hầm xương bò với hành tây và gừng trong 2 giờ để làm nước dùng.",
+        "Luộc bánh phở trong nước sôi, sau đó để ráo.",
+        "Xếp thịt bò lên bánh phở, chan nước dùng nóng lên.",
+        "Trang trí với hành lá, ngò gai và ăn kèm với chanh, ớt."
+      ]
+    },
+    {
+      "id": "14",
+      "name": "Xôi Gà",
+      "category": "Breakfast",
+      "description": "Xôi gà thơm ngon với gà luộc, hành phi và nước mắm, thường ăn kèm với dưa leo.",
+      "calories": 400,
+      "cookingTime": "1 giờ",
+      "servings": 4,
+      "image": "https://cdn.tgdd.vn/Files/2021/09/11/1381810/cach-nau-xoi-ga-xe-nuoc-cot-dua-thom-beo-sieu-nhanh-tai-nha-202109110925505443.jpg",
+      "ingredients": [
+        {
+          "name": "Gạo nếp",
+          "amount": "500g"
+        },
+        {
+          "name": "Gà ta",
+          "amount": "1 con (khoảng 1kg)"
+        },
+        {
+          "name": "Hành phi",
+          "amount": "2 muỗng canh"
+        },
+        {
+          "name": "Nước mắm",
+          "amount": "3 muỗng canh"
+        },
+        {
+          "name": "Dưa leo",
+          "amount": "1 quả, thái lát"
+        }
+      ],
+      "instructions": [
+        "Nấu gạo nếp thành xôi.",
+        "Luộc gà, xé thịt và trộn với hành phi.",
+        "Xếp xôi ra đĩa, thêm thịt gà lên trên.",
+        "Ăn kèm với dưa leo và nước mắm."
+      ]
+    },
+    {
+      "id": "9",
+      "name": "Gỏi Cuốn",
+      "category": "Appetizer",
+      "description": "Gỏi cuốn tươi mát với tôm, thịt heo, bún và rau sống, cuốn trong bánh tráng.",
+      "calories": 200,
+      "cookingTime": "30 phút",
+      "servings": 4,
+      "image": "https://khaihoanphuquoc.com.vn/wp-content/uploads/2023/11/nu%CC%9Bo%CC%9B%CC%81c-ma%CC%86%CC%81m-cha%CC%82%CC%81m-go%CC%89i-cuo%CC%82%CC%81n.png",
+      "ingredients": [
+        {
+          "name": "Bánh tráng",
+          "amount": "10 cái"
+        },
+        {
+          "name": "Tôm",
+          "amount": "200g, luộc chín"
+        },
+        {
+          "name": "Thịt heo",
+          "amount": "150g, luộc chín"
+        },
+        {
+          "name": "Bún tươi",
+          "amount": "200g"
+        },
+        {
+          "name": "Rau sống",
+          "amount": "100g"
+        }
+      ],
+      "instructions": [
+        "Luộc tôm và thịt heo, sau đó thái lát mỏng.",
+        "Ngâm bánh tráng trong nước ấm cho mềm.",
+        "Xếp tôm, thịt, bún và rau sống lên bánh tráng.",
+        "Cuộn chặt lại và cắt đôi.",
+        "Ăn kèm với nước mắm chua ngọt."
+=======
   "myRecipes": [
     {
       "id": "1761991180076",
@@ -1118,6 +1306,7 @@
         "Cho rau chân vịt đã xay vào xào 5 phút.",
         "Thêm paneer vào trộn đều, nấu thêm 5 phút.",
         "Dùng nóng với roti hoặc paratha."
+>>>>>>> 1c008a3d273546b09cac02b16626cdc005f18b46
       ]
     }
   ]
