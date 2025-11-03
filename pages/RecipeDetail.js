@@ -510,6 +510,38 @@ const RecipeDetail = ({ route, navigation }) => {
                     </Text>
                   </View>
                 ))}
+                <View style={{ marginTop: 10 }}>
+                  <TouchableOpacity
+                    style={{
+                      backgroundColor: "#4CAF50",
+                      paddingVertical: 12,
+                      borderRadius: 8,
+                      alignItems: "center",
+                    }}
+                    onPress={() => {
+                      recipe.ingredients.forEach((ingredient) => {
+                        addItem({
+                          name: `${ingredient.name}: ${ingredient.amount}`,
+                          recipeTitle: recipe.name,
+                        });
+                      });
+                      Alert.alert(
+                        "✅ Đã thêm",
+                        "Nguyên liệu đã được thêm vào Shopping List!"
+                      );
+                    }}
+                  >
+                    <Text
+                      style={{
+                        color: "white",
+                        fontWeight: "bold",
+                        fontSize: 16,
+                      }}
+                    >
+                      + Add to Shopping List
+                    </Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             );
           }
@@ -570,38 +602,7 @@ const RecipeDetail = ({ route, navigation }) => {
                   </View>
                 </View>
 
-                <View style={{ marginTop: 10 }}>
-                  <TouchableOpacity
-                    style={{
-                      backgroundColor: "#4CAF50",
-                      paddingVertical: 12,
-                      borderRadius: 8,
-                      alignItems: "center",
-                    }}
-                    onPress={() => {
-                      recipe.ingredients.forEach((ingredient) => {
-                        addItem({
-                          name: `${ingredient.name}: ${ingredient.amount}`,
-                          recipeTitle: recipe.name,
-                        });
-                      });
-                      Alert.alert(
-                        "✅ Đã thêm",
-                        "Nguyên liệu đã được thêm vào Shopping List!"
-                      );
-                    }}
-                  >
-                    <Text
-                      style={{
-                        color: "white",
-                        fontWeight: "bold",
-                        fontSize: 16,
-                      }}
-                    >
-                      + Add to Shopping List
-                    </Text>
-                  </TouchableOpacity>
-                </View>
+                
               </View>
             );
           }

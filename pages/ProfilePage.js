@@ -135,10 +135,11 @@ const ProfilePage = () => {
           <Ionicons
             name="cart-outline"
             size={24}
-            color="black"
+            color="#4CAF50"
             style={styles.icon}
           />
-          <Text style={styles.menuText}>My Shopping List</Text>
+          <Text style={styles.menuText}>    Danh sách mua sắm</Text>
+          <Ionicons name="chevron-forward" size={20} color="#ccc" />
         </TouchableOpacity>
 
         <TouchableOpacity

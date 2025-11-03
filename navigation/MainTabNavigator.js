@@ -120,9 +120,11 @@ export default function MainTabNavigator() {
         component={ProfileStackScreen}
         listeners={({ navigation }) => ({
           tabPress: (e) => {
-            // Đảm bảo ProfileStack về màn hình chính
-            e.preventDefault(); 
-            navigation.navigate("Profile", { screen: "ProfileMain" });
+            e.preventDefault();
+            navigation.navigate("Profile", {
+              screen: "ProfileMain",
+              merge: true,
+            });
           },
         })}
       />

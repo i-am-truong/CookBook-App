@@ -308,7 +308,13 @@ export default function HomePage() {
       >
         {/* Header (keep show) */}
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("Profile", {
+                screen: "ProfileMain", // ép về đúng màn hình gốc của Profile stack
+              })
+            }
+          >
             <Ionicons name="person-circle-outline" size={40} color="green" />
           </TouchableOpacity>
           <Text style={styles.greeting}>Hello, {nameUser}</Text>
