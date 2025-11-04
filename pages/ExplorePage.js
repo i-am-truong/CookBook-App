@@ -10,27 +10,23 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { API_URL } from "../services/api";
+import { fetchRecipes as fetchRecipesAPI } from "../services/api";
 
 const ExplorePage = () => {
   const navigation = useNavigation();
   const [recipes, setRecipes] = React.useState([]);
 
   React.useEffect(() => {
-    const fetchRecipes = async () => {
+    const loadRecipes = async () => {
       try {
-        const response = await fetch(`${API_URL}/recipes`);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
+        const data = await fetchRecipesAPI();
         setRecipes(data);
       } catch (error) {
         console.error("Error fetching recipes:", error);
       }
     };
 
-    fetchRecipes();
+    loadRecipes();
   }, []);
 
   const renderItem = ({ item }) => (

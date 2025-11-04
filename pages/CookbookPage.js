@@ -16,7 +16,7 @@ import { useState, useEffect } from "react";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { useCallback } from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { API_URL } from "../services/api";
+import { fetchMyRecipes, fetchSavedRecipes, deleteMyRecipe, deleteRecipeAPI, unsaveRecipeAPI } from "../services/api";
 
 const numColumns = 2;
 const screenWidth = Dimensions.get("window").width;
@@ -41,18 +41,11 @@ const CookbookPage = () => {
 
   const loadData = async () => {
     try {
-      // Load từ API để có dữ liệu mới nhất
-      const [myRecipesResponse, savedRecipesResponse] = await Promise.all([
-        fetch(`${API_URL}/myRecipes`),
-        fetch(`${API_URL}/savedRecipes`),
+      // Load từ local database hoặc API dự phòng
+      const [myRecipesData, savedRecipesData] = await Promise.all([
+        fetchMyRecipes(),
+        fetchSavedRecipes(),
       ]);
-
-      if (!myRecipesResponse.ok || !savedRecipesResponse.ok) {
-        throw new Error("Failed to fetch recipes from API");
-      }
-
-      const myRecipesData = await myRecipesResponse.json();
-      const savedRecipesData = await savedRecipesResponse.json();
 
       setMyRecipes(myRecipesData);
       setSavedRecipes(savedRecipesData);
@@ -75,62 +68,36 @@ const CookbookPage = () => {
         onPress: async () => {
           try {
             // Delete from myRecipes
-            const response = await fetch(`${API_URL}/myRecipes/${recipe.id}`, {
-              method: "DELETE",
-            });
-            if (!response.ok) {
-              throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
+            await deleteMyRecipe(recipe.id);
             console.log("Recipe deleted from myRecipes");
 
             // Also delete from recipes collection if it exists there (for AI-generated recipes)
+            // Note: This is optional - recipe may not exist in recipes collection
             try {
-              const recipesResponse = await fetch(`${API_URL}/recipes`);
-              if (recipesResponse.ok) {
-                const recipesData = await recipesResponse.json();
-                const existsInRecipes = recipesData.some(
-                  (r) => r.id === recipe.id
-                );
-
-                if (existsInRecipes) {
-                  await fetch(`${API_URL}/recipes/${recipe.id}`, {
-                    method: "DELETE",
-                  });
-                  console.log("Recipe also deleted from recipes collection");
-                }
+              const result = await deleteRecipeAPI(recipe.id);
+              if (result.success) {
+                console.log("Recipe also deleted from recipes collection");
               }
             } catch (error) {
-              console.error("Error deleting from recipes collection:", error);
-              // Continue even if this fails
+              // Silently continue - recipe may not exist in recipes collection
+              console.log("Recipe not found in recipes collection (this is normal)");
             }
 
             // Also delete from savedRecipes collection if it exists there
+            // Note: This is optional - recipe may not exist in savedRecipes collection
             try {
-              const savedResponse = await fetch(`${API_URL}/savedRecipes`);
-              if (savedResponse.ok) {
-                const savedData = await savedResponse.json();
-                const existsInSaved = savedData.some((r) => r.id === recipe.id);
-
-                if (existsInSaved) {
-                  await fetch(`${API_URL}/savedRecipes/${recipe.id}`, {
-                    method: "DELETE",
-                  });
-                  console.log(
-                    "Recipe also deleted from savedRecipes collection"
-                  );
-                }
+              const result = await unsaveRecipeAPI(recipe.id);
+              if (result.success) {
+                console.log("Recipe also deleted from savedRecipes collection");
               }
             } catch (error) {
-              console.error(
-                "Error deleting from savedRecipes collection:",
-                error
-              );
-              // Continue even if this fails
+              // Silently continue - recipe may not exist in savedRecipes collection
+              console.log("Recipe not found in savedRecipes collection (this is normal)");
             }
 
+            // Reload data immediately before showing alert
+            await loadData();
             Alert.alert("Thành công", "Công thức đã được xóa!");
-            loadData(); // Reload data
           } catch (error) {
             console.error("Error deleting recipe:", error);
             Alert.alert("Lỗi", "Không thể xóa công thức!");

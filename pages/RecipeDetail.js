@@ -17,7 +17,17 @@ import { useShoppingList } from "../context/ShoppingListContext";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFocusEffect } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { API_URL } from "../services/api";
+import { 
+  fetchMyRecipes, 
+  fetchRecipes, 
+  fetchSavedRecipes, 
+  saveRecipeAPI, 
+  unsaveRecipeAPI,
+  updateMyRecipe,
+  createRecipe,
+  deleteMyRecipe,
+  deleteRecipeAPI
+} from "../services/api";
 
 const RecipeDetail = ({ route, navigation }) => {
   const { recipe: initialRecipe, source } = route.params; // Get the recipe data and source from route params
@@ -39,37 +49,28 @@ const RecipeDetail = ({ route, navigation }) => {
     try {
       setLoading(true);
       // Try to fetch from myRecipes first
-      const myRecipesResponse = await fetch(`${API_URL}/myRecipes`);
-      if (myRecipesResponse.ok) {
-        const myRecipes = await myRecipesResponse.json();
-        const myRecipe = myRecipes.find((item) => item.id === recipe.id);
-        if (myRecipe) {
-          setRecipe(myRecipe);
-          setLoading(false);
-          return;
-        }
+      const myRecipes = await fetchMyRecipes();
+      const myRecipe = myRecipes.find((item) => item.id === recipe.id);
+      if (myRecipe) {
+        setRecipe(myRecipe);
+        setLoading(false);
+        return;
       }
 
       // If not found in myRecipes, try recipes
-      const recipesResponse = await fetch(`${API_URL}/recipes`);
-      if (recipesResponse.ok) {
-        const recipes = await recipesResponse.json();
-        const foundRecipe = recipes.find((item) => item.id === recipe.id);
-        if (foundRecipe) {
-          setRecipe(foundRecipe);
-          setLoading(false);
-          return;
-        }
+      const recipes = await fetchRecipes();
+      const foundRecipe = recipes.find((item) => item.id === recipe.id);
+      if (foundRecipe) {
+        setRecipe(foundRecipe);
+        setLoading(false);
+        return;
       }
 
       // If not found in recipes, try savedRecipes
-      const savedRecipesResponse = await fetch(`${API_URL}/savedRecipes`);
-      if (savedRecipesResponse.ok) {
-        const savedRecipes = await savedRecipesResponse.json();
-        const savedRecipe = savedRecipes.find((item) => item.id === recipe.id);
-        if (savedRecipe) {
-          setRecipe(savedRecipe);
-        }
+      const savedRecipes = await fetchSavedRecipes();
+      const savedRecipe = savedRecipes.find((item) => item.id === recipe.id);
+      if (savedRecipe) {
+        setRecipe(savedRecipe);
       }
     } catch (error) {
       console.error("Error loading recipe data:", error);
@@ -89,11 +90,7 @@ const RecipeDetail = ({ route, navigation }) => {
 
   const checkIfMyRecipe = async () => {
     try {
-      const response = await fetch(`${API_URL}/myRecipes`);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const myRecipes = await response.json();
+      const myRecipes = await fetchMyRecipes();
       const exists = myRecipes.some((item) => item.id === recipe.id);
       setIsMyRecipe(exists);
     } catch (error) {
@@ -104,11 +101,7 @@ const RecipeDetail = ({ route, navigation }) => {
 
   const checkIfSaved = async () => {
     try {
-      const response = await fetch(`${API_URL}/savedRecipes`);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const savedRecipes = await response.json();
+      const savedRecipes = await fetchSavedRecipes();
       const exists = savedRecipes.some((item) => item.id === recipe.id);
       setIsSaved(exists);
     } catch (error) {
@@ -128,57 +121,34 @@ const RecipeDetail = ({ route, navigation }) => {
 
       if (isSaved) {
         // Unsave: Xóa recipe khỏi savedRecipes
-        // Tìm recipe trong savedRecipes để lấy database ID (có thể khác với recipe.id)
-        const response = await fetch(`${API_URL}/savedRecipes`);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const savedRecipes = await response.json();
-        const savedRecipe = savedRecipes.find((item) => item.id === recipe.id);
-
-        if (savedRecipe) {
-          // Xóa recipe bằng database ID của nó
-          const deleteResponse = await fetch(
-            `${API_URL}/savedRecipes/${savedRecipe.id}`,
-            {
-              method: "DELETE",
-            }
-          );
-
-          if (!deleteResponse.ok) {
-            throw new Error(`HTTP error! status: ${deleteResponse.status}`);
-          }
-
+        const result = await unsaveRecipeAPI(recipe.id);
+        if (result.success) {
           console.log("Recipe removed from saved!");
           setIsSaved(false);
-          Alert.alert("Removed", "Recipe has been removed from saved recipes!");
+          Alert.alert("Removed", "Recipe has been removed from saved recipes!", [
+            {
+              text: "OK",
+              onPress: () => {
+                // Navigate back to trigger reload in CookbookPage
+                navigation.goBack();
+              }
+            }
+          ]);
         }
       } else {
         // Save: Thêm recipe vào savedRecipes
-        const response = await fetch(`${API_URL}/savedRecipes`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(recipe),
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+        const result = await saveRecipeAPI(recipe);
+        if (result.success) {
+          console.log("Recipe saved!", result);
+          setIsSaved(true);
+          Alert.alert("Success", "Recipe has been saved to your saved recipes!");
         }
-
-        const data = await response.json();
-        console.log("Recipe saved!", data);
-        setIsSaved(true);
-        Alert.alert("Success", "Recipe has been saved to your saved recipes!");
       }
     } catch (error) {
       console.error("Error toggling save:", error);
       Alert.alert(
         "Error",
-        "Failed to save/unsave recipe. Please make sure JSON server is running on port 5001.\n\n" +
-          "Run: npm run server"
+        "Failed to save/unsave recipe. Please try again."
       );
     } finally {
       // Add a small delay before allowing another click
@@ -220,29 +190,10 @@ const RecipeDetail = ({ route, navigation }) => {
               };
 
               // Update in myRecipes
-              const updateMyRecipes = await fetch(
-                `${API_URL}/myRecipes/${recipe.id}`,
-                {
-                  method: "PUT",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify(updatedRecipe),
-                }
-              );
-
-              if (!updateMyRecipes.ok) {
-                throw new Error("Failed to update myRecipes");
-              }
+              await updateMyRecipe(recipe.id, updatedRecipe);
 
               // Add to recipes collection (public)
-              const addToRecipes = await fetch(`${API_URL}/recipes`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(updatedRecipe),
-              });
-
-              if (!addToRecipes.ok) {
-                throw new Error("Failed to add to recipes");
-              }
+              await createRecipe(updatedRecipe);
 
               // Update local state
               setRecipe(updatedRecipe);
@@ -280,72 +231,39 @@ const RecipeDetail = ({ route, navigation }) => {
           onPress: async () => {
             try {
               // Delete from myRecipes
-              const response = await fetch(
-                `${API_URL}/myRecipes/${recipe.id}`,
-                {
-                  method: "DELETE",
-                }
-              );
-
-              if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-              }
-
+              await deleteMyRecipe(recipe.id);
               console.log("Recipe deleted from myRecipes");
 
               // Also delete from recipes collection if it exists there (for AI-generated recipes)
+              // Note: This is optional - recipe may not exist in recipes collection
               try {
-                const recipesResponse = await fetch(`${API_URL}/recipes`);
-                if (recipesResponse.ok) {
-                  const recipesData = await recipesResponse.json();
-                  const existsInRecipes = recipesData.some(
-                    (r) => r.id === recipe.id
-                  );
-
-                  if (existsInRecipes) {
-                    await fetch(`${API_URL}/recipes/${recipe.id}`, {
-                      method: "DELETE",
-                    });
-                    console.log("Recipe also deleted from recipes collection");
-                  }
+                const result = await deleteRecipeAPI(recipe.id);
+                if (result.success) {
+                  console.log("Recipe also deleted from recipes collection");
                 }
               } catch (error) {
-                console.error("Error deleting from recipes collection:", error);
-                // Continue even if this fails
+                // Silently continue - recipe may not exist in recipes collection
+                console.log("Recipe not found in recipes collection (this is normal)");
               }
 
               // Also delete from savedRecipes collection if it exists there
+              // Note: This is optional - recipe may not exist in savedRecipes collection
               try {
-                const savedResponse = await fetch(`${API_URL}/savedRecipes`);
-                if (savedResponse.ok) {
-                  const savedData = await savedResponse.json();
-                  const existsInSaved = savedData.some(
-                    (r) => r.id === recipe.id
-                  );
-
-                  if (existsInSaved) {
-                    await fetch(`${API_URL}/savedRecipes/${recipe.id}`, {
-                      method: "DELETE",
-                    });
-                    console.log(
-                      "Recipe also deleted from savedRecipes collection"
-                    );
-                  }
+                const result = await unsaveRecipeAPI(recipe.id);
+                if (result.success) {
+                  console.log("Recipe also deleted from savedRecipes collection");
                 }
               } catch (error) {
-                console.error(
-                  "Error deleting from savedRecipes collection:",
-                  error
-                );
-                // Continue even if this fails
+                // Silently continue - recipe may not exist in savedRecipes collection
+                console.log("Recipe not found in savedRecipes collection (this is normal)");
               }
 
-              Alert.alert("Thành công", "Công thức đã được xóa!", [
-                {
-                  text: "OK",
-                  onPress: () => navigation.goBack(),
-                },
-              ]);
+              // Navigate back first to trigger reload in CookbookPage
+              navigation.goBack();
+              // Show alert after a short delay to ensure navigation completes
+              setTimeout(() => {
+                Alert.alert("Thành công", "Công thức đã được xóa!");
+              }, 100);
             } catch (error) {
               console.error("Error deleting recipe:", error);
               Alert.alert("Lỗi", "Không thể xóa công thức. Vui lòng thử lại.");

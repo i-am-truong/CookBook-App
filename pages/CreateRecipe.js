@@ -15,7 +15,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import ImagePickerComponent from "./ImagePickerComponent";
-import { API_URL } from "../services/api";
+import { createMyRecipe } from "../services/api";
 
 const CreateRecipeScreen = ({ navigation }) => {
   const [name, setName] = useState("");
@@ -123,19 +123,7 @@ const CreateRecipeScreen = ({ navigation }) => {
     };
 
     try {
-      const response = await fetch(`${API_URL}/myRecipes`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newRecipe),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
+      const data = await createMyRecipe(newRecipe);
       console.log("Recipe created:", data);
 
       Alert.alert("Success! 🎉", "Your recipe has been created successfully!", [

@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { API_URL } from "../services/api";
+import { fetchRecipesByCategory } from "../services/api";
 
 const RecipeByCategory = ({ route, navigation }) => {
   const { category } = route.params;
@@ -17,24 +17,18 @@ const RecipeByCategory = ({ route, navigation }) => {
   const [filteredRecipes, setFilteredRecipes] = React.useState([]);
 
   React.useEffect(() => {
-    const fetchRecipes = async () => {
+    const loadRecipes = async () => {
       try {
-        const response = await fetch(`${API_URL}/recipes`);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
+        const data = await fetchRecipesByCategory(category);
         setRecipes(data);
-        setFilteredRecipes(
-          data.filter((recipe) => recipe.category === category)
-        );
+        setFilteredRecipes(data);
       } catch (error) {
         console.error("Error fetching recipes:", error);
         setFilteredRecipes([]);
       }
     };
 
-    fetchRecipes();
+    loadRecipes();
   }, [category]);
 
   const renderItem = ({ item }) => (

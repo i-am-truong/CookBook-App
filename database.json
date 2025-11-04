@@ -773,7 +773,93 @@
       ]
     }
   ],
-  "myRecipes": [],
+  "myRecipes": [
+    {
+      "id": "1762131551855",
+      "name": "Cơm Chiên Thập Cẩm 4 Loại Protein",
+      "category": "Dinner",
+      "description": "Một món cơm chiên đầy màu sắc và hương vị, kết hợp bốn loại protein phong phú (tôm, thịt gà/heo, cá, trứng) cùng rau củ tươi ngon. Đây là lựa chọn hoàn hảo cho bữa tối nhanh gọn, bổ dưỡng và cực kỳ thỏa mãn cho cả gia đình.",
+      "calories": 450,
+      "cookingTime": "30 phút",
+      "servings": 4,
+      "ingredients": [
+        {
+          "name": "Cơm nguội (đã nấu chín từ hôm trước)",
+          "amount": "4 chén (khoảng 600g)"
+        },
+        {
+          "name": "Tôm tươi",
+          "amount": "200g, bóc vỏ, bỏ chỉ đen"
+        },
+        {
+          "name": "Thịt ức gà hoặc thịt thăn heo",
+          "amount": "200g, thái hạt lựu hoặc lát mỏng"
+        },
+        {
+          "name": "Cá philê (cá tuyết, cá rô phi hoặc cá hồi)",
+          "amount": "150g, thái hạt lựu hoặc miếng nhỏ"
+        },
+        {
+          "name": "Trứng gà",
+          "amount": "3 quả"
+        },
+        {
+          "name": "Hỗn hợp rau củ đông lạnh (đậu Hà Lan, cà rốt thái hạt lựu, bắp)",
+          "amount": "150g"
+        },
+        {
+          "name": "Tỏi",
+          "amount": "2 tép, băm nhỏ"
+        },
+        {
+          "name": "Hành lá",
+          "amount": "2 nhánh, thái nhỏ"
+        },
+        {
+          "name": "Dầu ăn",
+          "amount": "2 muỗng canh"
+        },
+        {
+          "name": "Nước tương",
+          "amount": "3 muỗng canh"
+        },
+        {
+          "name": "Dầu hào (tùy chọn)",
+          "amount": "1 muỗng canh"
+        },
+        {
+          "name": "Dầu mè",
+          "amount": "1 muỗng cà phê"
+        },
+        {
+          "name": "Muối, tiêu",
+          "amount": "Vừa đủ"
+        }
+      ],
+      "instructions": [
+        "1. Chuẩn bị nguyên liệu: Đánh tan trứng với một chút muối và tiêu. Chiên trứng thành một lớp mỏng hoặc làm trứng cuộn rồi thái hạt lựu. Đặt sang một bên. Ướp tôm, thịt gà/heo và cá riêng với một chút muối và tiêu.",
+        "2. Chiên cá: Làm nóng 1 muỗng cà phê dầu ăn trong chảo lớn hoặc chảo wok ở lửa vừa. Cho cá vào chiên nhanh mỗi mặt khoảng 2-3 phút cho đến khi chín. Dùng đũa hoặc nĩa dầm nát cá thành từng miếng nhỏ. Đặt sang một bên.",
+        "3. Xào tôm và thịt: Thêm 1 muỗng canh dầu ăn vào chảo. Cho tôm vào xào nhanh 1-2 phút cho đến khi tôm chuyển màu hồng. Vớt ra, đặt sang một bên. Tiếp tục cho thịt gà/heo vào xào cho đến khi chín vàng đều, khoảng 3-4 phút. Vớt ra, đặt sang một bên.",
+        "4. Xào rau củ và cơm: Thêm 1 muỗng cà phê dầu ăn còn lại vào chảo. Cho tỏi băm vào phi thơm (khoảng 30 giây). Thêm hỗn hợp rau củ đông lạnh vào xào khoảng 2-3 phút cho đến khi rau củ hơi mềm.",
+        "5. Đẩy rau củ sang một bên chảo, cho cơm nguội vào. Rưới nước tương và dầu hào (nếu dùng) lên cơm. Đảo đều, dùng sạn tách rời các hạt cơm, xào khoảng 3-5 phút cho cơm nóng đều và hơi săn lại.",
+        "6. Hoàn thành: Cho tôm, thịt gà/heo, cá đã dầm nát và trứng thái hạt lựu trở lại chảo. Rưới dầu mè. Đảo đều tất cả các nguyên liệu cho đến khi nóng đều và hòa quyện, khoảng 2-3 phút.",
+        "7. Rắc hành lá thái nhỏ vào, đảo nhanh. Nêm nếm lại gia vị cho vừa ăn. Dọn ra đĩa và thưởng thức ngay."
+      ],
+      "tips": "Sử dụng cơm nguội từ hôm trước giúp cơm chiên không bị bết dính và có độ giòn ngon hơn. Để tiết kiệm thời gian, bạn có thể chiên trứng và sơ chế các loại thịt/hải sản trong lúc chờ chảo nóng. Đừng cho quá nhiều nguyên liệu vào chảo cùng lúc để đảm bảo chúng được chín đều và không bị hấp hơi.",
+      "nutritionInfo": {
+        "protein": "35g",
+        "carbs": "45g",
+        "fat": "14g"
+      },
+      "image": "https://images.pexels.com/photos/28618639/pexels-photo-28618639.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "aiGenerated": true,
+      "createdAt": "2025-11-03T00:59:11.855Z",
+      "isPublic": false,
+      "status": "private",
+      "createdBy": "1761981757225",
+      "publishedAt": null
+    }
+  ],
   "savedRecipes": [
     {
       "id": "9",

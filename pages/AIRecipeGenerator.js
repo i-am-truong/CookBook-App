@@ -19,7 +19,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import GeminiService from "../services/geminiService";
 import PexelsService from "../services/pexelsService";
-import { API_URL } from "../services/api";
+import { createMyRecipe } from "../services/api";
 
 const AIRecipeGenerator = ({ navigation }) => {
   // AI Recipe Generator States
@@ -165,34 +165,17 @@ const AIRecipeGenerator = ({ navigation }) => {
         publishedAt: null,
       };
 
-      const response = await fetch(`${API_URL}/myRecipes`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(recipeWithMetadata),
-      });
+      const data = await createMyRecipe(recipeWithMetadata);
 
-      if (response.ok) {
-        Alert.alert(
-          "✅ Đã lưu! 🎉",
-          "Công thức đã được lưu vào 'My Recipe'.\nBạn có thể xem và xuất bản sau.",
-          [
-            {
-              text: "Xem chi tiết",
-              onPress: () =>
-                navigation.navigate("RecipeDetail", {
-                  recipe: recipeWithMetadata,
-                  source: "My Recipe",
-                }),
-            },
-            {
-              text: "Tạo mới",
-              onPress: () => {
-                setGeneratedRecipe(null);
-                setIngredients("");
-              },
-            },
-          ]
-        );
+      if (data) {
+        // Navigate directly to EditRecipe screen with the saved recipe
+        // This allows user to edit, set to private/public, and publish
+        navigation.navigate("EditRecipe", {
+          recipe: {
+            ...recipeWithMetadata,
+            id: data.id, // Use the ID returned from createMyRecipe
+          },
+        });
       } else {
         throw new Error("Failed to save recipe");
       }

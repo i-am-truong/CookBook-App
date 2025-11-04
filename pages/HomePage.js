@@ -20,7 +20,7 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useFocusEffect } from "@react-navigation/native";
-import { API_URL } from "../services/api";
+import { fetchRecipes as fetchRecipesAPI } from "../services/api";
 
 const numColumns = 2;
 const screenWidth = Dimensions.get("window").width;
@@ -48,11 +48,7 @@ export default function HomePage() {
 
   const fetchRecipes = useCallback(async () => {
     try {
-      const response = await fetch(`${API_URL}/recipes`);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
+      const data = await fetchRecipesAPI();
       // Filter public
       const publicRecipes = data.filter((recipe) => recipe.isPublic !== false);
       // Fallback estimated_cost

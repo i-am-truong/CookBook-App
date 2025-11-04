@@ -7,15 +7,17 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
-  Modal,
-  Image,
-  Platform,
-  StatusBar,
-  ActivityIndicator,
-} from "react-native";
+    Modal,
+    Image,
+    Platform,
+    StatusBar,
+    ActivityIndicator,
+    Switch,
+  } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import ImagePickerComponent from "./ImagePickerComponent";
-import { API_URL } from "../services/api";
+import { updateMyRecipe, updateRecipeAPI, updateSavedRecipeAPI, createRecipe } from "../services/api";
 
 const EditRecipeScreen = ({ route, navigation }) => {
   const { recipe } = route.params; // Get recipe to edit
@@ -31,6 +33,8 @@ const EditRecipeScreen = ({ route, navigation }) => {
   const [instructions, setInstructions] = useState([""]);
   const [showCategoryPicker, setShowCategoryPicker] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isPublic, setIsPublic] = useState(false);
+  const [status, setStatus] = useState("private");
 
   const categories = [
     "Breakfast",
@@ -55,6 +59,9 @@ const EditRecipeScreen = ({ route, navigation }) => {
       setImageUri(recipe.image || null);
       setIngredients(recipe.ingredients?.length > 0 ? recipe.ingredients : [{ name: "", amount: "" }]);
       setInstructions(recipe.instructions?.length > 0 ? recipe.instructions : [""]);
+      // Set privacy status - default to private for new recipes
+      setIsPublic(recipe.isPublic === true);
+      setStatus(recipe.status || "private");
     }
   }, [recipe]);
 
@@ -128,70 +135,40 @@ const EditRecipeScreen = ({ route, navigation }) => {
       ingredients: validIngredients,
       instructions: validInstructions,
       image: imageUri,
+      isPublic: isPublic,
+      status: status,
       updatedAt: new Date().toISOString(),
     };
 
     try {
       // Update in myRecipes
-      const response = await fetch(`${API_URL}/myRecipes/${recipe.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedRecipe),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
+      const data = await updateMyRecipe(recipe.id, updatedRecipe);
       console.log("Recipe updated in myRecipes:", data);
 
-      // Also update in recipes collection if it exists there (for AI-generated recipes)
+      // Also update in recipes collection if it exists there (for published recipes)
+      // Note: This is optional - recipe may not exist in recipes collection if not published yet
       try {
-        const recipesResponse = await fetch(`${API_URL}/recipes`);
-        if (recipesResponse.ok) {
-          const recipesData = await recipesResponse.json();
-          const existsInRecipes = recipesData.some((r) => r.id === recipe.id);
-          
-          if (existsInRecipes) {
-            await fetch(`${API_URL}/recipes/${recipe.id}`, {
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(updatedRecipe),
-            });
-            console.log("Recipe also updated in recipes collection");
-          }
+        const result = await updateRecipeAPI(recipe.id, updatedRecipe);
+        if (result && result.success) {
+          console.log("Recipe also updated in recipes collection");
+        } else {
+          console.log("Recipe not found in recipes collection (may not be published yet - this is normal)");
         }
       } catch (error) {
-        console.error("Error updating in recipes collection:", error);
-        // Continue even if this fails
+        // Silently continue - recipe may not exist in recipes collection
+        console.log("Recipe not found in recipes collection (this is normal if recipe is private)");
       }
 
       // Also update in savedRecipes collection if it exists there
+      // Note: This is optional - recipe may not exist in savedRecipes collection
       try {
-        const savedResponse = await fetch(`${API_URL}/savedRecipes`);
-        if (savedResponse.ok) {
-          const savedData = await savedResponse.json();
-          const existsInSaved = savedData.some((r) => r.id === recipe.id);
-          
-          if (existsInSaved) {
-            await fetch(`${API_URL}/savedRecipes/${recipe.id}`, {
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(updatedRecipe),
-            });
-            console.log("Recipe also updated in savedRecipes collection");
-          }
+        const result = await updateSavedRecipeAPI(recipe.id, updatedRecipe);
+        if (result && result.success) {
+          console.log("Recipe also updated in savedRecipes collection");
         }
       } catch (error) {
-        console.error("Error updating in savedRecipes collection:", error);
-        // Continue even if this fails
+        // Silently continue - recipe may not exist in savedRecipes collection
+        console.log("Recipe not found in savedRecipes collection (this is normal)");
       }
 
       Alert.alert("Thành công! 🎉", "Công thức đã được cập nhật!", [
@@ -394,6 +371,106 @@ const EditRecipeScreen = ({ route, navigation }) => {
               )}
             </View>
           ))}
+        </View>
+
+        {/* Privacy & Status Controls */}
+        <View style={styles.privacySection}>
+          <Text style={styles.sectionTitle}>Trạng thái công thức</Text>
+          
+          {/* Private/Public Toggle */}
+          <View style={styles.privacyRow}>
+            <View style={styles.privacyInfo}>
+              <Ionicons 
+                name={isPublic ? "globe" : "lock-closed"} 
+                size={24} 
+                color={isPublic ? "#4CAF50" : "#FF6B6B"} 
+              />
+              <Text style={styles.privacyLabel}>
+                {isPublic ? "Công khai" : "Riêng tư"}
+              </Text>
+            </View>
+            <Switch
+              value={isPublic}
+              onValueChange={(value) => {
+                setIsPublic(value);
+                setStatus(value ? "public" : "private");
+              }}
+              trackColor={{ false: "#E0E0E0", true: "#4CAF50" }}
+              thumbColor={isPublic ? "#fff" : "#f4f3f4"}
+            />
+          </View>
+
+          {/* Status Badge */}
+          <View style={[styles.statusBadge, isPublic && styles.statusBadgePublic]}>
+            <Ionicons 
+              name={isPublic ? "checkmark-circle" : "lock-closed"} 
+              size={16} 
+              color={isPublic ? "#4CAF50" : "#FF6B6B"} 
+            />
+            <Text style={[styles.statusText, isPublic && styles.statusTextPublic]}>
+              {isPublic ? "Đã xuất bản" : "Chưa xuất bản"}
+            </Text>
+          </View>
+
+          {/* Publish Button - Only show if recipe is private */}
+          {!isPublic && (
+            <TouchableOpacity
+              style={styles.publishButton}
+              onPress={async () => {
+                try {
+                  setLoading(true);
+                  const userId = await AsyncStorage.getItem("userId");
+                  const userEmail = await AsyncStorage.getItem("emailUser");
+                  
+                  const updatedRecipe = {
+                    ...recipe,
+                    name,
+                    category,
+                    description,
+                    calories: parseInt(calories) || 0,
+                    cookingTime,
+                    servings: parseInt(servings) || 1,
+                    image: imageUri,
+                    ingredients,
+                    instructions,
+                    isPublic: true,
+                    status: "public",
+                    publishedAt: new Date().toISOString(),
+                    publishedBy: userId || userEmail || "unknown",
+                  };
+
+                  // Update in myRecipes
+                  await updateMyRecipe(recipe.id, updatedRecipe);
+                  
+                  // Add to recipes collection (public)
+                  await createRecipe(updatedRecipe);
+
+                  Alert.alert(
+                    "✅ Đã xuất bản! 🎉",
+                    "Công thức của bạn giờ đã công khai và mọi người đều có thể xem!",
+                    [
+                      {
+                        text: "OK",
+                        onPress: () => {
+                          setIsPublic(true);
+                          setStatus("public");
+                        },
+                      },
+                    ]
+                  );
+                } catch (error) {
+                  console.error("Error publishing recipe:", error);
+                  Alert.alert("Lỗi", "Không thể xuất bản công thức. Vui lòng thử lại.");
+                } finally {
+                  setLoading(false);
+                }
+              }}
+              disabled={loading}
+            >
+              <Ionicons name="globe" size={20} color="#fff" />
+              <Text style={styles.publishButtonText}>Xuất bản công thức</Text>
+            </TouchableOpacity>
+          )}
         </View>
 
         {/* Submit Button */}
@@ -649,6 +726,65 @@ const styles = StyleSheet.create({
   categoryOptionTextSelected: {
     fontWeight: "600",
     color: "#4CAF50",
+  },
+  // Privacy section styles
+  privacySection: {
+    padding: 16,
+    backgroundColor: "#fff",
+    marginBottom: 8,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#e0e0e0",
+  },
+  privacyRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 12,
+  },
+  privacyInfo: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+  },
+  privacyLabel: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#333",
+  },
+  statusBadge: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 10,
+    backgroundColor: "#FFF3E0",
+    borderRadius: 8,
+    gap: 8,
+    marginBottom: 12,
+  },
+  statusBadgePublic: {
+    backgroundColor: "#E8F5E9",
+  },
+  statusText: {
+    fontSize: 14,
+    fontWeight: "500",
+    color: "#FF6B6B",
+  },
+  statusTextPublic: {
+    color: "#4CAF50",
+  },
+  publishButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#4CAF50",
+    padding: 14,
+    borderRadius: 10,
+    gap: 8,
+  },
+  publishButtonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "600",
   },
 });
 

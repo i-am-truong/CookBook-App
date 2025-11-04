@@ -56,24 +56,13 @@ export default function MealPlannerPage({ route, navigation }) {
   const { weeklyBudget: propWeeklyBudget, recipes: propRecipes } =
     route.params || {}; // Từ Home
 
-  // *** THAY ĐỔI: Tải dữ liệu thật từ API ***
+  // *** THAY ĐỔI: Tải dữ liệu thật từ local database hoặc API dự phòng ***
   useEffect(() => {
-    const fetchRecipes = async () => {
-      const API_URL = process.env.API_URL;
-      if (!API_URL) {
-        Alert.alert(
-          "Lỗi cấu hình",
-          "Không tìm thấy API_URL. Vui lòng kiểm tra file .env"
-        );
-        return;
-      }
+    const loadRecipes = async () => {
       try {
-        // Dùng API_URL từ .env và endpoint /recipes từ db.json
-        const response = await fetch(`${API_URL}/recipes`);
-        if (!response.ok) {
-          throw new Error(`Lỗi mạng! Status: ${response.status}`);
-        }
-        const data = await response.json();
+        // Load từ local database (database.js)
+        const { fetchRecipes: fetchRecipesAPI } = await import("../services/api");
+        const data = await fetchRecipesAPI();
         // Fallback estimated_cost
         const processed = data.map((r) => ({
           ...r,
@@ -91,7 +80,7 @@ export default function MealPlannerPage({ route, navigation }) {
         );
       }
     };
-    fetchRecipes();
+    loadRecipes();
   }, []); // Chỉ chạy 1 lần khi component mở
 
   // Auto-generate nếu có propWeeklyBudget

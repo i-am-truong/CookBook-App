@@ -17,7 +17,7 @@ const StartScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome to Cookmate AI 🍽️</Text>
+      <Text style={styles.title}>Welcome to Cookbook 🍽️</Text>
       <Text style={styles.subtitle}>
         Find, Create & Enjoy Delicious Recipes!
       </Text>
