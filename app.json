@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "pet-adopt",
-    "slug": "pet-adopt",
+    "name": "CookBook",
+    "slug": "CookBook",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,13 +24,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-        
       },
-      "package": "com.anonymous.petadopt",
-      "usesCleartextTraffic": true
+      "package": "com.anonymous.cookbook"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e8f4250b-414b-43b2-bbf0-aa262ce3cecc"
+      }
     }
   }
 }
